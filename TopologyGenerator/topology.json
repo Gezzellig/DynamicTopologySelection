@@ -1,0 +1,45 @@
+{
+  "images": [
+    {
+      "id": 0,
+      "image_name": "frontend",
+      "image_version": "latest",
+      "replication": 4
+    },
+    {
+      "id": 1,
+      "image_name": "backend",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 2,
+      "image_name": "SQL",
+      "image_version": "latest",
+      "replication": 5
+    },
+    {
+      "id": 3,
+      "image_name": "Cassandra",
+      "image_version": "latest",
+      "replication": 5
+    },
+    {
+      "id": 4,
+      "image_name": "Spark",
+      "image_version": "latest",
+      "replication": 5
+    }
+  ],
+
+  "connections": [
+    {
+      "source_id": 1,
+      "destination_id": 4
+    },
+    {
+      "source_id": 1,
+      "destination_id": 2
+    }
+  ]
+}
