@@ -1,6 +1,11 @@
 import json
+import sys
+
 from neo4j import GraphDatabase
 from jsonschema import validate
+
+from SetWithCrossProduct import SetWithCrossProduct
+
 
 class TopologyGraph:
     def __init__(self):
@@ -17,8 +22,27 @@ class TopologyGraph:
         self.execute_command(command)
 
     def generate_possible_image_combinations(self):
-        command = "MATCH p =(n:IMAGE)-[:CONNECTS_TOO *0..]->(:IMAGE) CREATE (o:COMBINATION) FOREACH (m IN nodes(p)| CREATE (o)-[:CONTAINS]->(m) )"
-        self.execute_command(command)
+        all_nodes_id_command = "MATCH (n:IMAGE) SET n.started = false RETURN ID(n) AS node_id"
+        results = self.execute_command(all_nodes_id_command)
+
+        for record in results:
+            master_node_id = record["node_id"]
+
+            all_paths_one_node_command = "MATCH p = (n:IMAGE) -[:CONNECTS_TOO *0..]- (:IMAGE) WHERE id(n)={} AND all(m IN nodes(p) WHERE m.started=false) RETURN NODES(p) AS path".format(master_node_id)
+            paths = self.execute_command(all_paths_one_node_command)
+            unique_paths = SetWithCrossProduct()
+            for path in paths:
+                path_list = list()
+                for node in path["path"]:
+                    path_list.append(node.id)
+                unique_paths.add(frozenset(path_list))
+            for unique_path in unique_paths.get():
+                create_combination_command = "CREATE (c:COMBINATION) WITH (c) MATCH (n:IMAGE) WHERE ID(n) in {} MERGE (c)-[:CONTAINS]->(n)".format(list(unique_path))
+                self.execute_command(create_combination_command)
+            set_node_to_visited_command = "MATCH (n:IMAGE) WHERE ID(n) = {} SET n.started = true".format(master_node_id)
+            self.execute_command(set_node_to_visited_command)
+        #command = "MATCH p =(n:IMAGE)-[:CONNECTS_TOO *0..]->(:IMAGE) CREATE (o:COMBINATION) FOREACH (m IN nodes(p)| CREATE (o)-[:CONTAINS]->(m) )"
+        #self.execute_command(command)
 
     def empty_graph(self):
         command = "MATCH (n) " \
@@ -35,7 +59,6 @@ class TopologyGraph:
         self.driver.close()
         print("disconnected")
 
-
 """topology_schema = {
     "type": "object"
     "properties": {
@@ -50,7 +73,9 @@ class TopologyGraph:
 
 
 def main():
-    with open('topology.json') as file:
+    topology_file_name = sys.argv[1]
+    print("Using: {}".format(topology_file_name))
+    with open(topology_file_name) as file:
         json_topology = json.load(file)
     #validate(json_topology, topology_schema)
 
@@ -71,6 +96,7 @@ def main():
         topology_graph.add_image_connection(source_id, destination_id)
     print("done")
 
+    topology_graph.generate_possible_image_combinations()
     topology_graph.disconnect()
 
 

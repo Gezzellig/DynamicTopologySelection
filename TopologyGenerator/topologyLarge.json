@@ -1,0 +1,132 @@
+{
+  "images": [
+    {
+      "id": 0,
+      "image_name": "a",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 1,
+      "image_name": "b",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 2,
+      "image_name": "c",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 3,
+      "image_name": "d",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 4,
+      "image_name": "e",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 5,
+      "image_name": "f",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 6,
+      "image_name": "g",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 7,
+      "image_name": "h",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 8,
+      "image_name": "i",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 9,
+      "image_name": "j",
+      "image_version": "latest",
+      "replication": 2
+    }
+  ],
+
+  "connections": [
+    {
+      "source_id": 2,
+      "destination_id": 5
+    },
+    {
+      "source_id": 8,
+      "destination_id": 3
+    }
+    ,
+    {
+      "source_id": 1,
+      "destination_id": 6
+    },
+    {
+      "source_id": 7,
+      "destination_id": 4
+    },
+    {
+      "source_id": 2,
+      "destination_id": 6
+    }
+    ,
+    {
+      "source_id": 1,
+      "destination_id": 2
+    },
+    {
+      "source_id": 3,
+      "destination_id": 4
+    },
+    {
+      "source_id": 7,
+      "destination_id": 4
+    }
+    ,
+    {
+      "source_id": 3,
+      "destination_id": 9
+    },
+    {
+      "source_id": 4,
+      "destination_id": 2
+    },
+    {
+      "source_id": 9,
+      "destination_id": 6
+    }
+    ,
+    {
+      "source_id": 1,
+      "destination_id": 0
+    },
+    {
+      "source_id": 0,
+      "destination_id": 5
+    },
+    {
+      "source_id": 3,
+      "destination_id": 9
+    }
+    ,
+    {
+      "source_id": 8,
+      "destination_id": 7
+    }
+  ]
+}
