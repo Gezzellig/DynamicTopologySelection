@@ -59,6 +59,36 @@
       "image_name": "j",
       "image_version": "latest",
       "replication": 2
+    },
+    {
+      "id": 10,
+      "image_name": "f",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 11,
+      "image_name": "g",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 12,
+      "image_name": "h",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 13,
+      "image_name": "i",
+      "image_version": "latest",
+      "replication": 2
+    },
+    {
+      "id": 14,
+      "image_name": "j",
+      "image_version": "latest",
+      "replication": 2
     }
   ],
 
@@ -125,8 +155,31 @@
     }
     ,
     {
-      "source_id": 8,
+      "source_id": 11,
       "destination_id": 7
+    }
+    ,
+    {
+      "source_id": 12,
+      "destination_id": 13
+    }
+    ,
+    {
+      "source_id": 14,
+      "destination_id": 1
+    },
+    {
+      "source_id": 10,
+      "destination_id": 11
+    },
+    {
+      "source_id": 2,
+      "destination_id": 11
+    }
+    ,
+    {
+      "source_id": 14,
+      "destination_id": 10
     }
   ]
 }

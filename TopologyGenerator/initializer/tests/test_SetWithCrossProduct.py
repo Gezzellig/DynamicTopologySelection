@@ -1,6 +1,6 @@
 import unittest
 
-from SetWithCrossProduct import SetWithCrossProduct
+from initializer.SetWithCrossProduct import SetWithCrossProduct
 
 
 class Test_SetWithCrossProduct(unittest.TestCase):
@@ -24,5 +24,3 @@ class Test_SetWithCrossProduct(unittest.TestCase):
         self.assertEqual({frozenset({1}), frozenset({1, 2}), frozenset({1, 2, 3}), frozenset({1, 2, 4}), frozenset({1, 2, 3, 4})}, cross_set.get())
         cross_set.add(frozenset({1, 2, 5}))
         self.assertEqual({frozenset({1}), frozenset({1, 2}), frozenset({1, 2, 3}), frozenset({1, 2, 4}), frozenset({1, 2, 3, 4}), frozenset({1, 2, 5}), frozenset({1, 2, 3, 5}), frozenset({1, 2, 4, 5}), frozenset({1, 2, 3, 4, 5})}, cross_set.get())
-        for option in cross_set.get():
-            print(option)
