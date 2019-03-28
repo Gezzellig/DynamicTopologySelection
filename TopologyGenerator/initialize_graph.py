@@ -1,7 +1,7 @@
 import json
 import sys
 
-from neo4j import GraphDatabase
+from neo4j import GraphDatabase, Transaction
 from jsonschema import validate
 
 from SetWithCrossProduct import SetWithCrossProduct
@@ -21,28 +21,34 @@ class TopologyGraph:
                   "CREATE (n)-[:CONNECTS_TOO]->(m)".format(source_id=source_id, destination_id=destination_id)
         self.execute_command(command)
 
-    def generate_possible_image_combinations(self):
+    def generate_possible_image_combinations(self, max_images_combined=-1):
         all_nodes_id_command = "MATCH (n:IMAGE) SET n.started = false RETURN ID(n) AS node_id"
         results = self.execute_command(all_nodes_id_command)
 
         for record in results:
             master_node_id = record["node_id"]
 
-            all_paths_one_node_command = "MATCH p = (n:IMAGE) -[:CONNECTS_TOO *0..]- (:IMAGE) WHERE id(n)={} AND all(m IN nodes(p) WHERE m.started=false) RETURN NODES(p) AS path".format(master_node_id)
+            combined_create_combination_command = ""
+            if max_images_combined > 0:
+                max_images_string = max_images_combined - 1
+            else:
+                max_images_string = ""
+            all_paths_one_node_command = "MATCH p = (n:IMAGE) -[:CONNECTS_TOO *0..{}]- (:IMAGE) WHERE ID(n)={} AND all(m IN nodes(p) WHERE m.started=false) RETURN NODES(p) AS path".format(max_images_string, master_node_id)
             paths = self.execute_command(all_paths_one_node_command)
-            unique_paths = SetWithCrossProduct()
+            unique_paths = SetWithCrossProduct(max_images_combined=max_images_combined)
             for path in paths:
                 path_list = list()
                 for node in path["path"]:
                     path_list.append(node.id)
                 unique_paths.add(frozenset(path_list))
-            for unique_path in unique_paths.get():
-                create_combination_command = "CREATE (c:COMBINATION) WITH (c) MATCH (n:IMAGE) WHERE ID(n) in {} MERGE (c)-[:CONTAINS]->(n)".format(list(unique_path))
-                self.execute_command(create_combination_command)
+
+            with self.driver.session() as session:
+                for unique_path in unique_paths.get():
+                    #create_combination_command = "CREATE (c:COMBINATION) WITH (c) MATCH (n:IMAGE) WHERE ID(n) in {} MERGE (c)-[:CONTAINS]->(n);".format(list(unique_path))
+                    session.write_transaction(create_combination_node, list(unique_path))
+                    #self.execute_command(create_combination_command)
             set_node_to_visited_command = "MATCH (n:IMAGE) WHERE ID(n) = {} SET n.started = true".format(master_node_id)
             self.execute_command(set_node_to_visited_command)
-        #command = "MATCH p =(n:IMAGE)-[:CONNECTS_TOO *0..]->(:IMAGE) CREATE (o:COMBINATION) FOREACH (m IN nodes(p)| CREATE (o)-[:CONTAINS]->(m) )"
-        #self.execute_command(command)
 
     def empty_graph(self):
         command = "MATCH (n) " \
@@ -72,6 +78,11 @@ class TopologyGraph:
 #def add_image_node(id, image_name, replication):
 
 
+
+
+def create_combination_node(tx, nodes):
+    return tx.run("CREATE (c:COMBINATION) WITH (c) MATCH (n:IMAGE) WHERE ID(n) in $nodes MERGE (c)-[:CONTAINS]->(n);", nodes=nodes)
+
 def main():
     topology_file_name = sys.argv[1]
     print("Using: {}".format(topology_file_name))
@@ -94,8 +105,6 @@ def main():
         source_id = connection["source_id"]
         destination_id = connection["destination_id"]
         topology_graph.add_image_connection(source_id, destination_id)
-    print("done")
-
     topology_graph.generate_possible_image_combinations()
     topology_graph.disconnect()
 
