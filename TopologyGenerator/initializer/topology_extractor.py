@@ -10,22 +10,16 @@ def extract_node_metadata(node_info):
     for entry in node_info["metadata"]:
         if entry["label"] == "Image name":
             image_name = entry["value"]
-
-            #TODO removing hardcoded ignore of images that are needed for topology generation
-            if image_name == "neo4j":
-                break
+            #Remove break when more metadata elements are needed.
+            break
     return image_name
 
 
 def extract_node_adjacency(node, node_info):
     #Self loops are removed
-    print("ADJEACENFE")
     adjacency = []
-    print(node_info)
     if "adjacency" in node_info:
-        print("IT IS HERE")
         for adjacent in node_info["adjacency"]:
-            print("comparing: {} to {}".format(node, adjacent))
             if not node == adjacent:
                 adjacency.append(adjacent)
     return adjacency
@@ -59,8 +53,14 @@ def extract_topology():
     #TODO: allow the recognition of duplicated containers.
     node_id = 0
     for node, node_info in nodes.items():
+        image_name = extract_node_metadata(node_info)
+
+        # TODO removing hardcoded ignore of images that are needed for topology generation
+        if image_name == "neo4j":
+            break
+
         filtered_node = {"id": node_id,
-                         "image_name": extract_node_metadata(node_info),
+                         "image_name": image_name,
                          "adjacency": extract_node_adjacency(node, node_info)}
         filtered_nodes[node] = filtered_node
         node_id += 1

@@ -7,15 +7,16 @@ from initializer.SetWithCrossProduct import SetWithCrossProduct
 
 
 def emtpy_graph_command(tx):
-    tx.run("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n, r")
+    return tx.run("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n, r")
 
 
 def create_image_node_command(tx, image_id, image_name, image_version, replication):
-    return tx.run("CREATE (:IMAGE {image_id:$image_id, image_name:'$image_name', image_version:'$image_version'})", image_id=image_id, image_name=image_name, image_version=image_version)
+    print(image_id, image_name, image_version)
+    return tx.run("CREATE (:IMAGE {image_id:$image_id, image_name:$image_name, image_version:$image_version})", image_id=image_id, image_name=image_name, image_version=image_version)
 
 
 def create_connects_too_relation_command(tx, source_id, destination_id):
-    tx.run("MATCH (n), (m) WHERE n.image_id = $source_id AND m.image_id = $destination_id CREATE (n)-[:CONNECTS_TOO]->(m)", source_id=source_id, destination_id=destination_id)
+    return tx.run("MATCH (n), (m) WHERE n.image_id = $source_id AND m.image_id = $destination_id CREATE (n)-[:CONNECTS_TOO]->(m)", source_id=source_id, destination_id=destination_id)
 
 
 def create_combination_node_command(tx, nodes):
