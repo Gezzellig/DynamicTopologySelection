@@ -1,5 +1,6 @@
 import json
 import sys
+from itertools import chain, combinations
 
 from initializer import neo4j
 from initializer.SetWithCrossProduct import SetWithCrossProduct
@@ -43,9 +44,9 @@ def emtpy_graph():
     print("Graph emptied")
 
 
-def create_all_image_nodes(json_topology):
+def create_all_image_nodes(topology):
     with neo4j.driver.session() as session:
-        for image in json_topology["images"]:
+        for image in topology["images"]:
             image_id = image["id"]
             image_name = image["image_name"]
             image_version = image["image_version"]
@@ -54,16 +55,16 @@ def create_all_image_nodes(json_topology):
     print("Image nodes created")
 
 
-def create_all_connects_too_relations(json_topology):
+def create_all_connects_too_relations(topology):
     with neo4j.driver.session() as session:
-        for connection in json_topology["connections"]:
+        for connection in topology["connections"]:
             source_id = connection["source_id"]
             destination_id = connection["destination_id"]
             session.write_transaction(create_connects_too_relation_command, source_id, destination_id)
     print("Connections between images nodes made")
 
 
-def generate_possible_image_combinations(master_node_id, max_images_combined=-1):
+def generate_possible_image_connected_combinations(master_node_id, max_images_combined=-1):
     with neo4j.driver.session() as session:
         paths = session.write_transaction(fetch_all_paths_one_node, master_node_id, max_images_combined)
     unique_paths = SetWithCrossProduct(max_images_combined)
@@ -79,12 +80,45 @@ def generate_possible_image_combinations(master_node_id, max_images_combined=-1)
         session.write_transaction(set_image_started_true, master_node_id)
 
 
-def generate_all_possible_image_combinations(max_images_combined=-1):
+def generate_all_possible_image_connected_combinations(max_images_combined=-1):
     with neo4j.driver.session() as session:
         results = session.write_transaction(fetch_all_image_nodes_command)
     for record in results:
-        generate_possible_image_combinations(record["node_id"], max_images_combined)
+        generate_possible_image_connected_combinations(record["node_id"], max_images_combined)
+    print("Possible connected combinations generated with max: {}".format(max_images_combined))
+
+
+def possible_combinations(element_list):
+    iterator = chain.from_iterable(combinations(element_list, r) for r in range(len(element_list)+1))
+    iterator.__next__() #removing the empty element
+    return iterator
+
+
+def generate_all_possible_image_combinations(max_images_combined=-1):
+    with neo4j.driver.session() as session:
+        results = session.write_transaction(fetch_all_image_nodes_command)
+    all_node_ids = list(map(lambda node : node["node_id"], results))
+    print(all_node_ids)
+    with neo4j.driver.session() as session:
+        for combination in possible_combinations(all_node_ids):
+            if not max_images_combined == -1 and len(combination) > max_images_combined:
+                break
+            session.write_transaction(create_combination_node_command, list(combination))
     print("Possible combinations generated with max: {}".format(max_images_combined))
+
+
+def initialize_graph(settings, topology):
+    # EMPTYING THE GRAPH to start with a clean sheet
+    emtpy_graph()
+    create_all_image_nodes(topology)
+    create_all_connects_too_relations(topology)
+
+    if settings["combination"] == "connected":
+        generate_all_possible_image_connected_combinations(settings["max_images_combined"])
+    elif settings["combination"] == "all":
+        generate_all_possible_image_combinations(settings["max_images_combined"])
+    else:
+        raise Exception("combination was not provided in settings, either chose 'connected', or 'all'")
 
 
 def main():
@@ -92,15 +126,11 @@ def main():
     topology_file_name = sys.argv[2]
     print("Settings: {}, Topology: {}".format(setting_file_name, topology_file_name))
     with open(topology_file_name) as file:
-        json_topology = json.load(file)
+        topology = json.load(file)
     with open(setting_file_name) as file:
-        json_settings = json.load(file)
+        settings = json.load(file)
+    initialize_graph(settings, topology)
 
-    # EMPTYING THE GRAPH to start with a clean sheet
-    emtpy_graph()
-    create_all_image_nodes(json_topology)
-    create_all_connects_too_relations(json_topology)
-    generate_all_possible_image_combinations(json_settings["max_images_combined"])
 
 
 if __name__ == "__main__":

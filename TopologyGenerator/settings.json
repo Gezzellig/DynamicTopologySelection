@@ -1,3 +1,4 @@
 {
-  "max_images_combined": -1
+  "combination": "connected",
+  "max_images_combined": 4
 }
