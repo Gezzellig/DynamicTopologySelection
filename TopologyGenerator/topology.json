@@ -2,32 +2,37 @@
   "images": [
     {
       "id": 0,
+      "container_name": "frontend",
       "image_name": "frontend",
-      "image_version": "latest",
+      "image_tag": "latest",
       "replication": 4
     },
     {
       "id": 1,
+      "container_name": "backend",
       "image_name": "backend",
-      "image_version": "latest",
+      "image_tag": "latest",
       "replication": 2
     },
     {
       "id": 2,
+      "container_name": "SQL",
       "image_name": "SQL",
-      "image_version": "latest",
+      "image_tag": "latest",
       "replication": 5
     },
     {
       "id": 3,
+      "container_name": "Cassandra",
       "image_name": "Cassandra",
-      "image_version": "latest",
+      "image_tag": "latest",
       "replication": 5
     },
     {
       "id": 4,
+      "container_name": "Spark",
       "image_name": "Spark",
-      "image_version": "latest",
+      "image_tag": "latest",
       "replication": 5
     }
   ],

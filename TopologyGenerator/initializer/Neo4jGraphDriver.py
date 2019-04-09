@@ -1,6 +1,5 @@
 from neo4j import GraphDatabase
 
-
 class Neo4jGraphDriver:
     def __init__(self):
         self.driver = None
@@ -11,3 +10,6 @@ class Neo4jGraphDriver:
 
     def disconnect(self):
         self.driver.close()
+
+    def session(self):
+        return self.driver.session()

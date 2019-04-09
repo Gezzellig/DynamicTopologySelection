@@ -2,7 +2,7 @@ import json
 import sys
 from itertools import chain, combinations
 
-from initializer import neo4j
+from initializer import neo4j_driver
 from initializer.SetWithCrossProduct import SetWithCrossProduct
 
 
@@ -10,9 +10,9 @@ def emtpy_graph_command(tx):
     return tx.run("MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n, r")
 
 
-def create_image_node_command(tx, image_id, image_name, image_version, replication):
+def create_image_node_command(tx, image_id, container_name, image_name, image_version, replication):
     print(image_id, image_name, image_version)
-    return tx.run("CREATE (:IMAGE {image_id:$image_id, image_name:$image_name, image_version:$image_version})", image_id=image_id, image_name=image_name, image_version=image_version)
+    return tx.run("CREATE (:IMAGE {image_id:$image_id, container_name:$container_name, image_name:$image_name, image_version:$image_version})", image_id=image_id, container_name=container_name, image_name=image_name, image_version=image_version)
 
 
 def create_connects_too_relation_command(tx, source_id, destination_id):
@@ -40,24 +40,25 @@ def set_image_started_true(tx, master_node_id):
 
 
 def emtpy_graph():
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         session.write_transaction(emtpy_graph_command)
     print("Graph emptied")
 
 
 def create_all_image_nodes(topology):
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         for image in topology["images"]:
             image_id = image["id"]
+            container_name = image["container_name"]
             image_name = image["image_name"]
-            image_version = image["image_version"]
+            image_version = image["image_tag"]
             replication = image["replication"]
-            session.write_transaction(create_image_node_command, image_id, image_name, image_version, replication)
+            session.write_transaction(create_image_node_command, image_id, container_name, image_name, image_version, replication)
     print("Image nodes created")
 
 
 def create_all_connects_too_relations(topology):
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         for connection in topology["connections"]:
             source_id = connection["source_id"]
             destination_id = connection["destination_id"]
@@ -66,7 +67,7 @@ def create_all_connects_too_relations(topology):
 
 
 def generate_possible_image_connected_combinations(master_node_id, max_images_combined=-1):
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         paths = session.write_transaction(fetch_all_paths_one_node, master_node_id, max_images_combined)
     unique_paths = SetWithCrossProduct(max_images_combined)
     for path in paths:
@@ -75,14 +76,14 @@ def generate_possible_image_connected_combinations(master_node_id, max_images_co
             path_list.append(node.id)
         unique_paths.add(frozenset(path_list))
 
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         for unique_path in unique_paths.get():
             session.write_transaction(create_combination_node_command, list(unique_path))
         session.write_transaction(set_image_started_true, master_node_id)
 
 
 def generate_all_possible_image_connected_combinations(max_images_combined=-1):
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         results = session.write_transaction(fetch_all_image_nodes_command)
     for record in results:
         generate_possible_image_connected_combinations(record["node_id"], max_images_combined)
@@ -96,11 +97,11 @@ def possible_combinations(element_list):
 
 
 def generate_all_possible_image_combinations(max_images_combined=-1):
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         results = session.write_transaction(fetch_all_image_nodes_command)
     all_node_ids = list(map(lambda node : node["node_id"], results))
     print(all_node_ids)
-    with neo4j.driver.session() as session:
+    with neo4j_driver.session() as session:
         for combination in possible_combinations(all_node_ids):
             if not max_images_combined == -1 and len(combination) > max_images_combined:
                 break

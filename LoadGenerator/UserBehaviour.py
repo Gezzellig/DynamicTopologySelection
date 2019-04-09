@@ -12,7 +12,7 @@ class UserBehavior(TaskSet):
         product = random.choice(catalogue)
         item_id = product["id"]
         self.client.get("/")
-        self.client.get("/login", auth=("jo", "oj"))
+        self.client.get("/login", auth=("user", "password"))
         self.client.get("/category.html")
         self.client.get("/detail.html?id={}".format(item_id))
         self.client.delete("/cart")
