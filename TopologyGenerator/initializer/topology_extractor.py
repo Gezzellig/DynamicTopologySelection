@@ -9,6 +9,7 @@ def extract_node_metadata(node_info):
     container_name = node_info["label"]
     image_name = "NO IMAGE NAME FOUND"
     image_tag = "NO TAG FOUND"
+    print(node_info)
     for entry in node_info["metadata"]:
         if entry["id"] == "docker_image_name":
             image_name = entry["value"]
