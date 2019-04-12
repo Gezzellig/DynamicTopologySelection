@@ -2,10 +2,39 @@ import datetime
 
 import requests
 
-from initializer.neo4j_queries import retrieve_all_container_names
+from initializer.neo4j_queries import get_start_end_times_executions
+
+
+def get_combinations_already_ran(load):
+    """
+    MATCH (c:COMBINATION)<-[:RAN]-(e:EXECUTION{load:5})
+    WITH c, {start_time: e.start_time, end_time: e.end_time} AS run_time
+    RETURN ID(c) AS id, collect(run_time) AS run_times
+    """
+    # TODO try to find if the pod matrics can be retrieved from prometheus
+    pass
+
+def performance_combinations_not_ran(load):
+    times = get_start_end_times_executions(load)
+    print(times)
+
+    """
+    MATCH (c:COMBINATION)
+    WHERE NOT (c)<-[:RAN]-(:EXECUTION{load:5})
+    WITH c
+    MATCH (c) -[:CONTAINS]-> (n:IMAGE)
+    RETURN ID(c) AS id, collect(n.container_name) AS containers
+    """
+    """
+    MATCH (e:EXECUTION{load:5}) RETURN e.start_time AS start_time, e.end_time AS end_time
+    """
 
 
 def main():
+    performance_combinations_not_ran(5)
+
+
+    """
     print("extract performance")
 
     container_names = retrieve_all_container_names()
@@ -25,7 +54,7 @@ def main():
     print(request_query)
     response = requests.get(request_query)
     print(response.json())
-
+"""
     
 
 

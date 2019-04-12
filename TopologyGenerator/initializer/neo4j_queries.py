@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import neotime
 from initializer import neo4j_driver
 
 
@@ -7,21 +10,11 @@ def retrieve_all_container_names_command(tx):
 
 def retrieve_all_container_names():
     container_names = []
-    with neo4j_driver.driver.session() as session:
+    with neo4j_driver.session() as session:
         containers_holder = session.write_transaction(retrieve_all_container_names_command)
     for container_holder in containers_holder:
         container_names.append(container_holder["container_name"])
     return container_names
-
-def retrieve_combination_connected_to_list_of_containers_command(tx):
-    command = "WITH $container_list AS container_names \
-    MATCH(p: IMAGE) < -[: CONTAINS]-(m:COMBINATION) WHERE p.container_name in container_names \
-    WITH m, container_names, size(container_names) as inputCnt, count(DISTINCT p) as cnt \
-    WHERE cnt = inputCnt \
-    MATCH(q: IMAGE) < -[: CONTAINS]-(m:COMBINATION) WITH m, inputCnt, count(q) as total_cnt \
-    WHERE inputCnt = total_cnt \
-    RETURN m"
-    tx.run(command)
 
 
 def create_execution_node_command(tx, load, start_time, end_time, combinations):
@@ -39,8 +32,23 @@ def create_execution_node_command(tx, load, start_time, end_time, combinations):
 
 
 def create_execution_node(load, start_time, end_time, combinations):
-    with neo4j_driver.driver.session() as session:
-        session.write_transaction(create_execution_node_command, load, start_time, end_time, combinations)
+    with neo4j_driver.session() as session:
+        return session.write_transaction(create_execution_node_command, load, start_time, end_time, combinations)
 
-def retrieve_combination_connected_to_list_of_containers(container_list):
-    pass
+
+def get_start_end_times_executions_command(tx, load):
+    return tx.run("MATCH (e:EXECUTION{load:$load}) RETURN e.start_time AS start_time, e.end_time AS end_time", load=load)
+
+
+def get_start_end_times_executions(load):
+    with neo4j_driver.session() as session:
+        results = session.write_transaction(get_start_end_times_executions_command, load)
+    start_end_times = []
+    for result in results:
+        start = result["start_time"]
+        end = result["end_time"]
+        start_end_times.append({
+            "start_time": datetime(start.year, start.month, start.day, start.hour, start.minute, int(start.second), int(start.second * 1000 % 1000)),
+            "end_time": datetime(end.year, end.month, end.day, end.hour, end.minute, int(end.second), int(end.second * 1000 % 1000)),
+        })
+    return start_end_times
