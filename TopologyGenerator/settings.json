@@ -1,4 +1,7 @@
 {
   "combination": "connected",
-  "max_images_combined": 4
+  "max_images_combined": 4,
+  "prometheus_address": "192.168.99.100:32368",
+  "weave_scope_address": "192.168.99.100:32168",
+  "kubernetes_project_namespaces": ["robot-shop"]
 }

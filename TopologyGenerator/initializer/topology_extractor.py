@@ -9,13 +9,22 @@ def extract_node_metadata(node_info):
     container_name = node_info["label"]
     image_name = "NO IMAGE NAME FOUND"
     image_tag = "NO TAG FOUND"
-    print(node_info)
     for entry in node_info["metadata"]:
         if entry["id"] == "docker_image_name":
             image_name = entry["value"]
         if entry["id"] == "docker_image_tag":
             image_tag = entry["value"]
     return container_name, image_name, image_tag
+
+
+def extract_node_tables(node_info):
+    namespace = "NO NAMESPACE FOUND"
+    for table in node_info["tables"]:
+        if table["id"] == "docker_label_":
+            for row in table["rows"]:
+                if row["id"] == "label_io.kubernetes.pod.namespace":
+                    namespace = row["entries"]["value"]
+    return namespace
 
 
 def extract_node_adjacency(node, node_info):
@@ -45,9 +54,11 @@ def convert_to_topology_notation(filtered_nodes):
     return topology
 
 
-def extract_topology():
+def extract_topology(settings):
     # Requests all the running containers on the supervised machines.
-    response = requests.get("http://localhost:4040/api/topology/containers?stopped=running")
+    command = "http://{}/api/topology/containers?stopped=running".format(settings["weave_scope_address"])
+    print(command)
+    response = requests.get(command)
     print(response.status_code)
 
     nodes = response.json()["nodes"]
@@ -57,8 +68,11 @@ def extract_topology():
     node_id = 0
     for node, node_info in nodes.items():
         container_name, image_name, image_tag = extract_node_metadata(node_info)
-        # TODO removing hardcoded ignore of images that are needed for topology generation
-        if image_name == "neo4j" or image_name == "google/cadvisor" or image_name == "prom/prometheus":
+        namespace = extract_node_tables(node_info)
+
+        #skip all nodes found by node that aren't relevant to the project observed
+        if namespace not in settings["kubernetes_project_namespaces"]:
+            print("Skipping: {}".format(container_name))
             continue
 
         filtered_node = {"id": node_id,
@@ -77,7 +91,7 @@ def main():
     print("Settings: {}".format(setting_file_name))
     with open(setting_file_name) as file:
         settings = json.load(file)
-    topology = extract_topology()
+    topology = extract_topology(settings)
     initialize_graph.initialize_graph(settings, topology)
 
 
