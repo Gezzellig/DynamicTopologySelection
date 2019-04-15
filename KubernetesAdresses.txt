@@ -1,2 +1,6 @@
+find all open external ports:
+kubectl get svc --all-namespaces -o go-template='{{range .items}}{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}{{end}}'
+
 Prometheus 192.168.99.100:32368
 weave scope: 192.168.99.100:32168
+gravana: 192.168.99.100:31652

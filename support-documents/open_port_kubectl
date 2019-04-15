@@ -1,0 +1,4 @@
+kubectl proxy --port=8080
+
+https://github.com/kubernetes-client/python/blob/master/kubernetes/docs/CoreV1Api.md
+https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#-strong-api-overview-strong-

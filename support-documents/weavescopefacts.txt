@@ -1,0 +1,9 @@
+This only works when there is actual load
+
+api for containers:
+http://localhost:4040/api/topology/containers
+
+You can find connected containers at adjacency
+
+gravana credentials
+admin:foobar

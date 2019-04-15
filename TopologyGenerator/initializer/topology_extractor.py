@@ -71,7 +71,7 @@ def extract_topology(settings):
         namespace = extract_node_tables(node_info)
 
         #skip all nodes found by node that aren't relevant to the project observed
-        if namespace not in settings["kubernetes_project_namespaces"]:
+        if not namespace == settings["kubernetes_project_namespace"]:
             print("Skipping: {}".format(container_name))
             continue
 
