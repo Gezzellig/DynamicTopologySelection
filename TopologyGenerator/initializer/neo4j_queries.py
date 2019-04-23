@@ -17,7 +17,7 @@ def retrieve_all_container_names():
     return container_names
 
 
-def create_execution_node_command(tx, load, start_time, end_time, combinations):
+def create_execution_node_command_OLDD(tx, load, start_time, end_time, combinations):
     return tx.run("CREATE (e:EXECUTION {load:$load, start_time:datetime({ epochMillis: $start_time }), end_time:datetime({ epochMillis: $end_time})}) \
                     WITH e \
                     UNWIND $combinations as container_names \
@@ -31,9 +31,28 @@ def create_execution_node_command(tx, load, start_time, end_time, combinations):
                   , load=load, start_time=int(start_time.timestamp()*1000), end_time=int(end_time.timestamp()*1000), combinations=combinations)
 
 
-def create_execution_node(load, start_time, end_time, combinations):
+def create_execution_node_command(tx, load, start_time, end_time, pods):
+    return tx.run("CREATE (e:EXECUTION {load:$load, start_time:datetime({ epochMillis: $start_time }), end_time:datetime({ epochMillis: $end_time})}) \
+                    WITH e \
+                    UNWIND $pods as pod \
+                    MERGE (e)-[:HAS_NODE]->(n:NODE {name:pod.node_name}) \
+                    WITH n, pod.containers as containers, pod.pod_name as pod_name \
+                    MATCH (p:IMAGE)<-[:CONTAINS]-(m:COMBINATION) \
+                    WHERE p.container_name in containers \
+                    WITH n, m, size(containers) as inputCnt, count(DISTINCT p) as cnt, pod_name \
+                    WHERE cnt = inputCnt \
+                    WITH n, m, inputCnt, pod_name\
+                    MATCH (q:IMAGE)<-[:CONTAINS]-(m:COMBINATION) WITH n, m, inputCnt, count(q) as total_cnt, pod_name \
+                    WHERE inputCnt = total_cnt \
+                    WITH n, m, pod_name \
+                    CREATE (n)-[:RAN{pod_name:pod_name}]->(m)",
+                    load= load, start_time=int(start_time.timestamp()*1000), end_time=int(end_time.timestamp()*1000), pods=pods,
+                  )
+
+
+def create_execution_node(load, start_time, end_time, pods):
     with neo4j_driver.session() as session:
-        return session.write_transaction(create_execution_node_command, load, start_time, end_time, combinations)
+        return session.write_transaction(create_execution_node_command, load, start_time, end_time, pods)
 
 
 def get_start_end_times_executions_command(tx, load):

@@ -1,0 +1,5 @@
+minikube start --cpus 6 --memory 8192
+minikube dashboard
+minikube pods
+minikube stop
+minikube delete

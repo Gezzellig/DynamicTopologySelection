@@ -1,5 +1,0 @@
-#credentials
-neo4j : neo
-
-#clear everything
-MATCH (n), ()-[r]-() DELETE n,r 

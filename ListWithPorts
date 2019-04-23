@@ -1,5 +1,0 @@
-Neo4j:7474
-cAdvisor:8075
-scope:4040
-prometheus:9090
-locust:8089
