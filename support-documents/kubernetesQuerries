@@ -1,0 +1,1 @@
+Per container: sum(rate(container_cpu_usage_seconds_total{container_name!="POD",pod_name!=""}[5m])) by (container_name)

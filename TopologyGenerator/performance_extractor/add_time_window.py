@@ -29,15 +29,15 @@ def extract_pods(settings):
     return pods
 
 
-def retrieve_times():
+def retrieve_times(window_size):
     #TODO: add proper implementation
     end_time = datetime.datetime.now()
-    start_time = end_time - datetime.timedelta(minutes=5)
+    start_time = end_time - window_size
     return start_time, end_time
 
 
-def create_time_window(settings):
-    start_time, end_time = retrieve_times()
+def create_time_window(settings, window_size):
+    start_time, end_time = retrieve_times(window_size)
     pods = extract_pods(settings)
 
     #TODO: make a load analyser
@@ -52,7 +52,7 @@ def main():
     print("Settings: {}".format(settings_file_name))
     with open(settings_file_name) as file:
         settings = json.load(file)
-    create_time_window(settings)
+    create_time_window(settings, datetime.timedelta(minutes=5))
 
 
 if __name__ == '__main__':

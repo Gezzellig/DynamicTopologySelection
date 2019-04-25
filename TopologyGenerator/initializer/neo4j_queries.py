@@ -46,7 +46,7 @@ def create_execution_node_command(tx, load, start_time, end_time, pods):
                     WHERE inputCnt = total_cnt \
                     WITH n, m, pod_name \
                     CREATE (n)-[:RAN{pod_name:pod_name}]->(m)",
-                    load= load, start_time=int(start_time.timestamp()*1000), end_time=int(end_time.timestamp()*1000), pods=pods,
+                    load=load, start_time=int(start_time.timestamp()*1000), end_time=int(end_time.timestamp()*1000), pods=pods,
                   )
 
 
