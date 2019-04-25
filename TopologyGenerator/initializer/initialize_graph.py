@@ -113,7 +113,7 @@ def initialize_graph(settings, topology):
     # EMPTYING THE GRAPH to start with a clean sheet
     emtpy_graph()
     create_all_image_nodes(topology)
-    create_all_connects_too_relations(topology)
+    #create_all_connects_too_relations(topology)
 
     if settings["combination"] == "connected":
         generate_all_possible_image_connected_combinations(settings["max_images_combined"])

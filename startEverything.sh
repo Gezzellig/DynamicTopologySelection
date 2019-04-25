@@ -8,3 +8,7 @@ gnome-terminal -- minikube dashboard
 
 sleep 5
 firefox http://localhost:8089
+echo "ipaddress:"
+minikube ip
+echo "Ports open:"
+kubectl get svc --all-namespaces -o go-template='{{range .items}}{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}{{end}}'

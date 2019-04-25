@@ -71,3 +71,8 @@ def get_start_end_times_executions(load):
             "end_time": datetime(end.year, end.month, end.day, end.hour, end.minute, int(end.second), int(end.second * 1000 % 1000)),
         })
     return start_end_times
+
+
+def execute_query_function(func, *par):
+    with neo4j_driver.session() as session:
+        return session.write_transaction(func, *par)
