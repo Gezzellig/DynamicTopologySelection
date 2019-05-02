@@ -12,7 +12,7 @@ class LoadExtractorBytesIn(LoadExtractor):
         request = 'http://{prom_address}/api/v1/query?query=rate(container_network_receive_bytes_total{{interface="eth0",+pod="web-5d46fb6ff7-bp77b"}}[{window}s])&time={start_time}'.format(prom_address=settings["prometheus_address"], start_time=start_time.timestamp(), window=window.seconds)
         result = requests.get(request).json()
         try:
-            return result["data"]["result"][0]["value"][1]
+            return float(result["data"]["result"][0]["value"][1])
         except IndexError:
             print("There was no load measurement for:")
             print(request)

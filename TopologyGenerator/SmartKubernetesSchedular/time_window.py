@@ -8,7 +8,7 @@ from initializer.neo4j_queries import execute_query_function
 
 
 def add_time_window_command(tx, load, pods, start_time, time_window):
-    return tx.run("CREATE (e:Execution {load:$load, start_time:$start_time, end_time:$end_time}) \
+    return tx.run("CREATE (e:Execution {load:$load, start_time:datetime({ epochMillis: $start_time }), end_time:datetime({ epochMillis: $end_time})}) \
                     with e \
                     UNWIND $pods as pod \
                     MERGE (e)-[:HasNode]->(n:NODE {name:pod.node_name}) \
@@ -16,7 +16,7 @@ def add_time_window_command(tx, load, pods, start_time, time_window):
                     MERGE (p:Pod{generate_name:pod_generate_name}) \
                     WITH n, p, pod_name \
                     CREATE (n)-[:Ran{name:pod_name}]->(p)",
-                  load=load, pods=pods, start_time=start_time, end_time=start_time+time_window)
+                  load=load, pods=pods, start_time=int(start_time.timestamp()*1000), end_time=int((start_time+time_window).timestamp()*1000))
 
 
 def retrieve_times(window_size):

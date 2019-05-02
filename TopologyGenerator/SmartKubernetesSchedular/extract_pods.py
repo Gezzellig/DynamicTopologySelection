@@ -39,3 +39,5 @@ def extract_pods(settings):
 def connect_pods_to_containers(settings):
     pods = extract_pods(settings)
     execute_query_function(connect_pods_to_containers_command, pods)
+
+
