@@ -1,1 +1,15 @@
 Per container: sum(rate(container_cpu_usage_seconds_total{container_name!="POD",pod_name!=""}[5m])) by (container_name)
+
+https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-2-c869581e9f29
+CPU usage per node
+sum(rate(node_cpu{mode!="idle",
+                  mode!="iowait",
+                  mode!~"^(?:guest.*)$"
+                  }[5m])) BY (instance)
+
+Memory usage per node
+1 - sum(node_memory_MemAvailable) by (node) / sum(node_memory_MemTotal) by (node)
+
+
+
+sum(rate(container_cpu_system_seconds_total{namespace='robot-shop', container=""}[5m])) by (instance, pod_name)
