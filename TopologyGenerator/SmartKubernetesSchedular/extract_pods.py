@@ -33,6 +33,7 @@ def extract_pods(settings):
     pods = []
     for pod_info in pods_info.items:
         pods.append(extract_pod_info(pod_info))
+    print(pods)
     return pods
 
 

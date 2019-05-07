@@ -31,7 +31,7 @@ def main():
     print("Settings: {}".format(settings_file_name))
     with open(settings_file_name) as file:
         settings = json.load(file)
-    create_time_window(settings, datetime.timedelta(minutes=5), LoadExtractorBytesIn())
+    create_time_window(datetime.datetime.now(), 10000, settings, datetime.timedelta(minutes=5))
 
 
 if __name__ == '__main__':
