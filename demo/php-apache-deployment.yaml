@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: php-apache
+  labels:
+    name: php-apache
+  namespace: demo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: php-apache
+    spec:
+      containers:
+      - name: php-apache
+        image: k8s.gcr.io/hpa-example
+        resources:
+          limits:
+            cpu: 400m
+          requests:
+            cpu: 200m
+        ports:
+        - containerPort: 80

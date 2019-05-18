@@ -4,3 +4,7 @@ kubectl delete namespaces robot-shop
 
 https://github.com/kubernetes-client/python/blob/master/kubernetes/docs/CoreV1Api.md
 https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#-strong-api-overview-strong-
+
+
+watch -n 1 kubectl get pods
+watch -n 1 kubectl get hpa

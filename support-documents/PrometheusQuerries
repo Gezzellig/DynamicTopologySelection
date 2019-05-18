@@ -13,3 +13,7 @@ Memory usage per node
 
 
 sum(rate(container_cpu_system_seconds_total{namespace='robot-shop', container=""}[5m])) by (instance, pod_name)
+
+
+sum(rate(container_cpu_usage_seconds_total{name!=""}[1m])) by (instance)
+sum(rate(container_cpu_usage_seconds_total{name!="", namespace="sock-shop"}[1m])) by (instance)
