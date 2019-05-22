@@ -24,21 +24,44 @@ def extract_pod_info(pod_info):
     return pod
 
 
-def extract_pods(settings):
-    config.load_kube_config()
-    k8s_api = client.CoreV1Api()
-    name_space = settings["kubernetes_project_namespace"]
-
-    pods_info = k8s_api.list_namespaced_pod(name_space)
+def extract_pods(pods_info):
     pods = []
     for pod_info in pods_info.items:
         pods.append(extract_pod_info(pod_info))
-    print(pods)
     return pods
 
 
+def extract_pods_namespace(name_space):
+    config.load_kube_config()
+    k8s_api = client.CoreV1Api()
+
+    pods_info = k8s_api.list_namespaced_pod(name_space)
+    return extract_pods(pods_info)
+
+
+def extract_all_pods():
+    config.load_kube_config()
+    k8s_api = client.CoreV1Api()
+
+    pods_info = k8s_api.list_pod_for_all_namespaces()
+    return extract_pods(pods_info)
+
+
+def extract_pods_on_node(node_name):
+    print(node_name)
+    pods = extract_all_pods()
+    pods_on_node = []
+    for pod in pods:
+        if pod["node_name"] == node_name:
+            pods_on_node.append(pod)
+    print(pods_on_node)
+    print("done")
+
+
 def connect_pods_to_containers(settings):
-    pods = extract_pods(settings)
+    pods = extract_pods_namespace(settings["kubernetes_project_namespace"])
     execute_query_function(connect_pods_to_containers_command, pods)
 
 
+if __name__ == '__main__':
+    extract_pods_on_node("gke-develop-cluster-larger-pool-9ecdadbf-28rq")

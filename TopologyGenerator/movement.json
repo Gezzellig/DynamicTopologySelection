@@ -1,0 +1,9 @@
+{
+  "migrations": [
+    {
+      "pod_name": "test",
+      "deployment_name": "deploy_test",
+      "destination_node": "node"
+    }
+  ]
+}

@@ -8,3 +8,6 @@ https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#-strong-api
 
 watch -n 1 kubectl get pods
 watch -n 1 kubectl get hpa
+
+kubectl label node gke-develop-cluster-larger-pool-9ecdadbf-4jfv node-preference=php-apache
+kubectl label node gke-develop-cluster-larger-pool-9ecdadbf-4jfv node-preference-

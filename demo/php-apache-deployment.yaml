@@ -13,6 +13,16 @@ spec:
       labels:
         name: php-apache
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
+              matchExpressions:
+              - key: node-preference
+                operator: In
+                values:
+                - php-apache
       containers:
       - name: php-apache
         image: k8s.gcr.io/hpa-example
