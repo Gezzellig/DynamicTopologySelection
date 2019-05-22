@@ -7,7 +7,8 @@ class Neo4jGraphDriver:
         self.connect()
 
     def connect(self):
-        self.driver = GraphDatabase.driver("bolt://localhost", auth=("neo4j", "neo"))
+        #TODO self.driver = GraphDatabase.driver("bolt://localhost", auth=("neo4j", "neo"))
+        pass
 
     def disconnect(self):
         self.driver.close()
