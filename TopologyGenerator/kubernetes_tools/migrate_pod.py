@@ -53,9 +53,6 @@ def verify_migration(destination_node, removed_pod_name, generate_name, initial_
                     else:
                         print("FAILED")
                         raise PodScheduledOnWrongNodeException(destination_node, info["node_name"])
-        print("oud", len(initial_deployment_pods))
-        print("nieuw", len(current_deployment_pods))
-        print("equal")
     return False
 
 
