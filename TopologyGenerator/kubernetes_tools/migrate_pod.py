@@ -38,7 +38,7 @@ def get_pods_of_one_generate(generate_name, state):
     return one_deployment
 
 
-def verify_migration(destination_node, removed_pod_name, generate_name, initial_state):
+def verify_migration(destination_node, generate_name, initial_state):
     current_state = extract_pods.extract_all_pods()
     print(len(current_state), len(initial_state))
     if len(current_state) == len(initial_state):
@@ -56,24 +56,24 @@ def verify_migration(destination_node, removed_pod_name, generate_name, initial_
     return False
 
 
-def migrate_pod(destination_node, pod_name, namespace, prestart=False):
+def migrate_pod(pod_name, destination_node, prestart=False):
     initial_state = extract_pods.extract_all_pods()
+
     #todo remove, so it each time automatically selects a pod to move
-    for pod in initial_state:
+    """for pod in initial_state:
         if pod["pod_generate_name"] == "php-apache-85546b856f-":
             pod_name = pod["pod_name"]
-
             node1 = "gke-develop-cluster-larger-pool-9ecdadbf-l786"
             node2 = "gke-develop-cluster-larger-pool-9ecdadbf-vvdj"
 
             if node1 == pod["node_name"]:
                 destination_node = node2
             else:
-                destination_node = node1
+                destination_node = node1"""
 
-    #destination_node = "gke-develop-cluster-larger-pool-9ecdadbf-pnsb"
     migrating_pod_info = get_individual_pod_info(pod_name, initial_state)
     print(migrating_pod_info)
+    namespace = migrating_pod_info["namespace"]
     generate_name, deployment_name = get_deployment_from_generate_name(migrating_pod_info)
 
 
@@ -87,13 +87,12 @@ def migrate_pod(destination_node, pod_name, namespace, prestart=False):
 
         print("deleted")
         counter = 0
-        while not verify_migration(destination_node, pod_name, generate_name, initial_state):
+        while not verify_migration(destination_node, generate_name, initial_state):
             time.sleep(2)
             print("retry")
             if counter > 5:
                 raise VerificationTookTooLongException()
             counter += 1
-        #time.sleep(30)
     except PodMigrationException as e:
         raise e
     finally:

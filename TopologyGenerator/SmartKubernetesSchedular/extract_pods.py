@@ -18,6 +18,7 @@ def extract_pod_info(pod_info):
     pod = {"node_name": pod_info.spec.node_name,
            "pod_generate_name": pod_info.metadata.generate_name,
            "pod_name": pod_info.metadata.name,
+           "namespace": pod_info.metadata.namespace,
            "containers": []}
     for container_info in pod_info.spec.containers:
         pod["containers"].append(container_info.name)

@@ -1,9 +1,4 @@
 {
-  "migrations": [
-    {
-      "pod_name": "test",
-      "deployment_name": "deploy_test",
-      "destination_node": "node"
-    }
-  ]
+  "php-apache-85546b856f-4cjg6": "gke-develop-cluster-larger-pool-9ecdadbf-ssnl",
+  "php-apache-85546b856f-lpztc": "gke-develop-cluster-larger-pool-9ecdadbf-ssnl"
 }
