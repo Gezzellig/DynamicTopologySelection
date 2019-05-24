@@ -1,5 +1,6 @@
 from kubernetes import client, config
 
+from KubernetesAPIConnector import get_k8s_api
 from initializer.neo4j_queries import execute_query_function
 
 
@@ -19,12 +20,10 @@ def extract_pod_info(pod_info):
     total_requested = 0.0
     for container_info in pod_info.spec.containers:
         containers.append(container_info.name)
-        print(container_info.name)
         if container_info.resources.requests == None:
             #todo: find a good number to use as a placeholder when no request is set
             total_requested += 0
         else:
-            print(container_info.resources.requests["cpu"])
             total_requested += float(container_info.resources.requests["cpu"].split("m")[0])
 
     pod = {"node_name": pod_info.spec.node_name,
@@ -44,26 +43,17 @@ def extract_pods(pods_info):
 
 
 def extract_pods_namespace(name_space):
-    config.load_kube_config()
-    k8s_api = client.CoreV1Api()
-
-    pods_info = k8s_api.list_namespaced_pod(name_space)
+    pods_info = get_k8s_api().list_namespaced_pod(name_space)
     return extract_pods(pods_info)
 
 
 def extract_all_pods():
-    config.load_kube_config()
-    k8s_api = client.CoreV1Api()
-
-    pods_info = k8s_api.list_pod_for_all_namespaces()
+    pods_info = get_k8s_api().list_pod_for_all_namespaces()
     return extract_pods(pods_info)
 
 
 def extract_all_pods_dict():
-    config.load_kube_config()
-    k8s_api = client.CoreV1Api()
-
-    pods_info = k8s_api.list_pod_for_all_namespaces()
+    pods_info = get_k8s_api().list_pod_for_all_namespaces()
     pods = {}
     for pod in extract_pods(pods_info):
         pods[pod["pod_name"]] = {

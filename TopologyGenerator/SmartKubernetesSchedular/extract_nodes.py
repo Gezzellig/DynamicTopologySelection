@@ -1,5 +1,4 @@
-from kubernetes import config, client
-
+from KubernetesAPIConnector import get_k8s_api
 from SmartKubernetesSchedular.extract_pods import extract_all_pods
 
 
@@ -16,10 +15,7 @@ def extract_nodes(nodes_info):
 
 
 def extract_all_nodes():
-    config.load_kube_config()
-    k8s_api = client.CoreV1Api()
-
-    nodes_info = k8s_api.list_node()
+    nodes_info = get_k8s_api().list_node()
     return extract_nodes(nodes_info)
 
 

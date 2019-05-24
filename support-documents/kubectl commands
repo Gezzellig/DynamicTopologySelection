@@ -11,3 +11,7 @@ watch -n 1 kubectl get hpa
 
 kubectl label node gke-develop-cluster-larger-pool-9ecdadbf-4jfv node-preference=php-apache
 kubectl label node gke-develop-cluster-larger-pool-9ecdadbf-4jfv node-preference-
+
+
+
+export GOOGLE_APPLICATION_CREDENTIALS="/media/thijs/SSD2/University/2018-2019/Thesis/re-kube-2c9b18fda5f3.json"
