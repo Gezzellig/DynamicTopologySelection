@@ -1,7 +1,7 @@
 import copy
 import random
 
-from SmartKubernetesSchedular import extract_nodes
+from SmartKubernetesSchedular import extract_nodes, enforcer
 from SmartKubernetesSchedular import extract_pods
 
 
@@ -81,9 +81,12 @@ def construct_deployment_sequence(goal_deployment):
 
 
 def main():
-    goal_deployment = {'gke-develop-cluster-larger-pool-9ecdadbf-fpf5': ['event-exporter-v0.2.3-85644fcdf-xgdbp', 'fluentd-gcp-scaler-8b674f786-ntgl4', 'fluentd-gcp-v3.2.0-mg5c5', 'kube-dns-76dbb796c5-gp2j5', 'kube-dns-76dbb796c5-pk2s6', 'kube-dns-autoscaler-67c97c87fb-cmgn6', 'kube-proxy-gke-develop-cluster-larger-pool-9ecdadbf-fpf5', 'l7-default-backend-7ff48cffd7-hh5ck', 'metrics-server-75b8d78f76-r75zd', 'metrics-server-v0.2.1-fd596d746-t25xv', 'prometheus-to-sd-vqqjv', 'prometheus-1-alertmanager-0', 'prometheus-1-grafana-0', 'prometheus-1-kube-state-metrics-7f785c4cb9-bbjtk', 'prometheus-1-node-exporter-htczm', 'prometheus-1-prometheus-1'],
-                       'gke-develop-cluster-larger-pool-9ecdadbf-w7ln': ['php-apache-85546b856f-92pbb', 'php-apache-85546b856f-57gpj', 'php-apache-85546b856f-fcmzw', 'fluentd-gcp-v3.2.0-5pwm2', 'heapster-v1.6.0-beta.1-797bcbf978-f8xlz', 'kube-proxy-gke-develop-cluster-larger-pool-9ecdadbf-w7ln', 'prometheus-to-sd-h2t4h', 'prometheus-1-alertmanager-1', 'prometheus-1-grafana-1', 'prometheus-1-node-exporter-gtfhp', 'prometheus-1-prometheus-0']}
-    print(construct_deployment_sequence(goal_deployment))
+    goal_deployment = {'gke-develop-cluster-larger-pool-9ecdadbf-fpf5': ['php-apache-85546b856f-svcbk', 'php-apache-85546b856f-h64mq', 'php-apache-85546b856f-x297d', 'php-apache-85546b856f-xbd9c', 'event-exporter-v0.2.3-85644fcdf-xgdbp', 'fluentd-gcp-scaler-8b674f786-ntgl4', 'fluentd-gcp-v3.2.0-mg5c5', 'kube-dns-76dbb796c5-gp2j5', 'kube-dns-76dbb796c5-pk2s6', 'kube-dns-autoscaler-67c97c87fb-cmgn6', 'kube-proxy-gke-develop-cluster-larger-pool-9ecdadbf-fpf5', 'l7-default-backend-7ff48cffd7-hh5ck', 'metrics-server-75b8d78f76-r75zd', 'metrics-server-v0.2.1-fd596d746-t25xv', 'prometheus-to-sd-vqqjv', 'prometheus-1-alertmanager-0', 'prometheus-1-grafana-0', 'prometheus-1-kube-state-metrics-7f785c4cb9-bbjtk', 'prometheus-1-node-exporter-htczm', 'prometheus-1-prometheus-1'],
+                       'gke-develop-cluster-larger-pool-9ecdadbf-w7ln': ['fluentd-gcp-v3.2.0-5pwm2', 'heapster-v1.6.0-beta.1-797bcbf978-f8xlz', 'kube-proxy-gke-develop-cluster-larger-pool-9ecdadbf-w7ln', 'prometheus-to-sd-h2t4h', 'prometheus-1-alertmanager-1', 'prometheus-1-grafana-1', 'prometheus-1-node-exporter-gtfhp', 'prometheus-1-prometheus-0']}
+    success, migrations = construct_deployment_sequence(goal_deployment)
+    if success:
+        initial_state = extract_pods.extract_all_pods()
+        enforcer.enforce_migrations(migrations, initial_state)
 
 
 if __name__ == '__main__':

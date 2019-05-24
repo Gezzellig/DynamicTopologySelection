@@ -8,6 +8,7 @@ from kubernetes_tools.migrate_pod import migrate_pod
 class PodHasScaledWhileEnforcingException(Exception):
     pass
 
+
 def state_to_generate_name_count(state):
     generate_name_count = {}
     for pod in state:
@@ -19,13 +20,19 @@ def state_to_generate_name_count(state):
     return generate_name_count
 
 
-def enforce_movements(movements, initial_state):
+def check_current_state(initial_generate_name_count):
+    current_state = extract_pods.extract_all_pods()
+    current_generate_name_count = state_to_generate_name_count(current_state)
+    if not initial_generate_name_count == current_generate_name_count:
+        raise PodHasScaledWhileEnforcingException()
+
+
+def enforce_migrations(migrations, initial_state):
     initial_generate_name_count = state_to_generate_name_count(initial_state)
-    for pod_name, destination_node in movements.items():
-        current_state = extract_pods.extract_all_pods()
-        current_generate_name_count = state_to_generate_name_count(current_state)
-        if not initial_generate_name_count == current_generate_name_count:
-            raise PodHasScaledWhileEnforcingException()
+    for migration in migrations:
+        check_current_state(initial_generate_name_count)
+        pod_name = migration["pod_name"]
+        destination_node = migration["destination"]
         print("performing movement: {} to {}".format(pod_name, destination_node))
         migrate_pod(pod_name, destination_node)
 
@@ -35,10 +42,10 @@ def main():
     movements_file_name = "movement.json"
     print("Movement file: {}".format(movements_file_name))
     with open(movements_file_name) as file:
-        movements = json.load(file)
+        migrations = json.load(file)
 
     initial_state = extract_pods.extract_all_pods()
-    enforce_movements(movements, initial_state)
+    enforce_migrations(migrations, initial_state)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@
   "prometheus_address": "localhost:9090",
   "kubernetes_api": "localhost:8080",
   "weave_scope_address": "192.168.99.101:31103",
-  "project_namespace": "sock-shop",
+  "project_namespace": "demo",
   "measure_window": 120,
   "redeploy_window": 30,
   "price_per_core": 0.0347721,
