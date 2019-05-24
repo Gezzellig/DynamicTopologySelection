@@ -5,9 +5,6 @@ from SmartKubernetesSchedular.extract_pods import extract_all_pods
 def extract_nodes(nodes_info):
     nodes = {}
     for node_info in nodes_info.items:
-        print(node_info.metadata)
-        print(node_info.metadata.name)
-        print(node_info.status.capacity["cpu"])
         nodes[node_info.metadata.name] = {
             "cpu": float(node_info.status.capacity["cpu"])
         }

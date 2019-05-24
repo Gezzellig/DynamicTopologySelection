@@ -24,7 +24,7 @@ def extract_pod_info(pod_info):
             #todo: find a good number to use as a placeholder when no request is set
             total_requested += 0
         else:
-            total_requested += float(container_info.resources.requests["cpu"].split("m")[0])
+            total_requested += float(container_info.resources.requests["cpu"].split("m")[0])/1000
 
     pod = {"node_name": pod_info.spec.node_name,
            "pod_generate_name": pod_info.metadata.generate_name,
