@@ -12,7 +12,6 @@ def main():
     migrations = algorithm.generate_improvement(settings)
 
     initial_state = extract_pods.extract_all_pods()
-
     enforcer.enforce_migrations(migrations, initial_state)
 
 

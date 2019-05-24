@@ -18,8 +18,8 @@ class VerificationTookTooLongException(PodMigrationException):
 
 
 def get_individual_pod_info(pod_name, state):
-    for pod_info in state:
-        print(pod_info["pod_name"])
+    for pod_name, pod_info in state.items():
+        print(pod_name)
         if pod_info["pod_name"] == pod_name:
             return pod_info
 
@@ -32,9 +32,9 @@ def get_deployment_from_generate_name(pod_info):
 
 def get_pods_of_one_generate(generate_name, state):
     one_deployment = {}
-    for pod in state:
-        if pod["pod_generate_name"] == generate_name:
-            one_deployment[pod["pod_name"]] = pod
+    for pod_name, pod_info in state.items():
+        if pod_info["pod_generate_name"] == generate_name:
+            one_deployment[pod_name] = pod_info
     return one_deployment
 
 
@@ -71,7 +71,7 @@ def migrate_pod(pod_name, destination_node, prestart=False):
             else:
                 destination_node = node1"""
 
-    migrating_pod_info = get_individual_pod_info(pod_name, initial_state)
+    migrating_pod_info = initial_state[pod_name]
     print(migrating_pod_info)
     namespace = migrating_pod_info["namespace"]
     generate_name, deployment_name = get_deployment_from_generate_name(migrating_pod_info)

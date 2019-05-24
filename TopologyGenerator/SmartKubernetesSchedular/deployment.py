@@ -70,7 +70,7 @@ def recursive_construction(migrations, cur_deployment, pods, nodes):
 
 def construct_deployment_sequence(goal_deployment):
     nodes = extract_nodes.extract_all_nodes()
-    pods = extract_pods.extract_all_pods_dict()
+    pods = extract_pods.extract_all_pods()
     init_deployment = extract_deployment(pods, nodes)
     print(init_deployment)
 

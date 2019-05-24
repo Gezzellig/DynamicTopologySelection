@@ -8,8 +8,8 @@ class PodHasScaledWhileEnforcingException(Exception):
 
 def state_to_generate_name_count(state):
     generate_name_count = {}
-    for pod in state:
-        gen_name = pod["pod_generate_name"]
+    for name, info in state.items():
+        gen_name = info["pod_generate_name"]
         if gen_name in generate_name_count:
             generate_name_count[gen_name] += 1
         else:

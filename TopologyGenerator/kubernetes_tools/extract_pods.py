@@ -5,6 +5,7 @@ from initializer.neo4j_queries import execute_query_function
 
 
 def connect_pods_to_containers_command(tx, pods):
+    # TODO: Update, as pods structure has changed
     return tx.run("UNWIND $pods as pod \
                     MERGE (p:Pod{generate_name:pod.pod_generate_name}) \
                     WITH p, pod.containers as containers \
@@ -25,20 +26,20 @@ def extract_pod_info(pod_info):
             total_requested += 0
         else:
             total_requested += float(container_info.resources.requests["cpu"].split("m")[0])/1000
-
+    name = pod_info.metadata.name
     pod = {"node_name": pod_info.spec.node_name,
            "pod_generate_name": pod_info.metadata.generate_name,
-           "pod_name": pod_info.metadata.name,
            "namespace": pod_info.metadata.namespace,
            "total_requested": total_requested,
            "containers": containers}
-    return pod
+    return name, pod
 
 
 def extract_pods(pods_info):
-    pods = []
+    pods = {}
     for pod_info in pods_info.items:
-        pods.append(extract_pod_info(pod_info))
+        name, pod = extract_pod_info(pod_info)
+        pods[name] = pod
     return pods
 
 
@@ -67,20 +68,15 @@ def extract_all_pods_dict():
 
 
 def extract_pods_on_node(node_name):
-    print(node_name)
     pods = extract_all_pods()
-    pods_on_node = []
-    for pod in pods:
-        if pod["node_name"] == node_name:
-            pods_on_node.append(pod)
-    print(pods_on_node)
-    print("done")
+    pods_on_node = {}
+    for name, info in pods.items():
+        if info["node_name"] == node_name:
+            pods_on_node[name] = info
+    return pods_on_node
 
 
 def connect_pods_to_containers(settings):
     pods = extract_pods_namespace(settings["kubernetes_project_namespace"])
     execute_query_function(connect_pods_to_containers_command, pods)
 
-
-if __name__ == '__main__':
-    extract_pods_on_node("gke-develop-cluster-larger-pool-9ecdadbf-28rq")
