@@ -36,17 +36,3 @@ def enforce_migrations(migrations, initial_state):
         print("performing movement: {} to {}".format(pod_name, destination_node))
         migrate_pod(pod_name, destination_node)
 
-
-def main():
-    print("starting enforcer")
-    movements_file_name = "movement.json"
-    print("Movement file: {}".format(movements_file_name))
-    with open(movements_file_name) as file:
-        migrations = json.load(file)
-
-    initial_state = extract_pods.extract_all_pods()
-    enforce_migrations(migrations, initial_state)
-
-
-if __name__ == '__main__':
-    main()

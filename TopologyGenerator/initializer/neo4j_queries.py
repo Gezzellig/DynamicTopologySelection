@@ -1,7 +1,6 @@
 from datetime import datetime
 
-import neotime
-from initializer import neo4j_driver
+from Neo4jGraphDriver import get_neo4j_session
 
 
 def retrieve_all_container_names_command(tx):
@@ -10,7 +9,7 @@ def retrieve_all_container_names_command(tx):
 
 def retrieve_all_container_names():
     container_names = []
-    with neo4j_driver.session() as session:
+    with get_neo4j_session() as session:
         containers_holder = session.write_transaction(retrieve_all_container_names_command)
     for container_holder in containers_holder:
         container_names.append(container_holder["container_name"])
@@ -51,7 +50,7 @@ def create_execution_node_command(tx, load, start_time, end_time, pods):
 
 
 def create_execution_node(load, start_time, end_time, pods):
-    with neo4j_driver.session() as session:
+    with get_neo4j_session() as session:
         return session.write_transaction(create_execution_node_command, load, start_time, end_time, pods)
 
 
@@ -60,7 +59,7 @@ def get_start_end_times_executions_command(tx, load):
 
 
 def get_start_end_times_executions(load):
-    with neo4j_driver.session() as session:
+    with get_neo4j_session() as session:
         results = session.write_transaction(get_start_end_times_executions_command, load)
     start_end_times = []
     for result in results:
@@ -74,5 +73,5 @@ def get_start_end_times_executions(load):
 
 
 def execute_query_function(func, *par):
-    with neo4j_driver.session() as session:
+    with get_neo4j_session() as session:
         return session.write_transaction(func, *par)
