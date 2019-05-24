@@ -1,8 +1,8 @@
 import copy
 import random
 
-from SmartKubernetesSchedular import extract_nodes, enforcer
-from SmartKubernetesSchedular import extract_pods
+from SmartKubernetesSchedular import enforcer
+from kubernetes_tools import extract_nodes, extract_pods
 
 
 def verify_deployment(deployment, pods, nodes):

@@ -1,7 +1,8 @@
 import sys
 
 import load_settings
-from SmartKubernetesSchedular import enforcer, extract_pods
+from SmartKubernetesSchedular import enforcer
+from kubernetes_tools import extract_pods
 from SmartKubernetesSchedular.strategies.RandomPodMigrationInNameSpace import RandomPodMigrationInNameSpace
 
 

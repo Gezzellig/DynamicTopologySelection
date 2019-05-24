@@ -1,6 +1,7 @@
 import random
 
-from SmartKubernetesSchedular import extract_pods, extract_nodes, deployment
+from SmartKubernetesSchedular import deployment
+from kubernetes_tools import extract_nodes, extract_pods
 from SmartKubernetesSchedular.strategies.AbstractStratagy import AbstractStratagy, CouldNotGenerateImprovementException
 
 

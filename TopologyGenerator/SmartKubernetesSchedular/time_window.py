@@ -2,8 +2,7 @@ import datetime
 import json
 import sys
 
-from SmartKubernetesSchedular.LoadExtractorBytesIn import LoadExtractorBytesIn
-from SmartKubernetesSchedular.extract_pods import extract_pods
+from kubernetes_tools.extract_pods import extract_pods
 from initializer.neo4j_queries import execute_query_function
 
 

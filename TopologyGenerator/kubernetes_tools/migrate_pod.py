@@ -1,7 +1,7 @@
 import subprocess
 import time
 
-from SmartKubernetesSchedular import extract_pods
+from kubernetes_tools import extract_pods
 
 
 class PodMigrationException(Exception):

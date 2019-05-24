@@ -1,7 +1,4 @@
-import json
-import unittest
-
-from SmartKubernetesSchedular import extract_pods
+from kubernetes_tools import extract_pods
 from kubernetes_tools.migrate_pod import migrate_pod
 
 

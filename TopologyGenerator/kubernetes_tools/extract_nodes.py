@@ -1,5 +1,5 @@
 from KubernetesAPIConnector import get_k8s_api
-from SmartKubernetesSchedular.extract_pods import extract_all_pods
+from kubernetes_tools.extract_pods import extract_all_pods
 
 
 def extract_nodes(nodes_info):

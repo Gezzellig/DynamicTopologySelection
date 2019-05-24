@@ -4,10 +4,10 @@ import sys
 
 import requests
 
-from SmartKubernetesSchedular.LoadExtractor import LoadExtractor
+from SmartKubernetesSchedular.load_extractors import AbstractLoadExtractor
 
 
-class LoadExtractorBytesIn(LoadExtractor):
+class LoadExtractorBytesIn(AbstractLoadExtractor):
     def extract_load(self, start_time, window, settings):
         #pod_name = "web-5d46fb6ff7-bp77b" #Minikube
         pod_name = "front-end-.*" #CLOUD
