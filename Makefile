@@ -5,7 +5,7 @@ up:
 	#@gcloud -q container clusters resize test-cluster --size=6	
 	@docker-compose -f docker-compose.yml up -d
 	@gnome-terminal --tab -- kubectl proxy --port=8080
-	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.198.137.223/
+	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.198.110.237/
 	@sleep 5
 	@firefox https://console.cloud.google.com/home/dashboard?project=re-kube
 	@gnome-terminal --tab -- kubectl port-forward -n monitoring prometheus-1-prometheus-0 9090
@@ -21,7 +21,7 @@ down:
 support-up:
 	@docker-compose -f docker-compose.yml up -d
 	@gnome-terminal --tab -- kubectl proxy --port=8080
-	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.198.137.223/
+	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.198.110.237/
 	@sleep 5
 	@firefox https://console.cloud.google.com/home/dashboard?project=re-kube
 	@gnome-terminal --tab -- kubectl port-forward -n monitoring prometheus-1-prometheus-0 9090

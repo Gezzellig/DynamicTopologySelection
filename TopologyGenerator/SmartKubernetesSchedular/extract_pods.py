@@ -15,13 +15,24 @@ def connect_pods_to_containers_command(tx, pods):
 
 def extract_pod_info(pod_info):
     #print(pod_info)
+    containers = []
+    total_requested = 0.0
+    for container_info in pod_info.spec.containers:
+        containers.append(container_info.name)
+        print(container_info.name)
+        if container_info.resources.requests == None:
+            #todo: find a good number to use as a placeholder when no request is set
+            total_requested += 0
+        else:
+            print(container_info.resources.requests["cpu"])
+            total_requested += float(container_info.resources.requests["cpu"].split("m")[0])
+
     pod = {"node_name": pod_info.spec.node_name,
            "pod_generate_name": pod_info.metadata.generate_name,
            "pod_name": pod_info.metadata.name,
            "namespace": pod_info.metadata.namespace,
-           "containers": []}
-    for container_info in pod_info.spec.containers:
-        pod["containers"].append(container_info.name)
+           "total_requested": total_requested,
+           "containers": containers}
     return pod
 
 
@@ -46,6 +57,23 @@ def extract_all_pods():
 
     pods_info = k8s_api.list_pod_for_all_namespaces()
     return extract_pods(pods_info)
+
+
+def extract_all_pods_dict():
+    config.load_kube_config()
+    k8s_api = client.CoreV1Api()
+
+    pods_info = k8s_api.list_pod_for_all_namespaces()
+    pods = {}
+    for pod in extract_pods(pods_info):
+        pods[pod["pod_name"]] = {
+            "node_name": pod["node_name"],
+            "pod_generate_name": pod["pod_generate_name"],
+            "namespace": pod["namespace"],
+            "total_requested": pod["total_requested"],
+            "containers": pod["containers"]
+        }
+    return pods
 
 
 def extract_pods_on_node(node_name):

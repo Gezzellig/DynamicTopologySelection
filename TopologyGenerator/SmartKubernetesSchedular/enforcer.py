@@ -30,7 +30,6 @@ def enforce_movements(movements, initial_state):
         migrate_pod(pod_name, destination_node)
 
 
-
 def main():
     print("starting enforcer")
     movements_file_name = "movement.json"
