@@ -75,9 +75,13 @@ def enforce_upscaling(upscalers, initial_state):
         check_current_state(supposed_generate_name_count)
 
 
-def enforce(enforcement):
-
-
+def enforce(downscalers, migrations, upscalers):
+    cur_state = extract_pods.extract_all_pods()
+    enforce_downscaling(downscalers, cur_state)
+    cur_state = extract_pods.extract_all_pods()
+    enforce_migrations(migrations, cur_state)
+    cur_state = extract_pods.extract_all_pods()
+    enforce_upscaling(upscalers, cur_state)
 
 if __name__ == '__main__':
     """upscalers = [
