@@ -4,16 +4,16 @@ import time
 from kubernetes_tools import extract_pods
 
 
-class PodMigrationException(Exception):
+class PodException(Exception):
     pass
 
 
-class PodScheduledOnWrongNodeException(PodMigrationException):
+class PodScheduledOnWrongNodeException(PodException):
     def __init__(self, destination, result):
-        PodMigrationException("Destination: {}, ended up in: {}".format(destination, result))
+        PodException("Destination: {}, ended up in: {}".format(destination, result))
 
 
-class VerificationTookTooLongException(PodMigrationException):
+class VerificationTookTooLongException(PodException):
     pass
 
 
@@ -40,7 +40,6 @@ def get_pods_of_one_generate(generate_name, state):
 
 def verify_migration(destination_node, generate_name, initial_state):
     current_state = extract_pods.extract_all_pods()
-    print(len(current_state), len(initial_state))
     if len(current_state) == len(initial_state):
         initial_deployment_pods = get_pods_of_one_generate(generate_name, initial_state)
         current_deployment_pods = get_pods_of_one_generate(generate_name, current_state)
@@ -74,16 +73,13 @@ def migrate_pod(pod_name, destination_node, prestart=False):
     migrating_pod_info = initial_state[pod_name]
     print(migrating_pod_info)
     namespace = migrating_pod_info["namespace"]
-    generate_name, deployment_name = get_deployment_from_generate_name(migrating_pod_info)
-
-
+    deployment_name = migrating_pod_info["deployment_name"]
+    generate_name = migrating_pod_info["pod_generate_name"]
 
     print("moving: {} to {}".format(pod_name, destination_node))
     try:
         subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name)])
-        time.sleep(2)
         subprocess.run(["kubectl", "delete", "pod", pod_name, "-n", namespace])
-
 
         print("deleted")
         counter = 0
@@ -93,19 +89,7 @@ def migrate_pod(pod_name, destination_node, prestart=False):
             if counter > 5:
                 raise VerificationTookTooLongException()
             counter += 1
-    except PodMigrationException as e:
+    except PodException as e:
         raise e
     finally:
         subprocess.run(["kubectl", "label", "node", destination_node, "node-preference-"])
-
-
-def main():
-    print("migrating pod")
-    node1="gke-develop-cluster-larger-pool-9ecdadbf-1qcw"
-    node2="gke-develop-cluster-larger-pool-9ecdadbf-w9bw"
-    migrate_pod(node2, "php-apache-85546b856f-2cl9s", "demo")
-
-
-
-if __name__ == '__main__':
-    main()

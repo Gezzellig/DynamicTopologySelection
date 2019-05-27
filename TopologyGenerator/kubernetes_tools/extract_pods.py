@@ -32,6 +32,10 @@ def extract_pod_info(pod_info):
            "namespace": pod_info.metadata.namespace,
            "total_requested": total_requested,
            "containers": containers}
+    if "name" in pod_info.metadata.labels:
+        pod["deployment_name"] = pod_info.metadata.labels["name"]
+    else:
+        print(name, "no Deployment NAME")
     return name, pod
 
 
@@ -48,23 +52,18 @@ def extract_pods_namespace(name_space):
     return extract_pods(pods_info)
 
 
+def extract_pods_deployment(deployment):
+    pods_deployment = {}
+    for pod, info in extract_all_pods().items():
+        if "deployment_name" in info:
+            if info["deployment_name"] == deployment:
+                pods_deployment[pod] = info
+    return pods_deployment
+
+
 def extract_all_pods():
     pods_info = get_k8s_api().list_pod_for_all_namespaces()
     return extract_pods(pods_info)
-
-
-def extract_all_pods_dict():
-    pods_info = get_k8s_api().list_pod_for_all_namespaces()
-    pods = {}
-    for pod in extract_pods(pods_info):
-        pods[pod["pod_name"]] = {
-            "node_name": pod["node_name"],
-            "pod_generate_name": pod["pod_generate_name"],
-            "namespace": pod["namespace"],
-            "total_requested": pod["total_requested"],
-            "containers": pod["containers"]
-        }
-    return pods
 
 
 def extract_pods_on_node(node_name):
@@ -80,3 +79,6 @@ def connect_pods_to_containers(settings):
     pods = extract_pods_namespace(settings["kubernetes_project_namespace"])
     execute_query_function(connect_pods_to_containers_command, pods)
 
+
+if __name__ == '__main__':
+    print(extract_pods_deployment("php-apache", "demo"))
