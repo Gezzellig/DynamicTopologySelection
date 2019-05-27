@@ -21,7 +21,7 @@ def extract_pod_info(pod_info):
     total_requested = 0.0
     for container_info in pod_info.spec.containers:
         containers.append(container_info.name)
-        if container_info.resources.requests == None:
+        if container_info.resources.requests is None:
             #todo: find a good number to use as a placeholder when no request is set
             total_requested += 0
         else:
@@ -34,8 +34,6 @@ def extract_pod_info(pod_info):
            "containers": containers}
     if "name" in pod_info.metadata.labels:
         pod["deployment_name"] = pod_info.metadata.labels["name"]
-    else:
-        print(name, "no Deployment NAME")
     return name, pod
 
 

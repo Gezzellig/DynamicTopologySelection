@@ -1,9 +1,12 @@
 import subprocess
 import sys
+import time
 
 import requests
 
+from kubernetes_tools import extract_pods
 from kubernetes_tools.change_deployment_scale import decrease_deployment_scale
+from kubernetes_tools.migrate_pod import VerificationTookTooLongException
 from load_settings import load_settings
 
 
@@ -44,9 +47,26 @@ def delete_pod(pod_name, namespace):
     subprocess.run(["kubectl", "delete", "pod", pod_name, "-n", namespace])
 
 
+def verify_deletion(pod_name, deployment_name, initial_state):
+    current_state = extract_pods.extract_pods_deployment(deployment_name)
+    if not pod_name in current_state:
+        if len(initial_state) > len(current_state):
+            return True
+    return False
+
+
 def delete_pod_deployment(pod_name, deployment_name, namespace):
+    initial_state = extract_pods.extract_pods_deployment(deployment_name)
     delete_pod(pod_name, namespace)
     decrease_deployment_scale(deployment_name, namespace)
+    time.sleep(1)
+    counter = 0
+    while not verify_deletion(pod_name, deployment_name, initial_state):
+        time.sleep(2)
+        print("retry deletion verification")
+        if counter > 10:
+            raise VerificationTookTooLongException()
+        counter += 1
 
 
 def main():
