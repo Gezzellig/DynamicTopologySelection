@@ -60,6 +60,8 @@ def extract_pod_info(pod_info):
         pod["kind"] = None
     if "name" in pod_info.metadata.labels:
         pod["deployment_name"] = pod_info.metadata.labels["name"]
+    else:
+        pod["deployment_name"] = None
     return name, pod
 
 

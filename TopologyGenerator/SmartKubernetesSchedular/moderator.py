@@ -2,6 +2,7 @@ import sys
 
 import load_settings
 from SmartKubernetesSchedular import enforcer
+from SmartKubernetesSchedular.deployment import state_transition_plan
 from SmartKubernetesSchedular.strategies.TryEmptyOneNode import TryEmptyOneNode
 from kubernetes_tools import extract_pods
 from SmartKubernetesSchedular.strategies.RandomPodMigrationInNameSpace import RandomPodMigrationInNameSpace
@@ -9,9 +10,10 @@ from SmartKubernetesSchedular.strategies.RandomPodMigrationInNameSpace import Ra
 
 def main():
     settings = load_settings.load_settings(sys.argv[1])
-    algorithm = TryEmptyOneNode()
-    migrations = algorithm.generate_improvement(settings)
-
+    #algorithm = TryEmptyOneNode()
+    #migrations = algorithm.generate_improvement(settings)
+    down, migrate, up = state_transition_plan(transitions)
+    enforcer.enforce()
     #initial_state = extract_pods.extract_all_pods()
     #enforcer.enforce_migrations(migrations, initial_state)
 
