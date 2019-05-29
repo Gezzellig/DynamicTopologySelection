@@ -1,5 +1,6 @@
 from neo4j import GraphDatabase
 
+
 class Neo4jGraphDriver:
     class __Neo4jGraphDriver:
         def __init__(self):
@@ -21,6 +22,12 @@ class Neo4jGraphDriver:
     def __init__(self):
         if not Neo4jGraphDriver.instance:
             Neo4jGraphDriver.instance = Neo4jGraphDriver.__Neo4jGraphDriver()
+
+
+def disconnect_neo4j():
+    singleton = Neo4jGraphDriver()
+    singleton.instance.disconnect()
+    singleton.instance = None
 
 
 def get_neo4j_driver():

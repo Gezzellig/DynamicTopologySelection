@@ -13,13 +13,13 @@ class RandomPodMigrationInNameSpace(AbstractStratagy):
         while not found_change:
             namespace = settings["project_namespace"]
             pods = extract_pods.extract_pods_namespace(namespace)
-            nodes = extract_nodes.extract_all_nodes()
+            nodes = extract_nodes.extract_all_nodes_cpu()
             selected_pod = random.sample(pods.keys(), 1)[0]
             target_node = random.sample(nodes.keys(), 1)[0]
             if target_node == pods[selected_pod]["node_name"]:
                 continue
 
-            nodes = extract_nodes.extract_all_nodes()
+            nodes = extract_nodes.extract_all_nodes_cpu()
             pods = extract_pods.extract_all_pods()
             new_deployment = deployment.extract_deployment(pods, nodes)
 

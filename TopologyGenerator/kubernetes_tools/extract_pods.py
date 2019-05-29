@@ -15,6 +15,25 @@ def connect_pods_to_containers_command(tx, pods):
                   , pods=pods)
 
 
+def pods_dict_to_list(pod_dict):
+    pod_list = []
+    for name, info in pod_dict.items():
+        info["pod_name"] = name
+        pod_list.append(info)
+    return pod_list
+
+
+def pods_to_generate_names(pods):
+    generate_names = {}
+    for pod_info in pods.values():
+        if not pod_info["pod_generate_name"] in generate_names:
+            generate_names[pod_info["pod_generate_name"]] = {
+                "deployment_name": pod_info["deployment_name"],
+                "namespace": pod_info["namespace"]
+            }
+    return generate_names
+
+
 def extract_pod_info(pod_info):
     #print(pod_info)
     containers = []
@@ -28,10 +47,17 @@ def extract_pod_info(pod_info):
             total_requested += float(container_info.resources.requests["cpu"].split("m")[0])/1000
     name = pod_info.metadata.name
     pod = {"node_name": pod_info.spec.node_name,
-           "pod_generate_name": pod_info.metadata.generate_name,
            "namespace": pod_info.metadata.namespace,
            "total_requested": total_requested,
            "containers": containers}
+    if pod_info.metadata.generate_name:
+        pod["pod_generate_name"] = pod_info.metadata.generate_name
+    else:
+        pod["pod_generate_name"] = pod_info.metadata.name.rsplit("-", 1)[0]+"-"
+    if pod_info.metadata.owner_references:
+        pod["kind"] = pod_info.metadata.owner_references[0].kind
+    else:
+        pod["kind"] = None
     if "name" in pod_info.metadata.labels:
         pod["deployment_name"] = pod_info.metadata.labels["name"]
     return name, pod

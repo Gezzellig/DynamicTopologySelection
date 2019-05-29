@@ -2,8 +2,9 @@ import datetime
 import json
 import sys
 
-from kubernetes_tools.extract_pods import extract_pods
+from Neo4jGraphDriver import disconnect_neo4j
 from initializer.neo4j_queries import execute_query_function
+from kubernetes_tools import extract_pods
 
 
 def add_time_window_command(tx, load, pods, start_time, end_time):
@@ -18,8 +19,8 @@ def add_time_window_command(tx, load, pods, start_time, end_time):
                   load=load, pods=pods, start_time=int(start_time.timestamp()*1000), end_time=int(end_time.timestamp()*1000))
 
 
-def create_time_window(end_time, load, settings, time_window):
-    pods = extract_pods(settings)
+def create_time_window(end_time, load, time_window):
+    pods = extract_pods.pods_dict_to_list(extract_pods.extract_all_pods())
     execute_query_function(add_time_window_command, load, pods, end_time-time_window, end_time)
     return load
 
@@ -30,8 +31,9 @@ def main():
     print("Settings: {}".format(settings_file_name))
     with open(settings_file_name) as file:
         settings = json.load(file)
-    create_time_window(datetime.datetime.now(), 10000, settings, datetime.timedelta(minutes=5))
+    create_time_window(datetime.datetime.now(), 10000, datetime.timedelta(minutes=5))
 
 
 if __name__ == '__main__':
     main()
+    disconnect_neo4j()
