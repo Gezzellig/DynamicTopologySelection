@@ -33,6 +33,15 @@ def extract_all_nodes_cpu_pods():
     return nodes
 
 
+def node_sum_requested(node_pods):
+    requested = 0.0
+    for pod_info in node_pods["pods"]:
+        requested += pod_info["total_requested"]
+    return requested
+
+
+def node_request_fits(node_cpu_pods):
+    return node_cpu_pods["cpu"] >= node_sum_requested(node_cpu_pods)
 
 
 

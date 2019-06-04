@@ -57,7 +57,9 @@ def extract_pod_info(pod_info):
     if pod_info.metadata.owner_references:
         pod["kind"] = pod_info.metadata.owner_references[0].kind
     else:
-        pod["kind"] = None
+        # Todo maybe change again, putting it to deamonset so it is not taken into account
+        #pod["kind"] = None
+        pod["kind"] = "DaemonSet"
     if "name" in pod_info.metadata.labels:
         pod["deployment_name"] = pod_info.metadata.labels["name"]
     else:

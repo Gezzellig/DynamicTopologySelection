@@ -232,11 +232,17 @@ class TestEnforcer(unittest.TestCase):
                 "remove": ["1-2", "3-1"]
             }
         }
-        self.assertEqual([[{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}, {'pod_name': '3-2', 'source': 'e', 'destination': 'd'}], [{'pod_name': '3-2', 'source': 'e', 'destination': 'd'}], [{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}, {'pod_name': '3-1', 'source': 'f', 'destination': 'd'}], [{'pod_name': '3-1', 'source': 'f', 'destination': 'd'}], [{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}], []], find_all_migrations_sets(small_transitions))
+        result = find_all_migrations_sets(small_transitions)
+        print(result)
+        aim = [[{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}, {'pod_name': '3-2', 'source': 'e', 'destination': 'd'}], [{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}, {'pod_name': '3-1', 'source': 'f', 'destination': 'd'}], [{'pod_name': '3-2', 'source': 'e', 'destination': 'd'}], [{'pod_name': '3-1', 'source': 'f', 'destination': 'd'}], [{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}], []]
+        print(aim)
+        self.assertEqual(aim, result)
 
     def test_remove_non_migrated_remove_pods(self):
         migration_set = [{'pod_name': '1-2', 'source': 'f', 'destination': 'e'}, {'pod_name': '3-2', 'source': 'e', 'destination': 'd'}]
-        self.assertEqual({'1-1': {'node_name': 'd', 'pod_generate_name': '1-', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}, '1-3': {'node_name': 'e', 'pod_generate_name': '1-', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}, '3-2': {'node_name': 'e', 'pod_generate_name': '3-', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}, '1-2': {'node_name': 'f', 'pod_generate_name': '1-', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}}, remove_non_migrated_remove_pods(self.transitions2, migration_set, self.pods2))
+        result = remove_non_migrated_remove_pods(self.transitions2, migration_set, self.pods2)
+        aim = {'1-1': {'node_name': 'd', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}, '1-3': {'node_name': 'e', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}, '3-2': {'node_name': 'e', 'pod_generate_name': '3-', 'deployment_name': '3', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}, '1-2': {'node_name': 'f', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test', 'total_requested': 0.2, 'containers': ['testie']}}
+        self.assertEqual(aim, result)
 
     def test_find_suitable_migrations(self):
         small_transitions = {
@@ -274,8 +280,10 @@ class TestEnforcer(unittest.TestCase):
         }
         migration_orders = []
         downscalers, upscalers = scale_actions(small_transitions, migration_orders, self.pods2)
+        print(downscalers)
+        print(upscalers)
         self.assertEqual([{'pod_name': '3-2', 'pod_generate_name': '3-', 'deployment_name': '3', 'namespace': 'test'}, {'pod_name': '1-2', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test'}], downscalers)
-        self.assertEqual([{'node_name': 'e', 'pod_generate_name': '1-', 'deployment_name': "1", 'namespace': "test"}, {'node_name': 'f', 'pod_generate_name': '3-', 'deployment_name': "3", 'namespace': "test"}], upscalers)
+        self.assertEqual([{'destination_node': 'e', 'pod_generate_name': '1-', 'deployment_name': "1", 'namespace': "test"}, {'destination_node': 'f', 'pod_generate_name': '3-', 'deployment_name': "3", 'namespace': "test"}], upscalers)
         migration_orders = [{'pod_name': '3-2', 'source': 'e', 'destination': 'f'}, {'pod_name': '1-2', 'source': 'f', 'destination': 'e'}]
         downscalers, upscalers = scale_actions(small_transitions, migration_orders, self.pods2)
         self.assertEqual([], downscalers)
@@ -283,4 +291,4 @@ class TestEnforcer(unittest.TestCase):
         migration_orders = [{'pod_name': '3-2', 'source': 'e', 'destination': 'f'}]
         downscalers, upscalers = scale_actions(small_transitions, migration_orders, self.pods2)
         self.assertEqual([{'pod_name': '1-2', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test'}], downscalers)
-        self.assertEqual([{'node_name': 'e', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test'}], upscalers)
+        self.assertEqual([{'destination_node': 'e', 'pod_generate_name': '1-', 'deployment_name': '1', 'namespace': 'test'}], upscalers)
