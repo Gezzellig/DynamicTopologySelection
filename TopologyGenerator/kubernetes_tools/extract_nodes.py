@@ -6,7 +6,8 @@ def extract_nodes_cpu(nodes_info):
     nodes = {}
     for node_info in nodes_info.items:
         nodes[node_info.metadata.name] = {
-            "cpu": float(node_info.status.capacity["cpu"])
+            "cpu": float(node_info.status.capacity["cpu"]),
+            "memory": float(node_info.status.capacity["memory"].split("K")[0])/1048576  # get value from Kilo to Giga
         }
     return nodes
 
