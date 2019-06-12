@@ -40,8 +40,8 @@ def retrieve_full_execution_data(tx, execution_ids):
                     match (e:Execution) where id(e) = execution_id \
                     match (e) -[:HasNode]-> (n:Node) \
                     match (n) -[r:Ran]-> (p:Pod) \
-                    with e, n, collect({name:r.name, generate_name:p.generate_name}) as pods \
-                    return id(e) as id, e.start_time.epochMillis as start_time, e.end_time.epochMillis as end_time, collect({name:n.name, cpu:n.cpu, pods:pods}) as nodes",
+                    with e, n, collect({name:r.name, generate_name:p.generate_name, kind:p.kind}) as pods \
+                    return id(e) as id, e.start_time.epochMillis as start_time, e.end_time.epochMillis as end_time, collect({name:n.name, cpu:n.cpu, pods:pods, memory:n.memory}) as nodes",
                   execution_ids=execution_ids)
 
 
@@ -51,13 +51,16 @@ def extract_node_from_data_node(data_node):
     for data_pod in data_node["pods"]:
         pods[data_pod["name"]] = {
             "node_name": node_name,
-            "pod_generate_name": data_pod["generate_name"]
+            "pod_generate_name": data_pod["generate_name"],
+            "kind": data_pod["kind"]
         }
     node = {
         "cpu": data_node["cpu"],
+        "memory": data_node["memory"],
         "pods": pods
     }
     return node
+
 
 def retrieve_full_executions(execution_ids):
     data_executions = execute_query_function(retrieve_full_execution_data, execution_ids)
@@ -75,12 +78,16 @@ def retrieve_full_executions(execution_ids):
     return executions
 
 
+def retrieve_single_execution(execution_id):
+    return retrieve_full_executions([execution_id])[0]
+
+
 def retrieve_executions(load, settings):
     load_delta = settings["load_delta"]
     price_per_core = settings["price_per_core"]
     price_per_gb = settings["price_per_gb"]
     cheapest_executions_ids = retrieve_cheapest_executions(load, load_delta, price_per_core, price_per_gb)
-    if len(cheapest_executions_ids) < 1:
+    if not cheapest_executions_ids:
         raise NoExecutionsFoundException()
     executions = retrieve_full_executions(cheapest_executions_ids)
     return executions

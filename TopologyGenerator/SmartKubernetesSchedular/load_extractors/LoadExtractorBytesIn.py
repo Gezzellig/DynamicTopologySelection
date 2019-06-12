@@ -4,14 +4,14 @@ import sys
 
 import requests
 
-from SmartKubernetesSchedular.load_extractors import AbstractLoadExtractor
+from SmartKubernetesSchedular.load_extractors.AbstractLoadExtractor import AbstractLoadExtractor
 
 
 class LoadExtractorBytesIn(AbstractLoadExtractor):
-    def extract_load(self, start_time, window, settings):
+    def extract_load(self, end_time, window, settings):
         #pod_name = "web-5d46fb6ff7-bp77b" #Minikube
         pod_name = "php-apache-.*" #CLOUD
-        request = 'http://{prom_address}/api/v1/query?query=sum(rate(container_network_receive_bytes_total{{interface="eth0",pod_name=~"{pod_name}"}}[{window}s]))&time={start_time}'.format(prom_address=settings["prometheus_address"], pod_name=pod_name, start_time=start_time.timestamp(), window=window.seconds)
+        request = 'http://{prom_address}/api/v1/query?query=sum(rate(container_network_receive_bytes_total{{interface="eth0",pod_name=~"{pod_name}"}}[{window}s]))&time={start_time}'.format(prom_address=settings["prometheus_address"], pod_name=pod_name, start_time=(end_time-window).timestamp(), window=window.seconds)
         print(request)
         result = requests.get(request).json()
         try:
@@ -31,7 +31,7 @@ def main():
         settings = json.load(file)
     load_extractor = LoadExtractorBytesIn()
     window = datetime.timedelta(minutes=5)
-    load_extractor.extract_load(datetime.datetime.now()-window, window, settings)
+    print(load_extractor.extract_load(datetime.datetime.now(), window, settings))
 
 
 if __name__ == '__main__':

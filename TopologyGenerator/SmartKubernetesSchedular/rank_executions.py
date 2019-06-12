@@ -6,15 +6,13 @@ import load_settings
 from SmartKubernetesSchedular.retrieve_executions import retrieve_executions
 
 
-def retreive_nodes_cpu_usage(execution, prometheus_address):
+def retrieve_nodes_cpu_usage(execution, prometheus_address):
     time_window = execution["end_time"] - execution["start_time"]
 
     url = "http://{prom_address}/api/v1/query?query=sum(rate(node_cpu{{mode!=%22idle%22,mode!=%22iowait%22,mode!~%22^(?:guest.*)$%22}}[{time_window}s]))%20by%20(instance)&time={start_time}".format(prom_address=prometheus_address, time_window=time_window.seconds, start_time=execution["start_time"].timestamp())
-    print(url)
     results = requests.get(url).json()
-    print(results)
-    cpu_usage_nodes = {}
 
+    cpu_usage_nodes = {}
     for result in results["data"]["result"]:
         node_name = result["metric"]["instance"]
         cpu_usage = float(result["value"][1])
@@ -23,10 +21,10 @@ def retreive_nodes_cpu_usage(execution, prometheus_address):
 
 
 def rank_execution_node_cpu_usage(execution, prometheus_address):
-    nodes_cpu_usage = retreive_nodes_cpu_usage(execution, prometheus_address)
+    nodes_cpu_usage = retrieve_nodes_cpu_usage(execution, prometheus_address)
     rank = 0
     for max_cpu_usage in nodes_cpu_usage.values():
-        rank += pow(max_cpu_usage, 2)
+        rank += pow(1+max_cpu_usage, 2)
     return rank
 
 
@@ -45,7 +43,8 @@ def find_best_execution(executions, prometheus_address):
 def main():
     settings = load_settings.load_settings("/media/thijs/SSD2/University/2018-2019/Thesis/DynamicTopologySelection/TopologyGenerator/settings.json")
     executions = retrieve_executions(10000, settings)
-    find_best_execution(executions, settings["prometheus_address"])
+    best_execution = find_best_execution(executions, settings["prometheus_address"])
+    print(best_execution)
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@
   "redeploy_window": 30,
   "price_per_core": 0.0347721,
   "price_per_gb": 0.0046607,
-  "load_delta": 10000,
+  "load_delta": 100,
   "strategy": {
     "name": "random_pod_redeployment",
     "settings": {

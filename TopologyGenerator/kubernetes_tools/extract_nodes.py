@@ -24,6 +24,7 @@ def extract_generate_per_node():
         generate_per_node[info["node_name"]] = info["pod_generate_name"]
     return generate_per_node
 
+
 def extract_all_nodes_cpu_pods():
     nodes = extract_all_nodes_cpu()
     for info in nodes.values():
@@ -45,5 +46,11 @@ def node_request_fits(node_cpu_pods):
     return node_cpu_pods["cpu"] >= node_sum_requested(node_cpu_pods)
 
 
+def calc_cost(nodes, settings):
+    cost = 0.0
+    for node_info in nodes.values():
+        cost += node_info["cpu"] * settings["price_per_core"]
+        cost += node_info["memory"] * settings["price_per_gb"]
+    return cost
 
 

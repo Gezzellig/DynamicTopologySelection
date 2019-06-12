@@ -53,7 +53,7 @@ def main():
     settings = load_settings.load_settings(sys.argv[1])
     node_name = "gke-develop-cluster-larger-pool-9ecdadbf-gc9n"
     #evict_node(node_name)
-    asyncio.run(node_removed_timeout(node_name))
+    #asyncio.run(node_removed_timeout(node_name))
     print("jljlefj")
 
 

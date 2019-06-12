@@ -3,9 +3,10 @@ import math
 import random
 
 from SmartKubernetesSchedular import deployment
+from SmartKubernetesSchedular.rank_executions import retrieve_nodes_cpu_usage
 from kubernetes_tools import extract_nodes, extract_pods
 from SmartKubernetesSchedular.strategies.AbstractStratagy import AbstractStratagy, CouldNotGenerateImprovementException
-from kubernetes_tools.extract_nodes import node_request_fits, node_sum_requested
+from kubernetes_tools.extract_nodes import node_request_fits, node_sum_requested, calc_cost
 
 
 class TryEmptyOneNode(AbstractStratagy):
@@ -15,16 +16,18 @@ class TryEmptyOneNode(AbstractStratagy):
         removable_nodes = select_removable_nodes(nodes)
         candidate_node_name = least_transitions_removable(removable_nodes, nodes)
         if candidate_node_name is None:
-            print("No node could be shutdown for improvement")
+            print("No node could be shutdown for improvement, because all nodes have a statefull set")
             return False, None
 
         for pod in nodes[candidate_node_name]["pods"]:
             print(pod["pod_name"])
 
         reschedule_pods = find_pods_to_be_rescheduled(nodes[candidate_node_name]["pods"])
-        distributions = find_new_distributions(reschedule_pods, nodes)
+        nodes_node_removed = copy.deepcopy(nodes)
+        del nodes_node_removed[candidate_node_name]
+        distributions = find_new_distributions(reschedule_pods, nodes_node_removed)
         if not distributions:
-            print("No node could be shutdown for improvement")
+            print("No node could be shutdown for improvement, because all the resources are needed")
             return False, None
         selected_distribution = select_lowest_max_requested(distributions)
         print("Emptying node: {}".format(candidate_node_name))
@@ -53,7 +56,7 @@ def find_pods_to_be_rescheduled(pods):
             reschedule.append(pod)
     return reschedule
 
-
+# Todo change to least amount of cpu usage
 def least_transitions_removable(removable_nodes, nodes):
     least_transitions = math.inf
     least_transitions_node = None
@@ -119,4 +122,13 @@ def change_selected_distribution_into_transitions(selected_distribution, origina
     return transitions
 
 
+def calc_removal_resulting_cost(nodes, transitions, settings):
+    copy_nodes = copy.deepcopy(nodes)
+    print("hier")
+    for node_name, transition in transitions.items():
+        if transition["remove"]:
+            print("removed:", node_name)
+            del copy_nodes[node_name]
+            break
+    return calc_cost(copy_nodes, settings)
 

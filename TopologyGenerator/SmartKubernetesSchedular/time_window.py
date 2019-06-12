@@ -3,6 +3,7 @@ import json
 import sys
 
 from Neo4jGraphDriver import disconnect_neo4j
+from SmartKubernetesSchedular.retrieve_executions import retrieve_single_execution
 from initializer.neo4j_queries import execute_query_function
 from kubernetes_tools import extract_pods, extract_nodes
 
@@ -12,23 +13,22 @@ def add_time_window_command(tx, load, pods, start_time, end_time):
                     with e \
                     UNWIND $pods as pod \
                     MERGE (e)-[:HasNode]->(n:Node {name:pod.node_name, cpu:pod.node_cpu, memory:pod.node_memory}) \
-                    WITH n, pod.pod_generate_name as pod_generate_name, pod.pod_name as pod_name \
-                    MERGE (p:Pod{generate_name:pod_generate_name}) \
-                    WITH n, p, pod_name \
-                    CREATE (n)-[:Ran{name:pod_name}]->(p)",
+                    WITH e, n, pod.pod_generate_name as pod_generate_name, pod.pod_name as pod_name, pod.kind as kind \
+                    MERGE (p:Pod{generate_name:pod_generate_name, kind:kind}) \
+                    WITH e, n, p, pod_name \
+                    CREATE (n)-[:Ran{name:pod_name}]->(p) \
+                    RETURN DISTINCT id(e) AS execution_id",
                   load=load, pods=pods, start_time=int(start_time.timestamp()*1000), end_time=int(end_time.timestamp()*1000))
 
 
-def create_time_window(end_time, load, time_window):
-    pods = extract_pods.pods_dict_to_list(extract_pods.extract_all_pods())
-    nodes = extract_nodes.extract_all_nodes_cpu()
-
+def create_time_window(end_time, load, time_window, pods, nodes):
     # add node information to each pod so it can be added to neo4j
     for pod in pods:
         pod["node_cpu"] = nodes[pod["node_name"]]["cpu"]
         pod["node_memory"] = nodes[pod["node_name"]]["memory"]
-    execute_query_function(add_time_window_command, load, pods, end_time-time_window, end_time)
-    return load
+    result = execute_query_function(add_time_window_command, load, pods, end_time-time_window, end_time)
+    cur_execution_id = result.single()["execution_id"]
+    return retrieve_single_execution(cur_execution_id)
 
 
 def main():
@@ -37,7 +37,10 @@ def main():
     print("Settings: {}".format(settings_file_name))
     with open(settings_file_name) as file:
         settings = json.load(file)
-    create_time_window(datetime.datetime.now(), 10000, datetime.timedelta(minutes=5))
+
+    pods = extract_pods.pods_dict_to_list(extract_pods.extract_all_pods())
+    nodes = extract_nodes.extract_all_nodes_cpu()
+    print(create_time_window(datetime.datetime.now(), 10000, datetime.timedelta(minutes=5), pods, nodes))
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 up:
 	@gcloud container clusters get-credentials develop-cluster
-	@gcloud -q container clusters resize develop-cluster --size=4	
+	@gcloud -q container clusters resize develop-cluster --size=3	
 	@gcloud container clusters update develop-cluster --enable-autoscaling --min-nodes 1 --max-nodes 8 --node-pool larger-pool	
 	#@gcloud -q container clusters resize test-cluster --size=6	
 	@docker-compose -f docker-compose.yml up -d
