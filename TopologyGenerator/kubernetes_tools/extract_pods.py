@@ -34,6 +34,18 @@ def pods_to_generate_names(pods):
     return generate_names
 
 
+def get_deployment_name(pod_info):
+    try:
+        node_affinity = pod_info.spec.affinity.node_affinity
+        for group in node_affinity.preferred_during_scheduling_ignored_during_execution:
+            for rule in group.preference.match_expressions:
+                if rule.key == "node-preference":
+                    return rule.values[0]
+    except (TypeError, AttributeError):
+        return None
+
+
+
 def extract_pod_info(pod_info):
     #print(pod_info)
     containers = []
@@ -60,10 +72,12 @@ def extract_pod_info(pod_info):
         # Todo maybe change again, putting it to deamonset so it is not taken into account
         #pod["kind"] = None
         pod["kind"] = "DaemonSet"
-    if "name" in pod_info.metadata.labels:
-        pod["deployment_name"] = pod_info.metadata.labels["name"]
-    else:
-        pod["deployment_name"] = None
+    pod["deployment_name"] = get_deployment_name(pod_info)
+    #if "name" in pod_info.metadata.labels:
+    #    pod["deployment_name"] = pod_info.metadata.labels["name"]
+    #else:
+    #    pod["deployment_name"] = None
+
     return name, pod
 
 

@@ -187,7 +187,6 @@ def state_transition_plan(transitions, pods, nodes):
     return downscalers, migration_order, upscalers
 
 
-
 def main():
     pods = extract_pods.extract_all_pods()
     nodes = extract_nodes.extract_all_nodes_cpu()

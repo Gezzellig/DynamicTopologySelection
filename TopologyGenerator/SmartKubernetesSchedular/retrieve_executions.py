@@ -74,7 +74,6 @@ def retrieve_full_executions(execution_ids):
             "end_time": datetime.datetime.fromtimestamp(data_execution["end_time"]/1000),
             "nodes": nodes
         })
-        print(data_execution["start_time"]/1000, data_execution["end_time"]/1000)
     return executions
 
 

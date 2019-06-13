@@ -12,7 +12,6 @@ class LoadExtractorBytesIn(AbstractLoadExtractor):
         #pod_name = "web-5d46fb6ff7-bp77b" #Minikube
         pod_name = "php-apache-.*" #CLOUD
         request = 'http://{prom_address}/api/v1/query?query=sum(rate(container_network_receive_bytes_total{{interface="eth0",pod_name=~"{pod_name}"}}[{window}s]))&time={start_time}'.format(prom_address=settings["prometheus_address"], pod_name=pod_name, start_time=(end_time-window).timestamp(), window=window.seconds)
-        print(request)
         result = requests.get(request).json()
         try:
             return float(result["data"]["result"][0]["value"][1])

@@ -78,6 +78,7 @@ def migrate_pod(pod_name, destination_node, prestart=False):
 
     print("moving: {} to {}".format(pod_name, destination_node))
     try:
+        print("deployment_name: {}".format(deployment_name))
         subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name)])
         subprocess.run(["kubectl", "delete", "pod", pod_name, "-n", namespace])
 

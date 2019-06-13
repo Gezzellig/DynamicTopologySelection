@@ -33,7 +33,6 @@ def find_best_execution(executions, prometheus_address):
     best_ranked_execution = None
     for execution in executions:
         rank = rank_execution_node_cpu_usage(execution, prometheus_address)
-        print("rank", rank)
         if rank < best_rank:
             best_rank = rank
             best_ranked_execution = execution
@@ -44,7 +43,6 @@ def main():
     settings = load_settings.load_settings("/media/thijs/SSD2/University/2018-2019/Thesis/DynamicTopologySelection/TopologyGenerator/settings.json")
     executions = retrieve_executions(10000, settings)
     best_execution = find_best_execution(executions, settings["prometheus_address"])
-    print(best_execution)
 
 
 if __name__ == '__main__':
