@@ -47,9 +47,6 @@ def loop(time_window, settings):
         # Todo implement this transition.
 
 
-
-
-
 def transition_state(transitions, pods, nodes):
     print(transitions)
     down, migrate, up = state_transition_plan(transitions, pods, nodes)
