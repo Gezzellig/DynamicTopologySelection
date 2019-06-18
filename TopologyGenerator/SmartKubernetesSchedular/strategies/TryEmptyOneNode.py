@@ -17,7 +17,7 @@ class TryEmptyOneNode(AbstractStratagy):
         candidate_node_name = least_transitions_removable(removable_nodes, nodes)
         if candidate_node_name is None:
             print("No node could be shutdown for improvement, because all nodes have a statefull set")
-            return False, None
+            return False, None, None
 
         for pod in nodes[candidate_node_name]["pods"]:
             print(pod["pod_name"])
@@ -28,10 +28,10 @@ class TryEmptyOneNode(AbstractStratagy):
         distributions = find_new_distributions(reschedule_pods, nodes_node_removed)
         if not distributions:
             print("No node could be shutdown for improvement, because all the resources are needed")
-            return False, None
+            return False, None, None
         selected_distribution = select_lowest_max_requested(distributions)
         print("Emptying node: {}".format(candidate_node_name))
-        return True, change_selected_distribution_into_transitions(selected_distribution, nodes)
+        return True, candidate_node_name, change_selected_distribution_into_transitions(selected_distribution, nodes)
 
 
 def node_removable(pods_info):
@@ -122,13 +122,7 @@ def change_selected_distribution_into_transitions(selected_distribution, origina
     return transitions
 
 
-def calc_removal_resulting_cost(nodes, transitions, settings):
+def calc_removal_resulting_cost(nodes, node_removed, settings):
     copy_nodes = copy.deepcopy(nodes)
-    print("hier")
-    for node_name, transition in transitions.items():
-        if transition["remove"]:
-            print("removed:", node_name)
-            del copy_nodes[node_name]
-            break
+    del copy_nodes[node_removed]
     return calc_cost(copy_nodes, settings)
-

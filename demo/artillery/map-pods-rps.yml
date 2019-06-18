@@ -1,0 +1,47 @@
+config:
+  target: 'http://35.234.80.55'
+  phases:
+    - duration: 300
+      arrivalRate: 2
+    - duration: 300
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 6
+    - duration: 300
+      arrivalRate: 8
+    - duration: 300
+      arrivalRate: 10
+    - duration: 300
+      arrivalRate: 12
+    - duration: 300
+      arrivalRate: 14
+    - duration: 300
+      arrivalRate: 16
+    - duration: 300
+      arrivalRate: 18
+    - duration: 300
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 22
+    - duration: 300
+      arrivalRate: 24
+    - duration: 300
+      arrivalRate: 26
+    - duration: 300
+      arrivalRate: 28
+    - duration: 300
+      arrivalRate: 30
+    - duration: 300
+      arrivalRate: 32
+    - duration: 300
+      arrivalRate: 34
+    - duration: 300
+      arrivalRate: 36
+    - duration: 300
+      arrivalRate: 38
+    - duration: 300
+      arrivalRate: 40
+scenarios:
+  - flow:
+    - get:
+        url: "/"

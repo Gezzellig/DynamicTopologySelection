@@ -6,15 +6,15 @@ import requests
 
 from kubernetes_tools import extract_pods
 from kubernetes_tools.change_deployment_scale import decrease_deployment_scale
-from kubernetes_tools.migrate_pod import VerificationTookTooLongException
+from kubernetes_tools.migrate_pod import VerificationTookTooLongException, PodException
 from load_settings import load_settings
 
 
-class CouldNotEvictPodException(Exception):
+class CouldNotEvictPodException(PodException):
     pass
 
 
-class CouldNotDeletePodException(Exception):
+class CouldNotDeletePodException(PodException):
     pass
 
 

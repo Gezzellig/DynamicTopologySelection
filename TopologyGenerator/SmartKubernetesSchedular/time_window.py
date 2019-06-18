@@ -23,6 +23,7 @@ def add_time_window_command(tx, load, pods, start_time, end_time):
 
 def create_time_window(end_time, load, time_window, pods, nodes):
     # add node information to each pod so it can be added to neo4j
+    print("EXECUTION ADDED: {}".format(load))
     for pod in pods:
         pod["node_cpu"] = nodes[pod["node_name"]]["cpu"]
         pod["node_memory"] = nodes[pod["node_name"]]["memory"]

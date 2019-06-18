@@ -13,9 +13,9 @@ class NoExecutionsFoundException(Exception):
 
 def retrieve_executions_on_load(tx, load, delta_load):
     return tx.run("match (e:Execution) -[:HasNode]-> (n:Node) \
-                    where $load_min < e.load < $load_max \
+                    where $load_min <= e.load <= $load_max \
                     return id(e) as id, collect({name:n.name, cpu:n.cpu, memory:n.memory}) as nodes",
-                  load_min=load-delta_load, load_max=load+delta_load)
+                  load_min=load-(load*delta_load), load_max=load+(load*delta_load))
 
 
 def retrieve_cheapest_executions(load, delta_load, price_per_core, price_per_gb):
@@ -70,6 +70,7 @@ def retrieve_full_executions(execution_ids):
         for data_node in data_execution["nodes"]:
             nodes[data_node["name"]] = extract_node_from_data_node(data_node)
         executions.append({
+            "execution_id": data_execution["id"],
             "start_time": datetime.datetime.fromtimestamp(data_execution["start_time"]/1000),
             "end_time": datetime.datetime.fromtimestamp(data_execution["end_time"]/1000),
             "nodes": nodes

@@ -1,0 +1,12 @@
+config:
+  target: 'http://35.234.80.55'
+  phases:
+    - duration: 10
+      name: "Warm up the application"
+      arrivalRate: 10
+    - duration: 30
+      arrivalRate: 1
+scenarios:
+  - flow:
+    - get:
+        url: "/"

@@ -10,5 +10,5 @@ spec:
     kind: Deployment
     name: php-apache
   minReplicas: 1
-  maxReplicas: 25
+  maxReplicas: 50
   targetCPUUtilizationPercentage: 80

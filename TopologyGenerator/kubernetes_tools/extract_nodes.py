@@ -35,6 +35,16 @@ def extract_all_nodes_cpu_pods():
     return nodes
 
 
+def extract_all_nodes_cpu_pods_dict():
+    nodes = extract_all_nodes_cpu()
+    for info in nodes.values():
+        info["pods"] = {}
+    pods = extract_pods.extract_all_pods()
+    for pod_name, pod_info in pods.items():
+        nodes[pod_info["node_name"]]["pods"][pod_name] = pod_info
+    return nodes
+
+
 def node_sum_requested(node_pods):
     requested = 0.0
     for pod_info in node_pods["pods"]:
