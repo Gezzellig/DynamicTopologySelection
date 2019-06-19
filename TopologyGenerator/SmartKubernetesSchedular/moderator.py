@@ -1,6 +1,7 @@
 import datetime
 import math
 import random
+import subprocess
 import sys
 import time
 
@@ -72,10 +73,10 @@ def get_best_transitions(load, nodes, settings):
     old_best_execution_cost = calc_cost(old_best_execution["nodes"], settings)
 
     print("costs for all options: current= {}, removal= {}, old_best= {}".format(cur_cost, removal_resulting_cost, old_best_execution_cost))
-    if removal_resulting_cost <= old_best_execution_cost and False:
+    if removal_resulting_cost <= old_best_execution_cost:
         log.info("TAKE REMOVAL ACTION")
         return removal_transitions
-    elif cur_cost <= old_best_execution_cost and False:
+    elif cur_cost <= old_best_execution_cost:
         print("Staying with current execution, but randomly changing one random pod")
         current_state = extract_nodes.extract_all_nodes_cpu_pods()
         return select_random_deployment_pod_to_transition(current_state)
@@ -129,6 +130,9 @@ def tuning_loop(time_window, load_extractor, settings):
     not_stable_counter = 0
     nodes_to_full_to_move = 0
     while True:
+        # Hack to fix authentication issue
+        #subprocess.run(["gcloud", "container", "clusters", "get-credentials", "demo-cluster-1"])
+
         print("Time for an update_step iteration! {}".format(datetime.datetime.now()))
         try:
             if update_step(time_window, load_extractor, settings):
@@ -149,6 +153,7 @@ def tuning_loop(time_window, load_extractor, settings):
 
 
 def main():
+    extract_pods.extract_all_pods()
     settings = load_settings.load_settings(sys.argv[1])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()

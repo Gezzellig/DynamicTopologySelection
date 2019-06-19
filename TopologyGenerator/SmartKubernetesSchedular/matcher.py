@@ -92,8 +92,13 @@ def already_on_node(des_pod_info, current_state_pods, remove_list):
     return False
 
 
-def stateful_set_movement(pod_name_list, current_state_node):
-    for name in pod_name_list:
+def stateful_set_movement(add_list, remove_list, current_state_node):
+    for name in add_list:
+        for pod_info in current_state_node["pods"].values():
+            if pod_info["pod_generate_name"] == name:
+                if pod_info["kind"] == "StatefulSet":
+                    return True
+    for name in remove_list:
         if current_state_node["pods"][name]["kind"] == "StatefulSet":
             return True
     return False

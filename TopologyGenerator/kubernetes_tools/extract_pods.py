@@ -121,6 +121,3 @@ def connect_pods_to_containers(settings):
     pods = extract_pods_namespace(settings["kubernetes_project_namespace"])
     execute_query_function(connect_pods_to_containers_command, pods)
 
-
-if __name__ == '__main__':
-    print(extract_pods_deployment("php-apache", "demo"))
