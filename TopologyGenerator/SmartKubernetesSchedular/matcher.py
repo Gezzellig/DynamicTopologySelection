@@ -1,7 +1,7 @@
 import copy
 import math
 
-from kubernetes_tools.extract_pods import movable
+from kubernetes_tools.extract_pods import movable, removable
 
 
 def scoring(pod_info, not_movable_score, movable_score):
@@ -30,11 +30,9 @@ def remaining_pods_score(copy_node, not_movable_score, movable_score):
     return score
 
 
-def calc_score_per_node(node_a, node_b):
+def calc_score_per_node(node_a, node_b, not_movable_score, movable_score):
     copy_node_a = copy.deepcopy(node_a)
     copy_node_b = copy.deepcopy(node_b)
-    not_movable_score = 100
-    movable_score = 1
     score = 0
     for pod_a_name, pod_a_info in node_a["pods"].items():
         score += pod_score(pod_a_name, pod_a_info, node_b, copy_node_a, copy_node_b, not_movable_score, movable_score)
@@ -45,30 +43,32 @@ def calc_score_per_node(node_a, node_b):
 
 
 def get_scores(current_state, desired_state):
+    not_movable_score = 100
+    movable_score = 1
+
     #Current -> Desired
     scores = {}
-    for node_desired_name, node_desired_info in desired_state.items():
-        score = {}
-        for node_current_name, node_current_info in current_state.items():
-            cur_score = calc_score_per_node(node_current_info, node_desired_info)
-            score[node_current_name] = cur_score
-        print(node_desired_name)
-        scores[node_desired_name] = score
+    for node_current_name, node_current_info in current_state.items():
+        score = {None: -remaining_pods_score(node_current_info, not_movable_score, movable_score)}
+        for node_desired_name, node_desired_info in desired_state.items():
+            cur_score = calc_score_per_node(node_current_info, node_desired_info, not_movable_score, movable_score)
+            score[node_desired_name] = cur_score
+        scores[node_current_name] = score
     return scores
 
 
-def rec_find_highest_score(desired_state_list, scores):
-    if not desired_state_list:
+def rec_find_highest_score(current_state_list, scores):
+    if not current_state_list:
         return 0, {}
-    copy_desired_state_list = list(desired_state_list)
-    node_name = copy_desired_state_list.pop()
+    copy_current_state_list = list(current_state_list)
+    node_name = copy_current_state_list.pop()
     max_score = -math.inf
     max_mapping = None
     for node_b, score in scores[node_name].items():
         copy_scores = copy.deepcopy(scores)
         for remove_node_match in copy_scores.values():
             del remove_node_match[node_b]
-        prev_score, prev_mapping = rec_find_highest_score(copy_desired_state_list, copy_scores)
+        prev_score, prev_mapping = rec_find_highest_score(copy_current_state_list, copy_scores)
         cur_score = prev_score + score
         prev_mapping[node_name] = node_b
         cur_mapping = prev_mapping
@@ -81,13 +81,11 @@ def rec_find_highest_score(desired_state_list, scores):
 
 def find_highest_score_mapping(scores):
     score, mapping = rec_find_highest_score(list(scores.keys()), scores)
-    print(score)
     return mapping
 
 
 def match_nodes_desired_with_current_state(current_state, desired_state):
     scores = get_scores(current_state, desired_state)
-    print(scores)
     return find_highest_score_mapping(scores)
 
 
@@ -100,36 +98,48 @@ def already_on_node(des_pod_info, current_state_pods, remove_list):
     return False
 
 
-def not_movable_transition(add_list, remove_list, current_state_node):
+def remove_daemon_sets(state):
+    state_copy = copy.deepcopy(state)
+    for node_name, node_info in state.items():
+        for pod_name, pod_info in node_info["pods"].items():
+            if pod_info["kind"] == "DaemonSet":
+                del state_copy[node_name]["pods"][pod_name]
+    return state_copy
+
+
+
+def valid_transition(add_list, remove_list, pods):
     for name in add_list:
-        for pod_info in current_state_node["pods"].values():
+        for pod_info in pods.values():
             if pod_info["pod_generate_name"] == name:
-                if not movable(pod_info):
-                    return True
+                if not removable(pod_info):
+                    return False
     for name in remove_list:
-        if not movable(current_state_node["pods"][name]):
-            return True
-    return False
+        if not removable(pods[name]):
+            return False
+    return True
 
 
 def find_transitions_execution_change(current_state, desired_state):
     transitions = {}
     node_mapping = match_nodes_desired_with_current_state(current_state, desired_state)
-    print(node_mapping)
 
-    for des_node_name, des_node_info in desired_state.items():
-        mapped_node_name = node_mapping[des_node_name]
+    daemon_less_current_state = remove_daemon_sets(current_state)
+    daemon_less_desired_state = remove_daemon_sets(desired_state)
+
+    for cur_node_name, cur_node_info in daemon_less_current_state.items():
+        des_mapped_node_name = node_mapping[cur_node_name]
         add_list = []
-        remove_list = list(current_state[mapped_node_name]["pods"].keys())
-        for des_pod_info in des_node_info["pods"].values():
-            if not already_on_node(des_pod_info, current_state[mapped_node_name]["pods"], remove_list):
-                add_list.append(des_pod_info["pod_generate_name"])
+        remove_list = list(cur_node_info["pods"].keys())
+        if des_mapped_node_name is not None:
+            for des_pod_info in daemon_less_desired_state[des_mapped_node_name]["pods"].values():
+                if not already_on_node(des_pod_info, cur_node_info["pods"], remove_list):
+                    add_list.append(des_pod_info["pod_generate_name"])
 
-        if not_movable_transition(add_list, remove_list, current_state[mapped_node_name]):
+        if not valid_transition(add_list, remove_list, cur_node_info["pods"]):
             return False, None
 
-
-        transitions[mapped_node_name] = {
+        transitions[cur_node_name] = {
             "add": add_list,
             "remove": remove_list
         }
