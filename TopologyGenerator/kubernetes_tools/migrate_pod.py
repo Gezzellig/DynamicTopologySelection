@@ -8,6 +8,10 @@ class PodException(Exception):
     pass
 
 
+class PodNotMovableException(PodException):
+    pass
+
+
 class PodScheduledOnWrongNodeException(PodException):
     def __init__(self, destination, result):
         PodException("Destination: {}, ended up in: {}".format(destination, result))
@@ -71,6 +75,8 @@ def migrate_pod(pod_name, destination_node, prestart=False):
                 destination_node = node1"""
 
     migrating_pod_info = initial_state[pod_name]
+    if not extract_pods.movable(migrating_pod_info):
+        raise PodNotMovableException()
     print(migrating_pod_info)
     namespace = migrating_pod_info["namespace"]
     deployment_name = migrating_pod_info["deployment_name"]

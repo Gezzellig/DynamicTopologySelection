@@ -37,15 +37,14 @@ def get_deployment_name(pod_info):
     try:
         node_affinity = pod_info["spec"]["affinity"]["nodeAffinity"]
         for group in node_affinity["preferredDuringSchedulingIgnoredDuringExecution"]:
-            for rule in group["preference"]["match_expressions"]:
-                if rule.key == "node-preference":
+            for rule in group["preference"]["matchExpressions"]:
+                if rule["key"] == "node-preference":
                     return rule["values"][0]
     except KeyError:
         return None
 
 
 def extract_pod_info(pod_info):
-    #print(pod_info)
     containers = []
     total_requested = 0.0
     for container_info in pod_info["spec"]["containers"]:

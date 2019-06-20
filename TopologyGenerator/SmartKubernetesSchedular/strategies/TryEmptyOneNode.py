@@ -37,7 +37,7 @@ class TryEmptyOneNode(AbstractStratagy):
 
 def node_removable(pods_info):
     for pod_info in pods_info:
-        if pod_info["kind"] == "StatefulSet":
+        if not extract_pods.removable(pod_info):
             return False
     return True
 
@@ -53,7 +53,7 @@ def select_removable_nodes(nodes):
 def find_pods_to_be_rescheduled(pods):
     reschedule = []
     for pod in pods:
-        if not pod["kind"] == "DaemonSet":
+        if extract_pods.movable(pod):
             reschedule.append(pod)
     return reschedule
 

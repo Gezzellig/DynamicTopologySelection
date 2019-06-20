@@ -42,7 +42,7 @@ def select_random_deployment_pod_to_transition(nodes):
             continue
 
         pod = random.choice(list(source_node_info["pods"]))
-        if not pod["deployment_name"]:
+        if not extract_pods.movable(pod):
             continue
 
         if node_sum_requested(destination_node_info) + pod["total_requested"] < destination_node_info["cpu"]*0.95:
@@ -108,7 +108,7 @@ def transition_state(transitions, pods, nodes):
 
 def update_step(time_window, load_extractor, settings):
     end_time = datetime.datetime.now()
-    if cluster_stable(end_time, time_window, settings) or True:
+    if cluster_stable(end_time, time_window, settings):
         print("Cluster was stable for {} seconds till {}, calculating best transition".format(time_window.seconds, end_time))
         pods = extract_pods.extract_all_pods()
         nodes = extract_nodes.extract_all_nodes_cpu()
@@ -140,8 +140,8 @@ def tuning_loop(time_window, load_extractor, settings):
                 went_correct_counter += 1
             else:
                 not_stable_counter += 1
-        except PodException:
-            print("went wrong")
+        except PodException as e:
+            print("went wrong: {}", format(type(e)))
             went_wrong_counter += 1
         except AllNodesToFullToMove:
             print("All nodes to full to do random move")
