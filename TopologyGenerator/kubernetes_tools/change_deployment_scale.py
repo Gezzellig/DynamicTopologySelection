@@ -1,13 +1,16 @@
 import subprocess
 
+import requests
+
 from KubernetesAPIConnector import get_k8s_client
 
 
 def get_deployment_scale(deployment_name, namespace):
     print(deployment_name)
     print(namespace)
-    result = get_k8s_client().AppsV1Api().read_namespaced_deployment_scale(deployment_name, namespace)
-    return result.spec.replicas
+    url = "/apis/extensions/v1beta1/namespaces/{}/deployments/{}/scale".format(namespace, deployment_name)
+    result = requests.get(url).json()
+    return result["spec"]["replicas"]
 
 
 def change_deployment_scale(deployment_name, namespace, new_scale):

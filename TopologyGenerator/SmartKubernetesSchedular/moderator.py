@@ -153,7 +153,7 @@ def tuning_loop(time_window, load_extractor, settings):
 
 
 def main():
-    extract_pods.extract_all_pods()
+    print(extract_nodes.extract_all_nodes_cpu_pods())
     settings = load_settings.load_settings(sys.argv[1])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()

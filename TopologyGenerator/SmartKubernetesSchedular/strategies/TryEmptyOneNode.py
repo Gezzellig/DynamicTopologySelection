@@ -19,10 +19,11 @@ class TryEmptyOneNode(AbstractStratagy):
             print("No node could be shutdown for improvement, because all nodes have a statefull set")
             return False, None, None
 
-        for pod in nodes[candidate_node_name]["pods"]:
-            print(pod["pod_name"])
+        #for pod in nodes[candidate_node_name]["pods"]:
+            #print("ha", pod["pod_name"])
 
         reschedule_pods = find_pods_to_be_rescheduled(nodes[candidate_node_name]["pods"])
+        print(reschedule_pods)
         nodes_node_removed = copy.deepcopy(nodes)
         del nodes_node_removed[candidate_node_name]
         distributions = find_new_distributions(reschedule_pods, nodes_node_removed)

@@ -1,6 +1,5 @@
-from kubernetes import client, config
+import requests
 
-from KubernetesAPIConnector import get_k8s_api
 from initializer.neo4j_queries import execute_query_function
 
 
@@ -36,38 +35,38 @@ def pods_to_generate_names(pods):
 
 def get_deployment_name(pod_info):
     try:
-        node_affinity = pod_info.spec.affinity.node_affinity
-        for group in node_affinity.preferred_during_scheduling_ignored_during_execution:
-            for rule in group.preference.match_expressions:
+        node_affinity = pod_info["spec"]["affinity"]["nodeAffinity"]
+        for group in node_affinity["preferredDuringSchedulingIgnoredDuringExecution"]:
+            for rule in group["preference"]["match_expressions"]:
                 if rule.key == "node-preference":
-                    return rule.values[0]
-    except (TypeError, AttributeError):
+                    return rule["values"][0]
+    except KeyError:
         return None
-
 
 
 def extract_pod_info(pod_info):
     #print(pod_info)
     containers = []
     total_requested = 0.0
-    for container_info in pod_info.spec.containers:
-        containers.append(container_info.name)
-        if container_info.resources.requests is None:
+    for container_info in pod_info["spec"]["containers"]:
+        containers.append(container_info["name"])
+        if "requests" not in container_info["resources"]:
             #todo: find a good number to use as a placeholder when no request is set
             total_requested += 0
         else:
-            total_requested += float(container_info.resources.requests["cpu"].split("m")[0])/1000
-    name = pod_info.metadata.name
-    pod = {"node_name": pod_info.spec.node_name,
-           "namespace": pod_info.metadata.namespace,
+            total_requested += float(container_info["resources"]["requests"]["cpu"].split("m")[0])/1000.0
+    metadata = pod_info["metadata"]
+    name = metadata["name"]
+    pod = {"node_name": pod_info["spec"]["nodeName"],
+           "namespace": metadata["namespace"],
            "total_requested": total_requested,
            "containers": containers}
-    if pod_info.metadata.generate_name:
-        pod["pod_generate_name"] = pod_info.metadata.generate_name
+    if "generate_name" in metadata:
+        pod["pod_generate_name"] = metadata["generate_name"]
     else:
-        pod["pod_generate_name"] = pod_info.metadata.name.rsplit("-", 1)[0]+"-"
-    if pod_info.metadata.owner_references:
-        pod["kind"] = pod_info.metadata.owner_references[0].kind
+        pod["pod_generate_name"] = name.rsplit("-", 1)[0]+"-"
+    if "ownerReferences" in metadata:
+        pod["kind"] = metadata["ownerReferences"][0]["kind"]
     else:
         # Todo maybe change again, putting it to deamonset so it is not taken into account
         #pod["kind"] = None
@@ -83,14 +82,15 @@ def extract_pod_info(pod_info):
 
 def extract_pods(pods_info):
     pods = {}
-    for pod_info in pods_info.items:
+    for pod_info in pods_info["items"]:
         name, pod = extract_pod_info(pod_info)
         pods[name] = pod
     return pods
 
 
 def extract_pods_namespace(name_space):
-    pods_info = get_k8s_api().list_namespaced_pod(name_space)
+    pods_info = requests.get("http://localhost:8080/api/v1/namespaces/{}/pods".format(name_space)).json()
+    #pods_info = get_k8s_api().list_namespaced_pod(name_space)
     return extract_pods(pods_info)
 
 
@@ -104,7 +104,7 @@ def extract_pods_deployment(deployment):
 
 
 def extract_all_pods():
-    pods_info = get_k8s_api().list_pod_for_all_namespaces()
+    pods_info = requests.get("http://localhost:8080/api/v1/pods").json()
     return extract_pods(pods_info)
 
 
@@ -121,3 +121,6 @@ def connect_pods_to_containers(settings):
     pods = extract_pods_namespace(settings["kubernetes_project_namespace"])
     execute_query_function(connect_pods_to_containers_command, pods)
 
+
+def movable(pod_info):
+    return pod_info["deployment_name"] is not None

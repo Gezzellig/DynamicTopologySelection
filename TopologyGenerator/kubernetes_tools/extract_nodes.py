@@ -1,19 +1,20 @@
-from KubernetesAPIConnector import get_k8s_api
+import requests
+
 from kubernetes_tools import extract_pods
 
 
 def extract_nodes_cpu(nodes_info):
     nodes = {}
-    for node_info in nodes_info.items:
-        nodes[node_info.metadata.name] = {
-            "cpu": float(node_info.status.capacity["cpu"]),
-            "memory": float(node_info.status.capacity["memory"].split("K")[0])/1048576  # get value from Kilo to Giga
+    for node_info in nodes_info["items"]:
+        nodes[node_info["metadata"]["name"]] = {
+            "cpu": float(node_info["status"]["capacity"]["cpu"]),
+            "memory": float(node_info["status"]["capacity"]["memory"].split("K")[0])/1048576  # get value from Kilo to Giga
         }
     return nodes
 
 
 def extract_all_nodes_cpu():
-    nodes_info = get_k8s_api().list_node()
+    nodes_info = requests.get("http://localhost:8080/api/v1/nodes").json()
     return extract_nodes_cpu(nodes_info)
 
 
