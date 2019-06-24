@@ -87,6 +87,7 @@ def get_best_transitions(load, nodes, settings):
         print(old_best_execution)
 
         # Remove executions to ensure that it doesn't get stuck on one lucky run.
+        # TODO: add this line again!!!!!!
         execute_query_function(delete_execution, old_best_execution["execution_id"])
         success, transitions = find_transitions_execution_change(current_state, old_best_execution["nodes"])
         if success:
@@ -108,6 +109,7 @@ def transition_state(transitions, pods, nodes):
 
 def update_step(time_window, load_extractor, settings):
     end_time = datetime.datetime.now()
+    # TODO: remove the "or TRUE"
     if cluster_stable(end_time, time_window, settings):
         print("Cluster was stable for {} seconds till {}, calculating best transition".format(time_window.seconds, end_time))
         pods = extract_pods.extract_all_pods()
@@ -150,6 +152,8 @@ def tuning_loop(time_window, load_extractor, settings):
         print("Current not stable:correct:wrong balance {}:{}:{}".format(not_stable_counter, went_correct_counter, went_wrong_counter))
         log.info("Going back to sleep")
         time.sleep(time_window.seconds)
+
+
 
 
 def main():

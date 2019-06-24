@@ -56,7 +56,11 @@ def extract_pod_info(pod_info):
             total_requested += float(container_info["resources"]["requests"]["cpu"].split("m")[0])/1000.0
     metadata = pod_info["metadata"]
     name = metadata["name"]
-    pod = {"node_name": pod_info["spec"]["nodeName"],
+    if "nodeName" in pod_info["spec"]:
+        node_name = pod_info["spec"]["nodeName"]
+    else:
+        node_name = None
+    pod = {"node_name": node_name,
            "namespace": metadata["namespace"],
            "total_requested": total_requested,
            "containers": containers}

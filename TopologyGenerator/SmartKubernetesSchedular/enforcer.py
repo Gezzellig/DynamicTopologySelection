@@ -1,10 +1,10 @@
 from kubernetes_tools import extract_pods
 from kubernetes_tools.add_pod import add_pod_deployment
 from kubernetes_tools.delete_pod import delete_pod_deployment
-from kubernetes_tools.migrate_pod import migrate_pod
+from kubernetes_tools.migrate_pod import migrate_pod, PodException
 
 
-class PodHasScaledWhileEnforcingException(Exception):
+class PodHasScaledWhileEnforcingException(PodException):
     pass
 
 

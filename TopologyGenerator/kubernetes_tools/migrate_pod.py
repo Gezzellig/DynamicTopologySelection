@@ -50,6 +50,8 @@ def verify_migration(destination_node, generate_name, initial_state):
         if len(initial_deployment_pods) == len(current_deployment_pods):
             for current_pod_name, info in current_deployment_pods.items():
                 if current_pod_name not in initial_deployment_pods:
+                    if info["node_name"] is None:
+                        return False
                     if info["node_name"] == destination_node:
                         print("MOVEMENT SUCCEEEDED")
                         return True

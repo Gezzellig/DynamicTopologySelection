@@ -8,7 +8,7 @@ from KubernetesAPIConnector import get_k8s_client
 def get_deployment_scale(deployment_name, namespace):
     print(deployment_name)
     print(namespace)
-    url = "/apis/extensions/v1beta1/namespaces/{}/deployments/{}/scale".format(namespace, deployment_name)
+    url = "http://localhost:8080/apis/extensions/v1beta1/namespaces/{}/deployments/{}/scale".format(namespace, deployment_name)
     result = requests.get(url).json()
     return result["spec"]["replicas"]
 

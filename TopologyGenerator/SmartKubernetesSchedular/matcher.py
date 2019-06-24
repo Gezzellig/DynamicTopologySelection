@@ -57,20 +57,21 @@ def get_scores(current_state, desired_state):
     return scores
 
 
-def rec_find_highest_score(current_state_list, scores):
+def rec_find_highest_score(current_state_list, desired_state_list, scores):
     if not current_state_list:
         return 0, {}
+
     copy_current_state_list = list(current_state_list)
     node_name = copy_current_state_list.pop()
     max_score = -math.inf
     max_mapping = None
-    for node_b, score in scores[node_name].items():
-        copy_scores = copy.deepcopy(scores)
-        for remove_node_match in copy_scores.values():
-            del remove_node_match[node_b]
-        prev_score, prev_mapping = rec_find_highest_score(copy_current_state_list, copy_scores)
+    for node_b_name in desired_state_list:
+        score = scores[node_name][node_b_name]
+        copy_desired_state_list = list(desired_state_list)
+        copy_desired_state_list.remove(node_b_name)
+        prev_score, prev_mapping = rec_find_highest_score(copy_current_state_list, copy_desired_state_list, scores)
         cur_score = prev_score + score
-        prev_mapping[node_name] = node_b
+        prev_mapping[node_name] = node_b_name
         cur_mapping = prev_mapping
         if cur_score > max_score:
             max_score = cur_score
@@ -79,14 +80,16 @@ def rec_find_highest_score(current_state_list, scores):
     return max_score, max_mapping
 
 
-def find_highest_score_mapping(scores):
-    score, mapping = rec_find_highest_score(list(scores.keys()), scores)
+def find_highest_score_mapping(current_state_list, desired_state_list, scores):
+    for i in range(0, len(current_state_list)-len(desired_state_list)):
+        desired_state_list.append(None)
+    score, mapping = rec_find_highest_score(current_state_list, desired_state_list, scores)
     return mapping
 
 
 def match_nodes_desired_with_current_state(current_state, desired_state):
     scores = get_scores(current_state, desired_state)
-    return find_highest_score_mapping(scores)
+    return find_highest_score_mapping(list(current_state.keys()), list(desired_state.keys()), scores)
 
 
 def already_on_node(des_pod_info, current_state_pods, remove_list):

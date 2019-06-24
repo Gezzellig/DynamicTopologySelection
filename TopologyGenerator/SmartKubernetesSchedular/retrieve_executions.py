@@ -40,7 +40,7 @@ def retrieve_full_execution_data(tx, execution_ids):
                     match (e:Execution) where id(e) = execution_id \
                     match (e) -[:HasNode]-> (n:Node) \
                     match (n) -[r:Ran]-> (p:Pod) \
-                    with e, n, collect({name:r.name, generate_name:p.generate_name, kind:p.kind}) as pods \
+                    with e, n, collect({name:r.name, generate_name:p.generate_name, kind:p.kind, deployment_name:p.deployment_name}) as pods \
                     return id(e) as id, e.start_time.epochMillis as start_time, e.end_time.epochMillis as end_time, collect({name:n.name, cpu:n.cpu, pods:pods, memory:n.memory}) as nodes",
                   execution_ids=execution_ids)
 
@@ -49,10 +49,15 @@ def extract_node_from_data_node(data_node):
     pods = {}
     node_name = data_node["name"]
     for data_pod in data_node["pods"]:
+        if data_pod["deployment_name"] == "None":
+            deployment_name = None
+        else:
+            deployment_name = data_pod["deployment_name"]
         pods[data_pod["name"]] = {
             "node_name": node_name,
             "pod_generate_name": data_pod["generate_name"],
-            "kind": data_pod["kind"]
+            "kind": data_pod["kind"],
+            "deployment_name": deployment_name
         }
     node = {
         "cpu": data_node["cpu"],
