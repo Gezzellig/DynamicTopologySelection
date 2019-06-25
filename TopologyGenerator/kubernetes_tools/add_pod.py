@@ -5,6 +5,7 @@ from kubernetes_tools import extract_pods
 from kubernetes_tools.change_deployment_scale import increase_deployment_scale
 from kubernetes_tools.migrate_pod import PodScheduledOnWrongNodeException, PodException, \
     VerificationTookTooLongException
+from log import log
 
 
 class MultiplePodsCreatedException(PodException):
@@ -18,10 +19,10 @@ def verify_addition(destination_node, deployment_name, initial_state):
             for current_pod_name, info in current_state.items():
                 if current_pod_name not in initial_state:
                     if info["node_name"] == destination_node:
-                        print("ADDITION SUCCEEEDED")
+                        log.info("Addition succeeded, pod name: {}".format(current_pod_name))
                         return True
                     else:
-                        print("FAILED")
+                        log.error("Addition failed")
                         raise PodScheduledOnWrongNodeException(destination_node, info["node_name"])
         else:
             raise MultiplePodsCreatedException()
@@ -30,16 +31,13 @@ def verify_addition(destination_node, deployment_name, initial_state):
 
 def add_pod_deployment(destination_node, deployment_name, namespace):
     initial_state = extract_pods.extract_pods_deployment(deployment_name)
-    print("creating: {} on {}".format(deployment_name, destination_node))
+    log.info("creating: {} on {}".format(deployment_name, destination_node))
     try:
         subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name)])
         increase_deployment_scale(deployment_name, namespace)
-
-        print("deployment_increased")
         counter = 0
         while not verify_addition(destination_node, deployment_name, initial_state):
             time.sleep(2)
-            print("retry")
             if counter > 5:
                 raise VerificationTookTooLongException()
             counter += 1

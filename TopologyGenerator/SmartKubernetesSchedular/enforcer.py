@@ -2,6 +2,7 @@ from kubernetes_tools import extract_pods
 from kubernetes_tools.add_pod import add_pod_deployment
 from kubernetes_tools.delete_pod import delete_pod_deployment
 from kubernetes_tools.migrate_pod import migrate_pod, PodException
+from log import log
 
 
 class PodHasScaledWhileEnforcingException(PodException):
@@ -71,10 +72,14 @@ def enforce_upscaling(upscalers, initial_state):
 
 
 def enforce(downscalers, migrations, upscalers):
-    cur_state = extract_pods.extract_all_pods()
-    enforce_downscaling(downscalers, cur_state)
-    cur_state = extract_pods.extract_all_pods()
-    enforce_migrations(migrations, cur_state)
-    cur_state = extract_pods.extract_all_pods()
-    enforce_upscaling(upscalers, cur_state)
+    try:
+        cur_state = extract_pods.extract_all_pods()
+        enforce_downscaling(downscalers, cur_state)
+        cur_state = extract_pods.extract_all_pods()
+        enforce_migrations(migrations, cur_state)
+        cur_state = extract_pods.extract_all_pods()
+        enforce_upscaling(upscalers, cur_state)
+    except KeyError as e:
+        log.exception("KeyError found, probably because it deployment scaled during enforcing, check this in stacktrace")
+        raise PodHasScaledWhileEnforcingException
 

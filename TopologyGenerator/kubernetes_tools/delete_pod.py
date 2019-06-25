@@ -35,14 +35,6 @@ def evict_pod(pod_name, namespace, settings):
         raise CouldNotEvictPodException("status_code: {}".format(result.status_code))
 
 
-"""def delete_pod(pod_name, namespace):
-    print("deleting pod: {}".format(pod_name))
-    command = "http://localhost:8080/api/v1/namespaces/{namespace}/pods/{name}".format(namespace=namespace, name=pod_name)
-    result = requests.delete(command)
-    if result.status_code == 200:
-        raise CouldNotDeletePodException("status_code: {}".format(result.status_code))"""
-
-
 def delete_pod(pod_name, namespace):
     subprocess.run(["kubectl", "delete", "pod", pod_name, "-n", namespace])
 
@@ -63,7 +55,6 @@ def delete_pod_deployment(pod_name, deployment_name, namespace):
     counter = 0
     while not verify_deletion(pod_name, deployment_name, initial_state):
         time.sleep(2)
-        print("retry deletion verification")
         if counter > 10:
             raise VerificationTookTooLongException()
         counter += 1

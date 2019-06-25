@@ -54,10 +54,3 @@ def cluster_stable(end_time, time_window, settings):
     return True
 
 
-def main():
-    settings = load_settings(sys.argv[1])
-    print(cluster_stable(datetime.datetime.now(), datetime.datetime.now()-datetime.timedelta(seconds=settings["measure_window"]), settings))
-
-
-if __name__ == '__main__':
-    main()
