@@ -110,7 +110,6 @@ def remove_daemon_sets(state):
     return state_copy
 
 
-
 def valid_transition(add_list, remove_list, pods):
     for name in add_list:
         for pod_info in pods.values():

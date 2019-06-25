@@ -30,7 +30,6 @@ def update_increase_supposed_generate_name_count(generate_name, cur_counter):
 def check_current_state(initial_generate_name_count):
     current_state = extract_pods.extract_all_pods()
     current_generate_name_count = state_to_generate_name_count(current_state)
-    print("current State: {}".format(current_generate_name_count))
     if not initial_generate_name_count == current_generate_name_count:
         raise PodHasScaledWhileEnforcingException()
 
@@ -44,9 +43,7 @@ def enforce_downscaling(downscalers, initial_state):
         namespace = downscaler["namespace"]
 
         delete_pod_deployment(pod_name, deployment_name, namespace)
-        print(supposed_generate_name_count)
         update_decrease_supposed_generate_name_count(generate_name, supposed_generate_name_count)
-        print(supposed_generate_name_count)
         check_current_state(supposed_generate_name_count)
 
 
@@ -69,9 +66,7 @@ def enforce_upscaling(upscalers, initial_state):
         namespace = upscaler["namespace"]
 
         add_pod_deployment(destination_node, deployment_name, namespace)
-        print(supposed_generate_name_count)
         update_increase_supposed_generate_name_count(generate_name, supposed_generate_name_count)
-        print(supposed_generate_name_count)
         check_current_state(supposed_generate_name_count)
 
 
@@ -83,38 +78,3 @@ def enforce(downscalers, migrations, upscalers):
     cur_state = extract_pods.extract_all_pods()
     enforce_upscaling(upscalers, cur_state)
 
-if __name__ == '__main__':
-    """upscalers = [
-        {
-            "destination_node": "gke-develop-cluster-larger-pool-9ecdadbf-k1sx",
-            "pod_generate_name": "php-apache-85546b856f-",
-            "deployment_name": "php-apache",
-            "namespace": "demo"
-        },
-        {
-            "destination_node": "gke-develop-cluster-larger-pool-9ecdadbf-k1sx",
-            "pod_generate_name": "php-apache-85546b856f-",
-            "deployment_name": "php-apache",
-            "namespace": "demo"
-        }
-    ]
-    initial_state = extract_pods.extract_all_pods()
-    enforce_upscaling(upscalers, initial_state)"""
-
-
-    downscalers = [
-        {
-            "pod_name": "php-apache-85546b856f-dmw5p",
-            "pod_generate_name": "php-apache-85546b856f-",
-            "deployment_name": "php-apache",
-            "namespace": "demo"
-        },
-        {
-            "pod_name": "php-apache-85546b856f-nq2jg",
-            "pod_generate_name": "php-apache-85546b856f-",
-            "deployment_name": "php-apache",
-            "namespace": "demo"
-        }
-    ]
-    initial_state = extract_pods.extract_all_pods()
-    enforce_downscaling(downscalers, initial_state)

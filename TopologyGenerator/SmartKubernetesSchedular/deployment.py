@@ -123,7 +123,6 @@ def construct_deployment_sequence(goal_deployment):
     nodes = extract_nodes.extract_all_nodes_cpu()
     pods = extract_pods.extract_all_pods()
     init_deployment = extract_deployment(pods, nodes)
-    print(init_deployment)
 
     migrations = find_migrations(init_deployment, goal_deployment)
     # Shuffle them to reduce the change of changing a lot on one node at a time
@@ -187,20 +186,4 @@ def state_transition_plan(transitions, pods, nodes):
     return downscalers, migration_order, upscalers
 
 
-def main():
-    pods = extract_pods.extract_all_pods()
-    nodes = extract_nodes.extract_all_nodes_cpu()
-    print(nodes)
-    print(pods)
-    transitions = {
-        'gke-develop-cluster-larger-pool-9ecdadbf-fn91': {'add': [],
-                                                          'remove': []},
-        'gke-develop-cluster-larger-pool-9ecdadbf-hqw6': {'add': [],
-                                                          'remove': ["php-apache-85546b856f-m2zrt"]}
-    }
-    down, migrate, up = state_transition_plan(transitions, pods, nodes)
-    enforcer.enforce(down, migrate, up)
 
-
-if __name__ == '__main__':
-    main()

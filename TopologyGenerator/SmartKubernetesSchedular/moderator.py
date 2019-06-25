@@ -8,6 +8,7 @@ import time
 import load_settings
 from SmartKubernetesSchedular import enforcer, rank_executions
 from SmartKubernetesSchedular.deployment import state_transition_plan
+from SmartKubernetesSchedular.empty_node import empty_node_transitions
 from SmartKubernetesSchedular.load_extractors.LoadExtractorBytesIn import LoadExtractorBytesIn
 from SmartKubernetesSchedular.matcher import match_nodes_desired_with_current_state, find_transitions_execution_change
 from SmartKubernetesSchedular.retrieve_executions import retrieve_executions
@@ -61,30 +62,27 @@ def select_random_deployment_pod_to_transition(nodes):
 
 
 def get_best_transitions(load, nodes, settings):
-    removal_possible, node_removed, removal_transitions = TryEmptyOneNode().generate_improvement(settings)
+    removal_possible, node_removed, removal_transitions = empty_node_transitions(settings)
     removal_resulting_cost = math.inf
     cur_cost = calc_cost(nodes, settings)
     if removal_possible:
         removal_resulting_cost = calc_removal_resulting_cost(nodes, node_removed, settings)
-        print("cost removal:", removal_resulting_cost)
 
     old_executions = retrieve_executions(load, settings)
     old_best_execution = rank_executions.find_best_execution(old_executions, settings["prometheus_address"])
     old_best_execution_cost = calc_cost(old_best_execution["nodes"], settings)
 
-    print("costs for all options: current= {}, removal= {}, old_best= {}".format(cur_cost, removal_resulting_cost, old_best_execution_cost))
+    log.info("Costs for all options: current= {}, removal= {}, old_best= {}".format(cur_cost, removal_resulting_cost, old_best_execution_cost))
     if removal_resulting_cost <= old_best_execution_cost:
-        log.info("TAKE REMOVAL ACTION")
+        log.info("Removing node: {}".format(node_removed))
         return removal_transitions
     elif cur_cost <= old_best_execution_cost:
-        print("Staying with current execution, but randomly changing one random pod")
+        log.info("Staying with current execution, but randomly changing one random pod")
         current_state = extract_nodes.extract_all_nodes_cpu_pods()
         return select_random_deployment_pod_to_transition(current_state)
     else:
-        print("Changing to old_best_execution found in time: {}".format(old_best_execution["start_time"]))
+        log.info("Changing to old_best_execution found in time: {}".format(old_best_execution["start_time"]))
         current_state = extract_nodes.extract_all_nodes_cpu_pods_dict()
-        print(current_state)
-        print(old_best_execution)
 
         # Remove executions to ensure that it doesn't get stuck on one lucky run.
         # TODO: add this line again!!!!!!
@@ -93,17 +91,12 @@ def get_best_transitions(load, nodes, settings):
         if success:
             return transitions
         else:
-            print("The old_best required stateful sets to be moved, so therefore was blocked")
+            log.info("The old_best required stateful sets to be moved, so therefore was blocked")
             return get_best_transitions(load, nodes, settings)
 
 
-
 def transition_state(transitions, pods, nodes):
-    print(transitions)
     down, migrate, up = state_transition_plan(transitions, pods, nodes)
-    print(down)
-    print(migrate)
-    print(up)
     enforcer.enforce(down, migrate, up)
 
 
@@ -111,7 +104,7 @@ def update_step(time_window, load_extractor, settings):
     end_time = datetime.datetime.now()
     # TODO: remove the "or TRUE"
     if cluster_stable(end_time, time_window, settings):
-        print("Cluster was stable for {} seconds till {}, calculating best transition".format(time_window.seconds, end_time))
+        log.info("Cluster was stable for {} seconds till {}, calculating best transition".format(time_window.seconds, end_time))
         pods = extract_pods.extract_all_pods()
         nodes = extract_nodes.extract_all_nodes_cpu()
 
@@ -122,7 +115,7 @@ def update_step(time_window, load_extractor, settings):
         transition_state(transitions, pods, nodes)
         return True
     else:
-        print("Cluster was not stable, waiting for the next time_window to check stability")
+        log.info("Cluster was not stable, waiting for the next time_window to check stability")
         return False
 
 
@@ -135,21 +128,21 @@ def tuning_loop(time_window, load_extractor, settings):
         # Hack to fix authentication issue
         #subprocess.run(["gcloud", "container", "clusters", "get-credentials", "demo-cluster-1"])
 
-        print("Time for an update_step iteration! {}".format(datetime.datetime.now()))
+        log.info("Time for an update_step iteration! {}".format(datetime.datetime.now()))
         try:
             if update_step(time_window, load_extractor, settings):
-                print("went correct")
+                log.info("went correct")
                 went_correct_counter += 1
             else:
                 not_stable_counter += 1
         except PodException as e:
-            print("went wrong: {}", format(type(e)))
+            log.info("went wrong: {}".format(type(e)))
             went_wrong_counter += 1
         except AllNodesToFullToMove:
-            print("All nodes to full to do random move")
+            log.info("All nodes to full to do random move")
             nodes_to_full_to_move += 1
-
-        print("Current not stable:correct:wrong balance {}:{}:{}".format(not_stable_counter, went_correct_counter, went_wrong_counter))
+        log.info("Update step finished: {}".format(datetime.datetime.now()))
+        log.info("Current not stable:correct:wrong balance {}:{}:{}".format(not_stable_counter, went_correct_counter, went_wrong_counter))
         log.info("Going back to sleep")
         time.sleep(time_window.seconds)
 
@@ -157,7 +150,6 @@ def tuning_loop(time_window, load_extractor, settings):
 
 
 def main():
-    print(extract_nodes.extract_all_nodes_cpu_pods())
     settings = load_settings.load_settings(sys.argv[1])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()

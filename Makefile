@@ -29,7 +29,7 @@ up-demo:
 	@gnome-terminal --tab -- kubectl proxy --port=8080
 	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.234.80.55/
 	@sleep 5
-	@firefox https://console.cloud.google.com/home/dashboard?project=re-kube
+	@firefox https://console.cloud.google.com/kubernetes/list?project=quixotic-dynamo-243708
 	@gnome-terminal --tab -- kubectl port-forward -n monitoring prometheus-1-prometheus-0 9090
 	@gnome-terminal --tab -- kubectl port-forward --namespace monitoring prometheus-1-grafana-0 3000
 	@echo "Ports open:"

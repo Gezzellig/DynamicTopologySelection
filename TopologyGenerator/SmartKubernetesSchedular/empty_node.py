@@ -10,29 +10,6 @@ from kubernetes_tools.extract_nodes import node_request_fits, node_sum_requested
 from log import log
 
 
-class TryEmptyOneNode(AbstractStratagy):
-
-    def generate_improvement(self, settings):
-        nodes = extract_nodes.extract_all_nodes_cpu_pods()
-        removable_nodes = select_removable_nodes(nodes)
-        candidate_node_name = least_transitions_removable(removable_nodes, nodes)
-        if candidate_node_name is None:
-            log.info("No node could be shutdown for improvement, because all nodes have a statefull set")
-            return False, None, None
-
-        #for pod in nodes[candidate_node_name]["pods"]:
-            #print("ha", pod["pod_name"])
-
-        reschedule_pods = find_pods_to_be_rescheduled(nodes[candidate_node_name]["pods"])
-        nodes_node_removed = copy.deepcopy(nodes)
-        del nodes_node_removed[candidate_node_name]
-        distributions = find_new_distributions(reschedule_pods, nodes_node_removed)
-        if not distributions:
-            log.info("No node could be shutdown for improvement, because all the resources are needed")
-            return False, None, None
-        selected_distribution = select_lowest_max_requested(distributions)
-        return True, candidate_node_name, change_selected_distribution_into_transitions(selected_distribution, nodes)
-
 
 def node_removable(pods_info):
     for pod_info in pods_info:
@@ -126,3 +103,22 @@ def calc_removal_resulting_cost(nodes, node_removed, settings):
     copy_nodes = copy.deepcopy(nodes)
     del copy_nodes[node_removed]
     return calc_cost(copy_nodes, settings)
+
+
+def empty_node_transitions(settings):
+    nodes = extract_nodes.extract_all_nodes_cpu_pods()
+    removable_nodes = select_removable_nodes(nodes)
+    candidate_node_name = least_transitions_removable(removable_nodes, nodes)
+    if candidate_node_name is None:
+        log.info("No node could be shutdown for improvement, because all nodes have a statefull set")
+        return False, None, None
+
+    reschedule_pods = find_pods_to_be_rescheduled(nodes[candidate_node_name]["pods"])
+    nodes_node_removed = copy.deepcopy(nodes)
+    del nodes_node_removed[candidate_node_name]
+    distributions = find_new_distributions(reschedule_pods, nodes_node_removed)
+    if not distributions:
+        log.info("No node could be shutdown for improvement, because all the resources are needed")
+        return False, None, None
+    selected_distribution = select_lowest_max_requested(distributions)
+    return True, candidate_node_name, change_selected_distribution_into_transitions(selected_distribution, nodes)

@@ -1,12 +1,13 @@
 import copy
-import datetime
-import json
-import sys
 
-from Neo4jGraphDriver import disconnect_neo4j
 from SmartKubernetesSchedular.retrieve_executions import retrieve_single_execution
 from initializer.neo4j_queries import execute_query_function
-from kubernetes_tools import extract_pods, extract_nodes
+from kubernetes_tools.migrate_pod import PodException
+from log import log
+
+
+class PodHasScaledWhileAnalysingException(PodException):
+    pass
 
 
 def add_time_window_command(tx, load, pods, start_time, end_time):
@@ -25,29 +26,17 @@ def add_time_window_command(tx, load, pods, start_time, end_time):
 def create_time_window(end_time, load, time_window, pods, nodes):
     pods_local = copy.deepcopy(pods)
     # add node information to each pod so it can be added to neo4j
-    print("EXECUTION ADDED: {}".format(load))
-    for pod in pods_local:
-        pod["node_cpu"] = nodes[pod["node_name"]]["cpu"]
-        pod["node_memory"] = nodes[pod["node_name"]]["memory"]
-        if pod["deployment_name"] is None:
-            pod["deployment_name"] = "None"
+    log.info("Execution was added to the knowledge base with load: {}".format(load))
+    try:
+        for pod in pods_local:
+            pod["node_cpu"] = nodes[pod["node_name"]]["cpu"]
+            pod["node_memory"] = nodes[pod["node_name"]]["memory"]
+            if pod["deployment_name"] is None:
+                pod["deployment_name"] = "None"
+    except KeyError:
+        raise PodHasScaledWhileAnalysingException()
     result = execute_query_function(add_time_window_command, load, pods_local, end_time-time_window, end_time)
     cur_execution_id = result.single()["execution_id"]
     return retrieve_single_execution(cur_execution_id)
 
 
-def main():
-    print("starting add_time_window")
-    settings_file_name = sys.argv[1]
-    print("Settings: {}".format(settings_file_name))
-    with open(settings_file_name) as file:
-        settings = json.load(file)
-
-    pods = extract_pods.pods_dict_to_list(extract_pods.extract_all_pods())
-    nodes = extract_nodes.extract_all_nodes_cpu()
-    print(create_time_window(datetime.datetime.now(), 10000, datetime.timedelta(minutes=5), pods, nodes))
-
-
-if __name__ == '__main__':
-    main()
-    disconnect_neo4j()

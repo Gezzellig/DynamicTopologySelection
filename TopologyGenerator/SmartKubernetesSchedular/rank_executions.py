@@ -39,11 +39,4 @@ def find_best_execution(executions, prometheus_address):
     return best_ranked_execution
 
 
-def main():
-    settings = load_settings.load_settings("/media/thijs/SSD2/University/2018-2019/Thesis/DynamicTopologySelection/TopologyGenerator/settings.json")
-    executions = retrieve_executions(10000, settings)
-    best_execution = find_best_execution(executions, settings["prometheus_address"])
 
-
-if __name__ == '__main__':
-    main()

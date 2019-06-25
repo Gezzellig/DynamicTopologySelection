@@ -48,10 +48,8 @@ def cluster_stable(end_time, time_window, settings):
     start_time = end_time-time_window
     #TODO maybe impelment it so that it checks the whole time instead of only begin and end time.
     if cpu_scaled(start_time, end_time, settings):
-        print("The amount of cpu's has scaled, therefore the system is not stable.")
         return False
     if pod_scaled(start_time, end_time, settings):
-        print("The amount of type of pods has changes, therefore the system is not stable.")
         return False
     return True
 

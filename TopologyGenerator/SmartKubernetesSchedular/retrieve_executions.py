@@ -97,12 +97,3 @@ def retrieve_executions(load, settings):
     executions = retrieve_full_executions(cheapest_executions_ids)
     return executions
 
-
-def main():
-    settings = load_settings.load_settings(sys.argv[1])
-    print(retrieve_executions(10000, settings))
-    disconnect_neo4j()
-
-
-if __name__ == '__main__':
-    main()
