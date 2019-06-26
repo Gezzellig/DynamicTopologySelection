@@ -145,11 +145,7 @@ def tuning_loop(time_window, load_extractor, settings):
         log.info("Update step finished: {}".format(datetime.datetime.now()))
         log.info("Current not stable:correct:wrong balance {}:{}:{}".format(not_stable_counter, went_correct_counter, went_wrong_counter))
         log.info("Going back to sleep")
-        #time.sleep(time_window.seconds)
-        a={}
-        b=a["g"]
-
-
+        time.sleep(time_window.seconds)
 
 
 def main():
