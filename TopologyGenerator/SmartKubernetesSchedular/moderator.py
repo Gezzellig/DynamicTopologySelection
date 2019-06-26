@@ -6,6 +6,7 @@ import sys
 import time
 
 import load_settings
+from Neo4jGraphDriver import disconnect_neo4j
 from SmartKubernetesSchedular import enforcer, rank_executions
 from SmartKubernetesSchedular.deployment import state_transition_plan
 from SmartKubernetesSchedular.empty_node import empty_node_transitions
@@ -19,7 +20,7 @@ from kubernetes_tools import extract_pods, extract_nodes
 from kubernetes_tools.cluster_stability import cluster_stable
 from kubernetes_tools.extract_nodes import calc_cost, node_sum_requested
 from kubernetes_tools.migrate_pod import PodException
-from log import log
+from log import log, remove_file_handler
 
 
 class AllNodesToFullToMove(Exception):
@@ -144,7 +145,9 @@ def tuning_loop(time_window, load_extractor, settings):
         log.info("Update step finished: {}".format(datetime.datetime.now()))
         log.info("Current not stable:correct:wrong balance {}:{}:{}".format(not_stable_counter, went_correct_counter, went_wrong_counter))
         log.info("Going back to sleep")
-        time.sleep(time_window.seconds)
+        #time.sleep(time_window.seconds)
+        a={}
+        b=a["g"]
 
 
 
@@ -153,7 +156,12 @@ def main():
     settings = load_settings.load_settings(sys.argv[1])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()
-    tuning_loop(time_window, load_extractor, settings)
+    try:
+        tuning_loop(time_window, load_extractor, settings)
+    except Exception as e:
+        log.exception(e)
+    remove_file_handler()
+    disconnect_neo4j()
 
 
 if __name__ == '__main__':
