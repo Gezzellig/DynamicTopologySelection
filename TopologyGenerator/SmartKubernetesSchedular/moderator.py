@@ -97,8 +97,8 @@ def get_best_transitions(load, nodes, settings):
 
 
 def transition_state(transitions, pods, nodes):
-    down, migrate, up = state_transition_plan(transitions, pods, nodes)
-    enforcer.enforce(down, migrate, up)
+    down, migrate, up, node_removals = state_transition_plan(transitions, pods, nodes)
+    enforcer.enforce(down, migrate, up, node_removals)
 
 
 def update_step(time_window, load_extractor, settings):
@@ -126,9 +126,6 @@ def tuning_loop(time_window, load_extractor, settings):
     not_stable_counter = 0
     nodes_to_full_to_move = 0
     while True:
-        # Hack to fix authentication issue
-        #subprocess.run(["gcloud", "container", "clusters", "get-credentials", "demo-cluster-1"])
-
         log.info("Time for an update_step iteration! {}".format(datetime.datetime.now()))
         try:
             if update_step(time_window, load_extractor, settings):
@@ -152,12 +149,12 @@ def main():
     settings = load_settings.load_settings(sys.argv[1])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()
-    try:
-        tuning_loop(time_window, load_extractor, settings)
-    except Exception as e:
-        log.exception(e)
-    remove_file_handler()
-    disconnect_neo4j()
+    #try:
+    tuning_loop(time_window, load_extractor, settings)
+    #except Exception as e:
+    #    log.exception(e)
+    #remove_file_handler()
+    #disconnect_neo4j()
 
 
 if __name__ == '__main__':

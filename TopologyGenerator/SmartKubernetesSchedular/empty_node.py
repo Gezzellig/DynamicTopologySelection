@@ -85,8 +85,14 @@ def select_lowest_max_requested(distributions):
     return lowest_max_requested_distribution
 
 
-def change_selected_distribution_into_transitions(selected_distribution, original_distribution):
-    transitions = {}
+def change_selected_distribution_into_transitions(candidate_node_name, selected_distribution, original_distribution):
+    transitions = {
+        candidate_node_name: {
+            "delete": True,
+            "add": [],
+            "remove": []
+        }
+    }
     for node_name, node_info in selected_distribution.items():
         for pod in node_info["pods"]:
             if pod not in original_distribution[node_name]["pods"]:
@@ -121,4 +127,4 @@ def empty_node_transitions(settings):
         log.info("No node could be shutdown for improvement, because all the resources are needed")
         return False, None, None
     selected_distribution = select_lowest_max_requested(distributions)
-    return True, candidate_node_name, change_selected_distribution_into_transitions(selected_distribution, nodes)
+    return True, candidate_node_name, change_selected_distribution_into_transitions(candidate_node_name, selected_distribution, nodes)

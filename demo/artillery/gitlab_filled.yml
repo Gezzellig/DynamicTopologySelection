@@ -1,0 +1,72 @@
+config:
+  target: 'https://gitlab.groterooieknop.nl'
+  #http:
+    #pool: 5
+  phases:
+    - duration: 600
+      arrivalRate: 20
+scenarios:
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits/82461a1d8284d31f10cfb28d3f5e97cd2d16ce2d
+  - flow:
+    - get:
+        url: /api/v4/projects/3
+  - flow:
+    - get:
+        url: /api/v4/projects/3/deploy_keys
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits/82461a1d8284d31f10cfb28d3f5e97cd2d16ce2d/diff
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/branches/%{BRANCH_NAME}
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits
+  - flow:
+    - get:
+        url: /api/v4/groups/%{GROUP_ID}/projects
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/files/%{FILE_PATH}?ref=master
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/files/%{FILE_PATH}/raw?ref=master
+  - flow:
+    - get:
+        url: /api/v4/projects
+  - flow:
+    - get:
+        url: /api/v4/projects/3/merge_requests/%{MR_IID}/notes
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/tree
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/branches
+  - flow:
+    - get:
+        url: /%{TEST_GROUP}/gitlabhq.git/info/refs?service=git-upload-pack
+  - flow:
+    - get:
+        url: /api/v4/projects/3/merge_requests/%{MR_IID}
+  - flow:
+    - get:
+        url: /%{TEST_GROUP}/gitlabhq/refs/master/logs_tree
+  - flow:
+    - get:
+        url: /%{TEST_GROUP}/gitlabhq/blob/master/app/models/project.rb
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits/%{SIGNED_COMMIT_SHA}/signature
+  - flow:
+    - get:
+        url: /api/v4/projects/3/pipelines
+  - flow:
+    - get:
+        url: /%{TEST_GROUP}/gitlabhq/merge_requests/%{MR_IID_MANY_COMMITS}
+  - flow:
+    - get:
+        url: /%{TEST_GROUP}/gitlabhq/merge_requests/%{MR_IID_MANY_COMMITS}/diffs.json
+

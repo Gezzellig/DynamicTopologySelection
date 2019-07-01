@@ -8,6 +8,7 @@ from kubernetes_tools import extract_pods
 from kubernetes_tools.change_deployment_scale import decrease_deployment_scale
 from kubernetes_tools.migrate_pod import VerificationTookTooLongException, PodException
 from load_settings import load_settings
+from log import log
 
 
 class CouldNotEvictPodException(PodException):
@@ -49,19 +50,21 @@ def verify_deletion(pod_name, deployment_name, initial_state):
 
 def delete_pod_deployment(pod_name, deployment_name, namespace):
     initial_state = extract_pods.extract_pods_deployment(deployment_name)
+    log.info("Deleting pod: {}".format(pod_name))
     delete_pod(pod_name, namespace)
     decrease_deployment_scale(deployment_name, namespace)
     time.sleep(1)
     counter = 0
     while not verify_deletion(pod_name, deployment_name, initial_state):
-        time.sleep(2)
-        if counter > 10:
+        time.sleep(5)
+        if counter > 24:
             raise VerificationTookTooLongException()
         counter += 1
+    log.info("Deletion pod: {} successful".format(pod_name))
 
 
 def main():
-    pod_name = "php-apache-85546b856f-m7l9g"
+    pod_name = "php-apache-5f657688bc-bmtcb"
     deployment_name = "php-apache"
     namespace = "demo"
     delete_pod_deployment(pod_name, deployment_name, namespace)

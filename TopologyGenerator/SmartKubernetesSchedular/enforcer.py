@@ -1,4 +1,5 @@
-from kubernetes_tools import extract_pods
+from SmartKubernetesSchedular import empty_node
+from kubernetes_tools import extract_pods, delete_node
 from kubernetes_tools.add_pod import add_pod_deployment
 from kubernetes_tools.delete_pod import delete_pod_deployment
 from kubernetes_tools.migrate_pod import migrate_pod, PodException
@@ -71,7 +72,18 @@ def enforce_upscaling(upscalers, initial_state):
         check_current_state(supposed_generate_name_count)
 
 
-def enforce(downscalers, migrations, upscalers):
+def verify_node_removal(node_name):
+    #TODO: check if this needs to be verified
+    pass
+
+
+def enforce_node_removals(node_removals):
+    for node_name in node_removals:
+        delete_node.delete_node(node_name)
+        verify_node_removal(node_name)
+
+
+def enforce(downscalers, migrations, upscalers, node_removals):
     try:
         cur_state = extract_pods.extract_all_pods()
         enforce_downscaling(downscalers, cur_state)
@@ -79,6 +91,7 @@ def enforce(downscalers, migrations, upscalers):
         enforce_migrations(migrations, cur_state)
         cur_state = extract_pods.extract_all_pods()
         enforce_upscaling(upscalers, cur_state)
+        enforce_node_removals(node_removals)
     except KeyError as e:
         log.exception("KeyError found, probably because it deployment scaled during enforcing, check this in stacktrace")
         raise PodHasScaledWhileEnforcingException

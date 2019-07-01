@@ -10,7 +10,7 @@ log = logging.getLogger()
 format_str = '%(asctime)s\t%(levelname)s -- %(message)s'
 
 
-logPath = "logs"
+logPath = "/media/thijs/SSD2/University/2018-2019/Thesis/DynamicTopologySelection/TopologyGenerator/logs"
 fileName = "log_{}".format(datetime.datetime.now()).replace(" ", "_")
 fileHandler = logging.FileHandler("{0}/{1}.log".format(logPath, fileName))
 fileHandler.setFormatter(logging.Formatter(format_str))

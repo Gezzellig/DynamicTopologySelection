@@ -179,11 +179,21 @@ def scale_actions(transitions, migration_order, pods):
     return downscalers, upscalers
 
 
+def get_node_removals(transitions):
+    node_removals = []
+    for node_name, transition_info in transitions.items():
+        if "delete" in transition_info:
+            if transition_info["delete"]:
+                node_removals.append(node_name)
+    return node_removals
+
+
 def state_transition_plan(transitions, pods, nodes):
     migrations_sets = find_all_migrations_sets(transitions)
     migration_order = find_suitable_migrations(transitions, migrations_sets, pods, nodes)
     downscalers, upscalers = scale_actions(transitions, migration_order, pods)
-    return downscalers, migration_order, upscalers
+    node_removals = get_node_removals(transitions)
+    return downscalers, migration_order, upscalers, node_removals
 
 
 

@@ -1,0 +1,15 @@
+config:
+  target: 'https://gitlab.groterooieknop.nl'
+  http:
+    pool: 5
+  phases:
+    - duration: 600
+      arrivalRate: 20
+scenarios:
+  #- flow:
+    #- get:
+        #url: /api/v4/projects
+  - name: "deploy keys"
+    flow:
+    - get:
+        url: /api/v4/projects/1/deploy_keys

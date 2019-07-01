@@ -31,9 +31,9 @@ def verify_addition(destination_node, deployment_name, initial_state):
 
 def add_pod_deployment(destination_node, deployment_name, namespace):
     initial_state = extract_pods.extract_pods_deployment(deployment_name)
-    log.info("creating: {} on {}".format(deployment_name, destination_node))
+    log.info("Creating pod: {} on {}".format(deployment_name, destination_node))
     try:
-        subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name)])
+        subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name), "--overwrite"])
         increase_deployment_scale(deployment_name, namespace)
         counter = 0
         while not verify_addition(destination_node, deployment_name, initial_state):
@@ -47,4 +47,9 @@ def add_pod_deployment(destination_node, deployment_name, namespace):
         subprocess.run(["kubectl", "label", "node", destination_node, "node-preference-"])
 
 
+def main():
+    add_pod_deployment("gke-demo-cluster-1-default-pool-6f471531-83rr", "php-apache", "demo")
 
+
+if __name__ == '__main__':
+    main()

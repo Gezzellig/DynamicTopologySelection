@@ -145,4 +145,7 @@ def find_transitions_execution_change(current_state, desired_state):
             "add": add_list,
             "remove": remove_list
         }
+
+        if node_mapping[cur_node_name] is None:
+            transitions[cur_node_name]["delete"] = True
     return True, transitions

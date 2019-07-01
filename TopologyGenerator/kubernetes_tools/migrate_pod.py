@@ -53,10 +53,10 @@ def verify_migration(destination_node, generate_name, initial_state):
                     if info["node_name"] is None:
                         return False
                     if info["node_name"] == destination_node:
-                        log.info("MOVEMENT SUCCEEEDED")
+                        log.info("Movement succeeded")
                         return True
                     else:
-                        log.info("FAILED")
+                        log.info("Movement failed")
                         raise PodScheduledOnWrongNodeException(destination_node, info["node_name"])
     return False
 
@@ -73,7 +73,7 @@ def migrate_pod(pod_name, destination_node):
 
     log.info("moving: {} to {} using deployment name: {}".format(pod_name, destination_node, deployment_name))
     try:
-        subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name)])
+        subprocess.run(["kubectl", "label", "node", destination_node, "node-preference={}".format(deployment_name), "--overwrite"])
         subprocess.run(["kubectl", "delete", "pod", pod_name, "-n", namespace])
         log.info("pod {} is deleted".format(pod_name))
         counter = 0
@@ -86,3 +86,11 @@ def migrate_pod(pod_name, destination_node):
         raise e
     finally:
         subprocess.run(["kubectl", "label", "node", destination_node, "node-preference-"])
+
+
+def main():
+    migrate_pod("php-apache-5f657688bc-h6fkb", "gke-demo-cluster-1-default-pool-6f471531-d2dq")
+
+
+if __name__ == '__main__':
+    main()
