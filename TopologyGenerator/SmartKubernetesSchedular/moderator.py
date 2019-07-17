@@ -15,6 +15,7 @@ from SmartKubernetesSchedular.matcher import match_nodes_desired_with_current_st
 from SmartKubernetesSchedular.retrieve_executions import retrieve_executions
 from SmartKubernetesSchedular.strategies.TryEmptyOneNode import TryEmptyOneNode, calc_removal_resulting_cost
 from SmartKubernetesSchedular.time_window import create_time_window
+from initializer import neo4j_queries
 from initializer.neo4j_queries import execute_query_function
 from kubernetes_tools import extract_pods, extract_nodes
 from kubernetes_tools.cluster_stability import cluster_stable
@@ -22,8 +23,13 @@ from kubernetes_tools.extract_nodes import calc_cost, node_sum_requested
 from kubernetes_tools.migrate_pod import PodException
 from log import log, remove_file_handler
 
+action = "none"
 
 class AllNodesToFullToMove(Exception):
+    pass
+
+
+class MigrationChanceNotMet(Exception):
     pass
 
 
@@ -74,13 +80,20 @@ def get_best_transitions(load, nodes, settings):
     old_best_execution_cost = calc_cost(old_best_execution["nodes"], settings)
 
     log.info("Costs for all options: current= {}, removal= {}, old_best= {}".format(cur_cost, removal_resulting_cost, old_best_execution_cost))
+    global action
     if removal_resulting_cost <= old_best_execution_cost:
         log.info("Removing node: {}".format(node_removed))
+        action = "rem"
         return removal_transitions
     elif cur_cost <= old_best_execution_cost:
-        log.info("Staying with current execution, but randomly changing one random pod")
-        current_state = extract_nodes.extract_all_nodes_cpu_pods()
-        return select_random_deployment_pod_to_transition(current_state)
+        migration_chance = settings["migration_chance"]
+        if random.random() <= migration_chance:
+            log.info("Staying with current execution, but randomly changing one random pod")
+            current_state = extract_nodes.extract_all_nodes_cpu_pods()
+            action = "mig"
+            return select_random_deployment_pod_to_transition(current_state)
+        else:
+            raise MigrationChanceNotMet()
     else:
         log.info("Changing to old_best_execution found in time: {}".format(old_best_execution["start_time"]))
         current_state = extract_nodes.extract_all_nodes_cpu_pods_dict()
@@ -90,6 +103,7 @@ def get_best_transitions(load, nodes, settings):
         execute_query_function(delete_execution, old_best_execution["execution_id"])
         success, transitions = find_transitions_execution_change(current_state, old_best_execution["nodes"])
         if success:
+            action = "old"
             return transitions
         else:
             log.info("The old_best required stateful sets to be moved, so therefore was blocked")
@@ -117,10 +131,20 @@ def update_step(time_window, load_extractor, settings):
         return True
     else:
         log.info("Cluster was not stable, waiting for the next time_window to check stability")
+        global action
+        action = "none"
         return False
 
 
 def tuning_loop(time_window, load_extractor, settings):
+    mig_correct = 0
+    mig_wrong = 0
+    mig_chance_blocked = 0
+    rem_correct = 0
+    rem_wrong = 0
+    old_correct = 0
+    old_wrong = 0
+
     went_wrong_counter = 0
     went_correct_counter = 0
     not_stable_counter = 0
@@ -130,22 +154,49 @@ def tuning_loop(time_window, load_extractor, settings):
         try:
             if update_step(time_window, load_extractor, settings):
                 log.info("went correct")
-                went_correct_counter += 1
+                if action == "mig":
+                    mig_correct += 1
+                elif action == "rem":
+                    rem_correct += 1
+                elif action == "old":
+                    old_correct += 1
             else:
                 not_stable_counter += 1
         except PodException as e:
             log.info("went wrong: {}".format(type(e)))
+            if action == "mig":
+                mig_wrong += 1
+            elif action == "rem":
+                rem_wrong += 1
+            elif action == "old":
+                old_wrong += 1
             went_wrong_counter += 1
+        except MigrationChanceNotMet:
+            mig_chance_blocked += 1
         except AllNodesToFullToMove:
             log.info("All nodes to full to do random move")
             nodes_to_full_to_move += 1
         log.info("Update step finished: {}".format(datetime.datetime.now()))
-        log.info("Current not stable:correct:wrong balance {}:{}:{}".format(not_stable_counter, went_correct_counter, went_wrong_counter))
+        log.info(f"Current scores\n\
+                 Not stable: {not_stable_counter}\n\
+                 All nodes full: {nodes_to_full_to_move}\n\
+                 Migration correct: {mig_correct} wrong: {mig_wrong} chance blocked: {mig_chance_blocked}\n\
+                 Node removal correct: {rem_correct} wrong: {rem_wrong}\n\
+                 Old state correct: {old_correct} wrong: {old_wrong}")
         log.info("Going back to sleep")
         time.sleep(time_window.seconds)
 
 
+def official_startup():
+    neo4j_queries.emtpy_graph_database()
+    log.info("Graphdatabase emptied")
+    warmup_seconds = 900
+    log.info("Waiting for warmup to finish. {} seconds".format(warmup_seconds))
+    time.sleep(warmup_seconds)
+
+
 def main():
+    #official_startup()
     settings = load_settings.load_settings(sys.argv[1])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()

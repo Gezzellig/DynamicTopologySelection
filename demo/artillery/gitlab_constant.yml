@@ -1,0 +1,29 @@
+# run with -k flag to remove authentication
+
+config:
+  target: 'https://gitlab.groterooieknop.nl'
+  http:
+    pool: 10
+  phases:
+    - duration: 3000
+      arrivalRate: 5  
+scenarios:
+  - flow:
+    - get:
+        url: /api/v4/projects
+    - get:
+        url: /api/v4/projects/3
+    - get:
+        url: /api/v4/projects/3/repository/commits/82461a1d8284d31f10cfb28d3f5e97cd2d16ce2d
+    - get:
+        url: /api/v4/projects/3/repository/commits/82461a1d8284d31f10cfb28d3f5e97cd2d16ce2d/diff
+    - get:
+        url: /api/v4/projects/3/repository/branches
+    - get:
+        url: /api/v4/projects/3/repository/branches/develop
+    - get:
+        url: /api/v4/projects/3/repository/commits
+    - get:
+        url: /api/v4/projects/3/repository/tree
+
+

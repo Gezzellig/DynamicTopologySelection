@@ -1,0 +1,744 @@
+2019-07-14 11:39:16,789	INFO -- Graphdatabase emptied
+2019-07-14 11:39:16,789	INFO -- Waiting for warmup to finish. 300 seconds
+2019-07-14 11:44:16,887	INFO -- Settings: settings-php_apache.json
+2019-07-14 11:44:16,890	INFO -- Time for an update_step iteration! 2019-07-14 11:44:16.890078
+2019-07-14 11:44:17,298	INFO -- Cluster was stable for 150 seconds till 2019-07-14 11:44:16.890740, calculating best transition
+2019-07-14 11:44:18,034	INFO -- Execution was added to the knowledge base with load: 3019.466666666667
+2019-07-14 11:44:18,797	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 11:44:18,952	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 11:44:18,952	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 11:44:19,818	INFO -- moving: php-apache-5f657688bc-n5v72 to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 11:44:31,894	INFO -- pod php-apache-5f657688bc-n5v72 is deleted
+2019-07-14 11:44:46,960	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.VerificationTookTooLongException'>
+2019-07-14 11:44:46,961	INFO -- Update step finished: 2019-07-14 11:44:46.961915
+2019-07-14 11:44:46,962	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 11:44:46,963	INFO -- Going back to sleep
+2019-07-14 11:47:17,060	INFO -- Time for an update_step iteration! 2019-07-14 11:47:17.060064
+2019-07-14 11:47:17,478	INFO -- Cluster was stable for 150 seconds till 2019-07-14 11:47:17.060834, calculating best transition
+2019-07-14 11:47:17,892	INFO -- Execution was added to the knowledge base with load: 3029.432204190476
+2019-07-14 11:47:18,250	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 11:47:18,439	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 11:47:18,439	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 11:47:18,953	INFO -- moving: php-apache-5f657688bc-dchqs to gke-demo-cluster-1-default-pool-6f471531-7q3g using deployment name: php-apache
+2019-07-14 11:47:29,953	INFO -- pod php-apache-5f657688bc-dchqs is deleted
+2019-07-14 11:47:30,157	INFO -- Movement succeeded
+2019-07-14 11:47:30,655	INFO -- went correct
+2019-07-14 11:47:30,656	INFO -- Update step finished: 2019-07-14 11:47:30.656772
+2019-07-14 11:47:30,657	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 11:47:30,658	INFO -- Going back to sleep
+2019-07-14 11:50:00,758	INFO -- Time for an update_step iteration! 2019-07-14 11:50:00.758581
+2019-07-14 11:50:01,164	INFO -- Cluster was stable for 150 seconds till 2019-07-14 11:50:00.759385, calculating best transition
+2019-07-14 11:50:01,540	INFO -- Execution was added to the knowledge base with load: 3111.890740740741
+2019-07-14 11:50:01,793	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 11:50:02,130	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 11:50:02,131	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 11:50:02,694	INFO -- moving: php-apache-5f657688bc-47jqj to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 11:50:11,779	INFO -- pod php-apache-5f657688bc-47jqj is deleted
+2019-07-14 11:50:11,951	INFO -- Movement succeeded
+2019-07-14 11:50:12,467	INFO -- went correct
+2019-07-14 11:50:12,467	INFO -- Update step finished: 2019-07-14 11:50:12.467799
+2019-07-14 11:50:12,468	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 11:50:12,468	INFO -- Going back to sleep
+2019-07-14 11:52:42,547	INFO -- Time for an update_step iteration! 2019-07-14 11:52:42.547378
+2019-07-14 11:52:42,975	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 11:52:42,976	INFO -- Update step finished: 2019-07-14 11:52:42.976801
+2019-07-14 11:52:42,978	INFO -- Current scores
+                 Not stable: 1
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 11:52:42,978	INFO -- Going back to sleep
+2019-07-14 11:55:13,076	INFO -- Time for an update_step iteration! 2019-07-14 11:55:13.075967
+2019-07-14 11:55:13,509	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 11:55:13,510	INFO -- Update step finished: 2019-07-14 11:55:13.510348
+2019-07-14 11:55:13,510	INFO -- Current scores
+                 Not stable: 2
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 11:55:13,511	INFO -- Going back to sleep
+2019-07-14 11:57:43,612	INFO -- Time for an update_step iteration! 2019-07-14 11:57:43.611894
+2019-07-14 11:57:44,107	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 11:57:44,107	INFO -- Update step finished: 2019-07-14 11:57:44.107378
+2019-07-14 11:57:44,107	INFO -- Current scores
+                 Not stable: 3
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 11:57:44,107	INFO -- Going back to sleep
+2019-07-14 12:00:14,203	INFO -- Time for an update_step iteration! 2019-07-14 12:00:14.203880
+2019-07-14 12:00:14,479	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:00:14,479	INFO -- Update step finished: 2019-07-14 12:00:14.479970
+2019-07-14 12:00:14,480	INFO -- Current scores
+                 Not stable: 4
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:00:14,480	INFO -- Going back to sleep
+2019-07-14 12:02:44,580	INFO -- Time for an update_step iteration! 2019-07-14 12:02:44.579970
+2019-07-14 12:02:45,172	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:02:44.580314, calculating best transition
+2019-07-14 12:02:45,601	INFO -- Execution was added to the knowledge base with load: 11018.038252177603
+2019-07-14 12:02:46,143	INFO -- Costs for all options: current= 0.5179180318881988, removal= 0.4143344041755676, old_best= 0.5179180318881988
+2019-07-14 12:02:46,144	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:02:46,630	INFO -- moving: php-apache-5f657688bc-mz5xc to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 12:02:52,483	INFO -- pod php-apache-5f657688bc-mz5xc is deleted
+2019-07-14 12:02:52,744	INFO -- Movement failed
+2019-07-14 12:02:52,963	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-14 12:02:52,964	INFO -- Update step finished: 2019-07-14 12:02:52.964371
+2019-07-14 12:02:52,964	INFO -- Current scores
+                 Not stable: 4
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 1
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:02:52,964	INFO -- Going back to sleep
+2019-07-14 12:05:22,971	INFO -- Time for an update_step iteration! 2019-07-14 12:05:22.971879
+2019-07-14 12:05:23,315	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:05:22.972225, calculating best transition
+2019-07-14 12:05:23,762	INFO -- Execution was added to the knowledge base with load: 10190.721303242432
+2019-07-14 12:05:24,275	INFO -- Costs for all options: current= 0.5179180318881988, removal= 0.4143344041755676, old_best= 0.5179180318881988
+2019-07-14 12:05:24,275	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:05:24,750	INFO -- moving: php-apache-5f657688bc-52jtx to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 12:05:32,291	INFO -- pod php-apache-5f657688bc-52jtx is deleted
+2019-07-14 12:05:32,686	INFO -- Movement failed
+2019-07-14 12:05:32,899	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-14 12:05:32,900	INFO -- Update step finished: 2019-07-14 12:05:32.900154
+2019-07-14 12:05:32,900	INFO -- Current scores
+                 Not stable: 4
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:05:32,900	INFO -- Going back to sleep
+2019-07-14 12:08:03,000	INFO -- Time for an update_step iteration! 2019-07-14 12:08:02.999956
+2019-07-14 12:08:03,388	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:08:03,389	INFO -- Update step finished: 2019-07-14 12:08:03.389238
+2019-07-14 12:08:03,389	INFO -- Current scores
+                 Not stable: 5
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 0 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:08:03,389	INFO -- Going back to sleep
+2019-07-14 12:10:33,423	INFO -- Time for an update_step iteration! 2019-07-14 12:10:33.423269
+2019-07-14 12:10:33,848	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:10:33.423614, calculating best transition
+2019-07-14 12:10:34,428	INFO -- Execution was added to the knowledge base with load: 10305.94074074074
+2019-07-14 12:10:35,136	INFO -- Costs for all options: current= 0.5179180318881988, removal= 0.4143344041755676, old_best= 0.5179180318881988
+2019-07-14 12:10:35,136	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:10:35,629	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:10:36,426	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:10:36,427	INFO -- went correct
+2019-07-14 12:10:36,427	INFO -- Update step finished: 2019-07-14 12:10:36.427631
+2019-07-14 12:10:36,427	INFO -- Current scores
+                 Not stable: 5
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:10:36,427	INFO -- Going back to sleep
+2019-07-14 12:13:06,487	INFO -- Time for an update_step iteration! 2019-07-14 12:13:06.487945
+2019-07-14 12:13:06,656	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:13:06,657	INFO -- Update step finished: 2019-07-14 12:13:06.657054
+2019-07-14 12:13:06,657	INFO -- Current scores
+                 Not stable: 6
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:13:06,657	INFO -- Going back to sleep
+2019-07-14 12:15:36,755	INFO -- Time for an update_step iteration! 2019-07-14 12:15:36.755891
+2019-07-14 12:15:37,145	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:15:36.756224, calculating best transition
+2019-07-14 12:15:37,588	INFO -- Execution was added to the knowledge base with load: 10252.916822817442
+2019-07-14 12:15:37,933	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 12:15:38,014	INFO -- Costs for all options: current= 0.4143344041755676, removal= inf, old_best= 0.4143344041755676
+2019-07-14 12:15:38,014	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 12:15:38,651	INFO -- moving: php-apache-5f657688bc-kkjgw to gke-demo-cluster-1-default-pool-6f471531-2rw3 using deployment name: php-apache
+2019-07-14 12:15:51,738	INFO -- pod php-apache-5f657688bc-kkjgw is deleted
+2019-07-14 12:15:51,908	INFO -- Movement succeeded
+2019-07-14 12:15:52,682	INFO -- went correct
+2019-07-14 12:15:52,683	INFO -- Update step finished: 2019-07-14 12:15:52.683161
+2019-07-14 12:15:52,683	INFO -- Current scores
+                 Not stable: 6
+                 All nodes full: 0
+                 Migration correct: 3 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:15:52,683	INFO -- Going back to sleep
+2019-07-14 12:18:22,780	INFO -- Time for an update_step iteration! 2019-07-14 12:18:22.779988
+2019-07-14 12:18:23,243	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:18:23,243	INFO -- Update step finished: 2019-07-14 12:18:23.243390
+2019-07-14 12:18:23,243	INFO -- Current scores
+                 Not stable: 7
+                 All nodes full: 0
+                 Migration correct: 3 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:18:23,243	INFO -- Going back to sleep
+2019-07-14 12:20:53,341	INFO -- Time for an update_step iteration! 2019-07-14 12:20:53.341464
+2019-07-14 12:20:53,760	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:20:53.341819, calculating best transition
+2019-07-14 12:20:54,295	INFO -- Execution was added to the knowledge base with load: 10405.600963334995
+2019-07-14 12:20:54,604	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 12:20:54,713	INFO -- Costs for all options: current= 0.4143344041755676, removal= inf, old_best= 0.4143344041755676
+2019-07-14 12:20:54,713	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 12:20:55,314	INFO -- moving: php-apache-5f657688bc-4xrrr to gke-demo-cluster-1-default-pool-6f471531-2rw3 using deployment name: php-apache
+2019-07-14 12:20:58,044	INFO -- pod php-apache-5f657688bc-4xrrr is deleted
+2019-07-14 12:20:58,176	INFO -- Movement succeeded
+2019-07-14 12:20:58,713	INFO -- went correct
+2019-07-14 12:20:58,714	INFO -- Update step finished: 2019-07-14 12:20:58.714217
+2019-07-14 12:20:58,714	INFO -- Current scores
+                 Not stable: 7
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:20:58,714	INFO -- Going back to sleep
+2019-07-14 12:23:28,733	INFO -- Time for an update_step iteration! 2019-07-14 12:23:28.733169
+2019-07-14 12:23:29,178	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:23:29,178	INFO -- Update step finished: 2019-07-14 12:23:29.178248
+2019-07-14 12:23:29,178	INFO -- Current scores
+                 Not stable: 8
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:23:29,178	INFO -- Going back to sleep
+2019-07-14 12:25:59,275	INFO -- Time for an update_step iteration! 2019-07-14 12:25:59.275902
+2019-07-14 12:25:59,597	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:25:59,598	INFO -- Update step finished: 2019-07-14 12:25:59.598374
+2019-07-14 12:25:59,599	INFO -- Current scores
+                 Not stable: 9
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 1 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:25:59,599	INFO -- Going back to sleep
+2019-07-14 12:28:29,693	INFO -- Time for an update_step iteration! 2019-07-14 12:28:29.693841
+2019-07-14 12:28:30,267	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:28:29.694833, calculating best transition
+2019-07-14 12:28:30,794	INFO -- Execution was added to the knowledge base with load: 10328.266666666668
+2019-07-14 12:28:31,138	INFO -- Costs for all options: current= 0.5179179963298798, removal= 0.4143344041755676, old_best= 0.4143344041755676
+2019-07-14 12:28:31,138	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:28:31,575	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:28:32,710	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:28:32,712	INFO -- went correct
+2019-07-14 12:28:32,712	INFO -- Update step finished: 2019-07-14 12:28:32.712562
+2019-07-14 12:28:32,712	INFO -- Current scores
+                 Not stable: 9
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:28:32,713	INFO -- Going back to sleep
+2019-07-14 12:31:02,813	INFO -- Time for an update_step iteration! 2019-07-14 12:31:02.813621
+2019-07-14 12:31:02,992	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:31:02,992	INFO -- Update step finished: 2019-07-14 12:31:02.992898
+2019-07-14 12:31:02,993	INFO -- Current scores
+                 Not stable: 10
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:31:02,993	INFO -- Going back to sleep
+2019-07-14 12:33:33,012	INFO -- Time for an update_step iteration! 2019-07-14 12:33:33.012054
+2019-07-14 12:33:33,374	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:33:33,374	INFO -- Update step finished: 2019-07-14 12:33:33.374684
+2019-07-14 12:33:33,374	INFO -- Current scores
+                 Not stable: 11
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:33:33,375	INFO -- Going back to sleep
+2019-07-14 12:36:03,431	INFO -- Time for an update_step iteration! 2019-07-14 12:36:03.431682
+2019-07-14 12:36:03,838	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:36:03,839	INFO -- Update step finished: 2019-07-14 12:36:03.839405
+2019-07-14 12:36:03,839	INFO -- Current scores
+                 Not stable: 12
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-14 12:36:03,840	INFO -- Going back to sleep
+2019-07-14 12:38:33,941	INFO -- Time for an update_step iteration! 2019-07-14 12:38:33.941048
+2019-07-14 12:38:34,344	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:38:33.941831, calculating best transition
+2019-07-14 12:38:35,207	INFO -- Execution was added to the knowledge base with load: 3004.2378366800363
+2019-07-14 12:38:35,769	INFO -- Costs for all options: current= 0.4143344041755676, removal= 0.3107508120212555, old_best= 0.20716721986694336
+2019-07-14 12:38:35,770	INFO -- Changing to old_best_execution found in time: 2019-07-14 11:47:30.759000
+2019-07-14 12:38:36,424	INFO -- Creating pod: php-apache on gke-demo-cluster-1-default-pool-6f471531-7q3g
+2019-07-14 12:38:39,576	INFO -- Addition succeeded, pod name: php-apache-5f657688bc-7hcl5
+2019-07-14 12:38:40,299	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-2rw3
+2019-07-14 12:38:41,231	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-2rw3
+2019-07-14 12:38:41,232	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-xpq3
+2019-07-14 12:38:41,940	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-xpq3
+2019-07-14 12:38:41,941	INFO -- went correct
+2019-07-14 12:38:41,941	INFO -- Update step finished: 2019-07-14 12:38:41.941938
+2019-07-14 12:38:41,942	INFO -- Current scores
+                 Not stable: 12
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:38:41,942	INFO -- Going back to sleep
+2019-07-14 12:41:12,025	INFO -- Time for an update_step iteration! 2019-07-14 12:41:12.025115
+2019-07-14 12:41:12,197	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:41:12,197	INFO -- Update step finished: 2019-07-14 12:41:12.197771
+2019-07-14 12:41:12,198	INFO -- Current scores
+                 Not stable: 13
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:41:12,198	INFO -- Going back to sleep
+2019-07-14 12:43:42,297	INFO -- Time for an update_step iteration! 2019-07-14 12:43:42.297085
+2019-07-14 12:43:42,485	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:43:42,486	INFO -- Update step finished: 2019-07-14 12:43:42.486118
+2019-07-14 12:43:42,486	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 2 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:43:42,487	INFO -- Going back to sleep
+2019-07-14 12:46:12,518	INFO -- Time for an update_step iteration! 2019-07-14 12:46:12.518548
+2019-07-14 12:46:12,882	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:46:12.518946, calculating best transition
+2019-07-14 12:46:13,230	INFO -- Execution was added to the knowledge base with load: 3100.340740740741
+2019-07-14 12:46:13,637	INFO -- Costs for all options: current= 0.3107508475795746, removal= 0.20716721986694336, old_best= 0.20716721986694336
+2019-07-14 12:46:13,638	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:46:13,964	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:46:14,908	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 12:46:14,909	INFO -- went correct
+2019-07-14 12:46:14,910	INFO -- Update step finished: 2019-07-14 12:46:14.910478
+2019-07-14 12:46:14,911	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 3 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:46:14,911	INFO -- Going back to sleep
+2019-07-14 12:48:45,007	INFO -- Time for an update_step iteration! 2019-07-14 12:48:45.007907
+2019-07-14 12:48:45,200	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:48:45,201	INFO -- Update step finished: 2019-07-14 12:48:45.200985
+2019-07-14 12:48:45,201	INFO -- Current scores
+                 Not stable: 15
+                 All nodes full: 0
+                 Migration correct: 4 wrong: 1
+                 Node removal correct: 3 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:48:45,201	INFO -- Going back to sleep
+2019-07-14 12:51:15,296	INFO -- Time for an update_step iteration! 2019-07-14 12:51:15.295983
+2019-07-14 12:51:15,695	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:51:15.296936, calculating best transition
+2019-07-14 12:51:16,053	INFO -- Execution was added to the knowledge base with load: 3096.9777777777776
+2019-07-14 12:51:16,255	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 12:51:16,557	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 12:51:16,558	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 12:51:17,044	INFO -- moving: php-apache-5f657688bc-7hcl5 to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 12:51:19,872	INFO -- pod php-apache-5f657688bc-7hcl5 is deleted
+2019-07-14 12:51:20,016	INFO -- Movement succeeded
+2019-07-14 12:51:20,559	INFO -- went correct
+2019-07-14 12:51:20,560	INFO -- Update step finished: 2019-07-14 12:51:20.560514
+2019-07-14 12:51:20,561	INFO -- Current scores
+                 Not stable: 15
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 3 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:51:20,561	INFO -- Going back to sleep
+2019-07-14 12:53:50,637	INFO -- Time for an update_step iteration! 2019-07-14 12:53:50.637555
+2019-07-14 12:53:50,795	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:53:50,795	INFO -- Update step finished: 2019-07-14 12:53:50.795802
+2019-07-14 12:53:50,796	INFO -- Current scores
+                 Not stable: 16
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 3 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:53:50,797	INFO -- Going back to sleep
+2019-07-14 12:56:20,828	INFO -- Time for an update_step iteration! 2019-07-14 12:56:20.828778
+2019-07-14 12:56:21,254	INFO -- Cluster was stable for 150 seconds till 2019-07-14 12:56:20.829602, calculating best transition
+2019-07-14 12:56:21,641	INFO -- Execution was added to the knowledge base with load: 2981.649934243279
+2019-07-14 12:56:22,189	INFO -- Costs for all options: current= 0.3107508120212555, removal= 0.20716721986694336, old_best= 0.20716721986694336
+2019-07-14 12:56:22,190	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-xpq3
+2019-07-14 12:56:22,585	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-xpq3
+2019-07-14 12:56:23,543	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-xpq3
+2019-07-14 12:56:23,544	INFO -- went correct
+2019-07-14 12:56:23,545	INFO -- Update step finished: 2019-07-14 12:56:23.545355
+2019-07-14 12:56:23,545	INFO -- Current scores
+                 Not stable: 16
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:56:23,546	INFO -- Going back to sleep
+2019-07-14 12:58:53,643	INFO -- Time for an update_step iteration! 2019-07-14 12:58:53.643218
+2019-07-14 12:58:53,837	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 12:58:53,837	INFO -- Update step finished: 2019-07-14 12:58:53.837613
+2019-07-14 12:58:53,837	INFO -- Current scores
+                 Not stable: 17
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 12:58:53,838	INFO -- Going back to sleep
+2019-07-14 13:01:23,937	INFO -- Time for an update_step iteration! 2019-07-14 13:01:23.937406
+2019-07-14 13:01:24,151	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:01:24,151	INFO -- Update step finished: 2019-07-14 13:01:24.151887
+2019-07-14 13:01:24,152	INFO -- Current scores
+                 Not stable: 18
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 13:01:24,152	INFO -- Going back to sleep
+2019-07-14 13:03:54,251	INFO -- Time for an update_step iteration! 2019-07-14 13:03:54.251929
+2019-07-14 13:03:54,729	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:03:54,729	INFO -- Update step finished: 2019-07-14 13:03:54.729880
+2019-07-14 13:03:54,730	INFO -- Current scores
+                 Not stable: 19
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 13:03:54,730	INFO -- Going back to sleep
+2019-07-14 13:06:24,798	INFO -- Time for an update_step iteration! 2019-07-14 13:06:24.798828
+2019-07-14 13:06:24,988	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:06:24,989	INFO -- Update step finished: 2019-07-14 13:06:24.988982
+2019-07-14 13:06:24,989	INFO -- Current scores
+                 Not stable: 20
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 13:06:24,989	INFO -- Going back to sleep
+2019-07-14 13:08:55,089	INFO -- Time for an update_step iteration! 2019-07-14 13:08:55.089700
+2019-07-14 13:08:55,505	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:08:55.090023, calculating best transition
+2019-07-14 13:08:55,939	INFO -- Execution was added to the knowledge base with load: 11118.90985509758
+2019-07-14 13:08:55,940	INFO -- went wrong: <class 'SmartKubernetesSchedular.time_window.PodHasScaledWhileAnalysingException'>
+2019-07-14 13:08:55,940	INFO -- Update step finished: 2019-07-14 13:08:55.940518
+2019-07-14 13:08:55,940	INFO -- Current scores
+                 Not stable: 20
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 13:08:55,940	INFO -- Going back to sleep
+2019-07-14 13:11:26,040	INFO -- Time for an update_step iteration! 2019-07-14 13:11:26.039960
+2019-07-14 13:11:26,431	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:11:26,431	INFO -- Update step finished: 2019-07-14 13:11:26.431474
+2019-07-14 13:11:26,431	INFO -- Current scores
+                 Not stable: 21
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 1 wrong: 0
+2019-07-14 13:11:26,431	INFO -- Going back to sleep
+2019-07-14 13:13:56,530	INFO -- Time for an update_step iteration! 2019-07-14 13:13:56.530834
+2019-07-14 13:13:56,901	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:13:56.531188, calculating best transition
+2019-07-14 13:13:57,365	INFO -- Execution was added to the knowledge base with load: 10134.195586440503
+2019-07-14 13:13:57,650	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 13:13:57,754	INFO -- Costs for all options: current= 0.41433447529220585, removal= inf, old_best= 0.4143344041755676
+2019-07-14 13:13:57,754	INFO -- Changing to old_best_execution found in time: 2019-07-14 12:18:23.341000
+2019-07-14 13:13:58,318	INFO -- Deleting pod: php-apache-5f657688bc-z7nsd
+2019-07-14 13:14:16,573	INFO -- Deletion pod: php-apache-5f657688bc-z7nsd successful
+2019-07-14 13:14:17,154	INFO -- went correct
+2019-07-14 13:14:17,154	INFO -- Update step finished: 2019-07-14 13:14:17.154782
+2019-07-14 13:14:17,155	INFO -- Current scores
+                 Not stable: 21
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 0
+2019-07-14 13:14:17,155	INFO -- Going back to sleep
+2019-07-14 13:16:47,255	INFO -- Time for an update_step iteration! 2019-07-14 13:16:47.255538
+2019-07-14 13:16:47,777	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:16:47.255848, calculating best transition
+2019-07-14 13:16:48,230	INFO -- Execution was added to the knowledge base with load: 10178.05579173248
+2019-07-14 13:16:48,509	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 13:16:48,633	INFO -- Costs for all options: current= 0.41433447529220585, removal= inf, old_best= 0.4143344041755676
+2019-07-14 13:16:48,634	INFO -- Changing to old_best_execution found in time: 2019-07-14 12:13:06.756000
+2019-07-14 13:16:49,183	INFO -- Deleting pod: php-apache-5f657688bc-vc82s
+2019-07-14 13:19:21,459	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.VerificationTookTooLongException'>
+2019-07-14 13:19:21,460	INFO -- Update step finished: 2019-07-14 13:19:21.460358
+2019-07-14 13:19:21,460	INFO -- Current scores
+                 Not stable: 21
+                 All nodes full: 0
+                 Migration correct: 5 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:19:21,460	INFO -- Going back to sleep
+2019-07-14 13:21:51,559	INFO -- Time for an update_step iteration! 2019-07-14 13:21:51.559878
+2019-07-14 13:21:51,890	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:21:51.560145, calculating best transition
+2019-07-14 13:21:52,523	INFO -- Execution was added to the knowledge base with load: 10132.35695331466
+2019-07-14 13:21:52,840	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 13:21:53,160	INFO -- Costs for all options: current= 0.41433447529220585, removal= inf, old_best= 0.41433447529220585
+2019-07-14 13:21:53,160	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:21:53,874	INFO -- moving: php-apache-5f657688bc-xzwh8 to gke-demo-cluster-1-default-pool-6f471531-1tkd using deployment name: php-apache
+2019-07-14 13:21:56,270	INFO -- pod php-apache-5f657688bc-xzwh8 is deleted
+2019-07-14 13:21:56,478	INFO -- Movement succeeded
+2019-07-14 13:21:57,060	INFO -- went correct
+2019-07-14 13:21:57,060	INFO -- Update step finished: 2019-07-14 13:21:57.060423
+2019-07-14 13:21:57,060	INFO -- Current scores
+                 Not stable: 21
+                 All nodes full: 0
+                 Migration correct: 6 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:21:57,060	INFO -- Going back to sleep
+2019-07-14 13:24:27,093	INFO -- Time for an update_step iteration! 2019-07-14 13:24:27.093182
+2019-07-14 13:24:27,448	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:24:27.093517, calculating best transition
+2019-07-14 13:24:27,884	INFO -- Execution was added to the knowledge base with load: 10252.363889103612
+2019-07-14 13:24:28,133	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 13:24:28,384	INFO -- Costs for all options: current= 0.41433447529220585, removal= inf, old_best= 0.41433447529220585
+2019-07-14 13:24:28,384	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:24:29,047	INFO -- moving: php-apache-5f657688bc-cxtrd to gke-demo-cluster-1-default-pool-6f471531-pmkz using deployment name: php-apache
+2019-07-14 13:24:32,160	INFO -- pod php-apache-5f657688bc-cxtrd is deleted
+2019-07-14 13:24:32,329	INFO -- Movement succeeded
+2019-07-14 13:24:32,944	INFO -- went correct
+2019-07-14 13:24:32,944	INFO -- Update step finished: 2019-07-14 13:24:32.944574
+2019-07-14 13:24:32,944	INFO -- Current scores
+                 Not stable: 21
+                 All nodes full: 0
+                 Migration correct: 7 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:24:32,944	INFO -- Going back to sleep
+2019-07-14 13:27:03,045	INFO -- Time for an update_step iteration! 2019-07-14 13:27:03.045253
+2019-07-14 13:27:03,389	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:27:03,389	INFO -- Update step finished: 2019-07-14 13:27:03.389697
+2019-07-14 13:27:03,389	INFO -- Current scores
+                 Not stable: 22
+                 All nodes full: 0
+                 Migration correct: 7 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:27:03,390	INFO -- Going back to sleep
+2019-07-14 13:29:33,489	INFO -- Time for an update_step iteration! 2019-07-14 13:29:33.489316
+2019-07-14 13:29:33,838	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:29:33.489643, calculating best transition
+2019-07-14 13:29:34,235	INFO -- Execution was added to the knowledge base with load: 10214.986525334512
+2019-07-14 13:29:34,464	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 13:29:34,750	INFO -- Costs for all options: current= 0.41433447529220585, removal= inf, old_best= 0.41433447529220585
+2019-07-14 13:29:34,751	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:29:35,375	INFO -- moving: php-apache-5f657688bc-ghd9n to gke-demo-cluster-1-default-pool-6f471531-7q3g using deployment name: php-apache
+2019-07-14 13:29:41,892	INFO -- pod php-apache-5f657688bc-ghd9n is deleted
+2019-07-14 13:29:42,055	INFO -- Movement succeeded
+2019-07-14 13:29:42,894	INFO -- went correct
+2019-07-14 13:29:42,894	INFO -- Update step finished: 2019-07-14 13:29:42.894363
+2019-07-14 13:29:42,894	INFO -- Current scores
+                 Not stable: 22
+                 All nodes full: 0
+                 Migration correct: 8 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:29:42,894	INFO -- Going back to sleep
+2019-07-14 13:32:12,920	INFO -- Time for an update_step iteration! 2019-07-14 13:32:12.919978
+2019-07-14 13:32:13,328	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:32:13,329	INFO -- Update step finished: 2019-07-14 13:32:13.329647
+2019-07-14 13:32:13,330	INFO -- Current scores
+                 Not stable: 23
+                 All nodes full: 0
+                 Migration correct: 8 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:32:13,330	INFO -- Going back to sleep
+2019-07-14 13:34:43,427	INFO -- Time for an update_step iteration! 2019-07-14 13:34:43.427817
+2019-07-14 13:34:43,965	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:34:43.428686, calculating best transition
+2019-07-14 13:34:44,445	INFO -- Execution was added to the knowledge base with load: 7809.036832907496
+2019-07-14 13:34:44,716	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 13:34:44,811	INFO -- Costs for all options: current= 0.41433447529220585, removal= inf, old_best= 0.41433447529220585
+2019-07-14 13:34:44,811	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:34:45,854	INFO -- moving: php-apache-5f657688bc-25jzl to gke-demo-cluster-1-default-pool-6f471531-1tkd using deployment name: php-apache
+2019-07-14 13:34:51,754	INFO -- pod php-apache-5f657688bc-25jzl is deleted
+2019-07-14 13:34:51,938	INFO -- Movement succeeded
+2019-07-14 13:34:52,488	INFO -- went correct
+2019-07-14 13:34:52,488	INFO -- Update step finished: 2019-07-14 13:34:52.488921
+2019-07-14 13:34:52,489	INFO -- Current scores
+                 Not stable: 23
+                 All nodes full: 0
+                 Migration correct: 9 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:34:52,490	INFO -- Going back to sleep
+2019-07-14 13:37:22,588	INFO -- Time for an update_step iteration! 2019-07-14 13:37:22.587965
+2019-07-14 13:37:23,422	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:37:23,422	INFO -- Update step finished: 2019-07-14 13:37:23.422779
+2019-07-14 13:37:23,423	INFO -- Current scores
+                 Not stable: 24
+                 All nodes full: 0
+                 Migration correct: 9 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:37:23,423	INFO -- Going back to sleep
+2019-07-14 13:39:53,524	INFO -- Time for an update_step iteration! 2019-07-14 13:39:53.524038
+2019-07-14 13:39:53,880	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:39:53,880	INFO -- Update step finished: 2019-07-14 13:39:53.880926
+2019-07-14 13:39:53,881	INFO -- Current scores
+                 Not stable: 25
+                 All nodes full: 0
+                 Migration correct: 9 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 2 wrong: 1
+2019-07-14 13:39:53,882	INFO -- Going back to sleep
+2019-07-14 13:42:23,980	INFO -- Time for an update_step iteration! 2019-07-14 13:42:23.980040
+2019-07-14 13:42:25,086	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:42:23.980847, calculating best transition
+2019-07-14 13:42:26,317	INFO -- Execution was added to the knowledge base with load: 2984.4534867636107
+2019-07-14 13:42:27,298	INFO -- Costs for all options: current= 0.41433447529220585, removal= 0.3107508475795746, old_best= 0.20716721986694336
+2019-07-14 13:42:27,299	INFO -- Changing to old_best_execution found in time: 2019-07-14 12:48:45.296000
+2019-07-14 13:42:28,100	INFO -- moving: php-apache-5f657688bc-fxxfh to gke-demo-cluster-1-default-pool-6f471531-7q3g using deployment name: php-apache
+2019-07-14 13:42:34,149	INFO -- pod php-apache-5f657688bc-fxxfh is deleted
+2019-07-14 13:42:34,270	INFO -- Movement succeeded
+2019-07-14 13:42:34,811	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-1tkd
+2019-07-14 13:42:35,629	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-1tkd
+2019-07-14 13:42:35,630	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 13:42:36,390	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 13:42:36,392	INFO -- went correct
+2019-07-14 13:42:36,392	INFO -- Update step finished: 2019-07-14 13:42:36.392872
+2019-07-14 13:42:36,393	INFO -- Current scores
+                 Not stable: 25
+                 All nodes full: 0
+                 Migration correct: 9 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:42:36,394	INFO -- Going back to sleep
+2019-07-14 13:45:06,474	INFO -- Time for an update_step iteration! 2019-07-14 13:45:06.474838
+2019-07-14 13:45:06,736	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:45:06,737	INFO -- Update step finished: 2019-07-14 13:45:06.737197
+2019-07-14 13:45:06,737	INFO -- Current scores
+                 Not stable: 26
+                 All nodes full: 0
+                 Migration correct: 9 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:45:06,737	INFO -- Going back to sleep
+2019-07-14 13:47:36,836	INFO -- Time for an update_step iteration! 2019-07-14 13:47:36.836594
+2019-07-14 13:47:37,197	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:47:36.837175, calculating best transition
+2019-07-14 13:47:37,516	INFO -- Execution was added to the knowledge base with load: 3107.117381790167
+2019-07-14 13:47:37,715	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 13:47:38,005	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 13:47:38,005	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:47:38,425	INFO -- moving: php-apache-5f657688bc-gw7ld to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 13:47:51,803	INFO -- pod php-apache-5f657688bc-gw7ld is deleted
+2019-07-14 13:47:51,983	INFO -- Movement succeeded
+2019-07-14 13:47:52,423	INFO -- went correct
+2019-07-14 13:47:52,424	INFO -- Update step finished: 2019-07-14 13:47:52.424692
+2019-07-14 13:47:52,425	INFO -- Current scores
+                 Not stable: 26
+                 All nodes full: 0
+                 Migration correct: 10 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:47:52,425	INFO -- Going back to sleep
+2019-07-14 13:50:22,440	INFO -- Time for an update_step iteration! 2019-07-14 13:50:22.440603
+2019-07-14 13:50:22,799	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:50:22,800	INFO -- Update step finished: 2019-07-14 13:50:22.800060
+2019-07-14 13:50:22,800	INFO -- Current scores
+                 Not stable: 27
+                 All nodes full: 0
+                 Migration correct: 10 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:50:22,801	INFO -- Going back to sleep
+2019-07-14 13:52:52,901	INFO -- Time for an update_step iteration! 2019-07-14 13:52:52.901777
+2019-07-14 13:52:53,252	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:52:52.902583, calculating best transition
+2019-07-14 13:52:53,581	INFO -- Execution was added to the knowledge base with load: 3046.474074074074
+2019-07-14 13:52:53,772	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 13:52:54,261	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 13:52:54,261	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:52:54,665	INFO -- moving: php-apache-5f657688bc-5ztv7 to gke-demo-cluster-1-default-pool-6f471531-7q3g using deployment name: php-apache
+2019-07-14 13:52:59,951	INFO -- pod php-apache-5f657688bc-5ztv7 is deleted
+2019-07-14 13:53:00,156	INFO -- Movement succeeded
+2019-07-14 13:53:00,673	INFO -- went correct
+2019-07-14 13:53:00,674	INFO -- Update step finished: 2019-07-14 13:53:00.674610
+2019-07-14 13:53:00,675	INFO -- Current scores
+                 Not stable: 27
+                 All nodes full: 0
+                 Migration correct: 11 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:53:00,675	INFO -- Going back to sleep
+2019-07-14 13:55:30,776	INFO -- Time for an update_step iteration! 2019-07-14 13:55:30.775978
+2019-07-14 13:55:31,155	INFO -- Cluster was stable for 150 seconds till 2019-07-14 13:55:30.776784, calculating best transition
+2019-07-14 13:55:31,497	INFO -- Execution was added to the knowledge base with load: 3001.4803331481485
+2019-07-14 13:55:31,664	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 13:55:32,127	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 13:55:32,128	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 13:55:32,534	INFO -- moving: php-apache-5f657688bc-blhn8 to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 13:55:41,774	INFO -- pod php-apache-5f657688bc-blhn8 is deleted
+2019-07-14 13:55:41,900	INFO -- Movement succeeded
+2019-07-14 13:55:42,313	INFO -- went correct
+2019-07-14 13:55:42,314	INFO -- Update step finished: 2019-07-14 13:55:42.314133
+2019-07-14 13:55:42,314	INFO -- Current scores
+                 Not stable: 27
+                 All nodes full: 0
+                 Migration correct: 12 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:55:42,315	INFO -- Going back to sleep
+2019-07-14 13:58:12,414	INFO -- Time for an update_step iteration! 2019-07-14 13:58:12.414070
+2019-07-14 13:58:12,697	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 13:58:12,698	INFO -- Update step finished: 2019-07-14 13:58:12.698013
+2019-07-14 13:58:12,698	INFO -- Current scores
+                 Not stable: 28
+                 All nodes full: 0
+                 Migration correct: 12 wrong: 1
+                 Node removal correct: 4 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 13:58:12,699	INFO -- Going back to sleep
+2019-07-14 14:00:42,797	INFO -- Time for an update_step iteration! 2019-07-14 14:00:42.797478
+2019-07-14 14:00:43,151	INFO -- Cluster was stable for 150 seconds till 2019-07-14 14:00:42.798268, calculating best transition
+2019-07-14 14:00:43,486	INFO -- Execution was added to the knowledge base with load: 3062.9998110850756
+2019-07-14 14:00:44,232	INFO -- Costs for all options: current= 0.3107508475795746, removal= 0.20716721986694336, old_best= 0.20716721986694336
+2019-07-14 14:00:44,232	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 14:00:44,549	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 14:00:45,849	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-pmkz
+2019-07-14 14:00:45,850	INFO -- went correct
+2019-07-14 14:00:45,851	INFO -- Update step finished: 2019-07-14 14:00:45.851596
+2019-07-14 14:00:45,852	INFO -- Current scores
+                 Not stable: 28
+                 All nodes full: 0
+                 Migration correct: 12 wrong: 1
+                 Node removal correct: 5 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 14:00:45,852	INFO -- Going back to sleep
+2019-07-14 14:03:15,953	INFO -- Time for an update_step iteration! 2019-07-14 14:03:15.953232
+2019-07-14 14:03:16,135	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 14:03:16,136	INFO -- Update step finished: 2019-07-14 14:03:16.136054
+2019-07-14 14:03:16,136	INFO -- Current scores
+                 Not stable: 29
+                 All nodes full: 0
+                 Migration correct: 12 wrong: 1
+                 Node removal correct: 5 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 14:03:16,137	INFO -- Going back to sleep
+2019-07-14 14:05:46,235	INFO -- Time for an update_step iteration! 2019-07-14 14:05:46.235884
+2019-07-14 14:05:46,575	INFO -- Cluster was stable for 150 seconds till 2019-07-14 14:05:46.236201, calculating best transition
+2019-07-14 14:05:46,896	INFO -- Execution was added to the knowledge base with load: 2116.859259259259
+2019-07-14 14:05:47,114	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 14:05:47,218	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 14:05:47,218	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-14 14:05:47,968	INFO -- moving: php-apache-5f657688bc-vppv8 to gke-demo-cluster-1-default-pool-6f471531-7q3g using deployment name: php-apache
+2019-07-14 14:05:50,072	INFO -- pod php-apache-5f657688bc-vppv8 is deleted
+2019-07-14 14:05:50,188	INFO -- Movement succeeded
+2019-07-14 14:05:50,610	INFO -- went correct
+2019-07-14 14:05:50,610	INFO -- Update step finished: 2019-07-14 14:05:50.610486
+2019-07-14 14:05:50,610	INFO -- Current scores
+                 Not stable: 29
+                 All nodes full: 0
+                 Migration correct: 13 wrong: 1
+                 Node removal correct: 5 wrong: 2
+                 Old state correct: 3 wrong: 1
+2019-07-14 14:05:50,610	INFO -- Going back to sleep

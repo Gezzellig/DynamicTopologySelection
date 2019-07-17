@@ -1,0 +1,127 @@
+# run with -k flag to remove authentication
+
+config:
+  target: 'https://gitlab.groterooieknop.nl'
+  #http:
+    #pool: 5
+  phases:
+    - duration: 300
+      arrivalRate: 5  
+
+    - duration: 300
+      arrivalRate: 10 
+  
+    - duration: 300
+      arrivalRate: 15
+  
+    - duration: 300
+      arrivalRate: 20 
+  
+    - duration: 300
+      arrivalRate: 25 
+  
+    - duration: 300
+      arrivalRate: 30 
+  
+    - duration: 300
+      arrivalRate: 35 
+  
+    - duration: 300
+      arrivalRate: 40
+  
+    - duration: 300
+      arrivalRate: 8 
+  
+    - duration: 300
+      arrivalRate: 9 
+  
+    - duration: 300
+      arrivalRate: 10 
+  
+    - duration: 300
+      arrivalRate: 11 
+  
+    - duration: 300
+      arrivalRate: 12 
+  
+    - duration: 300
+      arrivalRate: 13
+  
+    - duration: 300
+      arrivalRate: 14
+  
+    - duration: 300
+      arrivalRate: 15 
+  
+    - duration: 300
+      arrivalRate: 16 
+  
+    - duration: 300
+      arrivalRate: 17
+  
+    - duration: 300
+      arrivalRate: 18
+  
+    - duration: 300
+      arrivalRate: 19 
+  
+    - duration: 300
+      arrivalRate: 21 
+  
+    - duration: 300
+      arrivalRate: 22 
+  
+    - duration: 300
+      arrivalRate: 23 
+  
+    - duration: 300
+      arrivalRate: 24 
+  
+    - duration: 300
+      arrivalRate: 25 
+  
+    - duration: 300
+      arrivalRate: 26 
+  
+    - duration: 300
+      arrivalRate: 20 
+  
+    - duration: 300
+      arrivalRate: 27 
+  
+    - duration: 300
+      arrivalRate: 28 
+  
+    - duration: 300
+      arrivalRate: 29 
+  
+    - duration: 300
+      arrivalRate: 30 
+
+scenarios:
+  - flow:
+    - get:
+        url: /api/v4/projects
+  - flow:
+    - get:
+        url: /api/v4/projects/3
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits/82461a1d8284d31f10cfb28d3f5e97cd2d16ce2d
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits/82461a1d8284d31f10cfb28d3f5e97cd2d16ce2d/diff
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/branches
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/branches/develop
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/commits
+  - flow:
+    - get:
+        url: /api/v4/projects/3/repository/tree
+
+

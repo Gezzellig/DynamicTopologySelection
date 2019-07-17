@@ -2,6 +2,7 @@ import requests
 
 from initializer.neo4j_queries import execute_query_function
 
+times_pods_extracted = 0
 
 def connect_pods_to_containers_command(tx, pods):
     # TODO: Update, as pods structure has changed
@@ -93,6 +94,9 @@ def extract_pods(pods_info):
 
 def extract_pods_namespace(name_space):
     pods_info = requests.get("http://localhost:8080/api/v1/namespaces/{}/pods".format(name_space)).json()
+    print("Extract pods namespace")
+    global times_pods_extracted
+    times_pods_extracted += 1
     #pods_info = get_k8s_api().list_namespaced_pod(name_space)
     return extract_pods(pods_info)
 
@@ -108,6 +112,9 @@ def extract_pods_deployment(deployment):
 
 def extract_all_pods():
     pods_info = requests.get("http://localhost:8080/api/v1/pods").json()
+    #print("Extract all pods")
+    global times_pods_extracted
+    times_pods_extracted += 1
     return extract_pods(pods_info)
 
 

@@ -72,6 +72,15 @@ def get_start_end_times_executions(load):
     return start_end_times
 
 
+def empty_graph_database_command(tx):
+    tx.run("MATCH (n) DETACH DELETE n")
+
+
+def emtpy_graph_database():
+    execute_query_function(empty_graph_database_command)
+
+
 def execute_query_function(func, *par):
     with get_neo4j_session() as session:
         return session.write_transaction(func, *par)
+

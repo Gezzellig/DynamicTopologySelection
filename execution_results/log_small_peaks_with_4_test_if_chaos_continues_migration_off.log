@@ -1,0 +1,505 @@
+2019-07-14 20:58:23,261	INFO -- Graphdatabase emptied
+2019-07-14 20:58:23,261	INFO -- Waiting for warmup to finish. 300 seconds
+2019-07-14 21:03:23,286	INFO -- Settings: settings-php_apache_no_migration.json
+2019-07-14 21:03:23,286	INFO -- Time for an update_step iteration! 2019-07-14 21:03:23.286700
+2019-07-14 21:03:24,986	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:03:23.286801, calculating best transition
+2019-07-14 21:03:25,610	INFO -- Execution was added to the knowledge base with load: 3056.3693514290076
+2019-07-14 21:03:25,892	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:03:26,062	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:03:26,063	INFO -- Update step finished: 2019-07-14 21:03:26.063225
+2019-07-14 21:03:26,063	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 1
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:03:26,064	INFO -- Going back to sleep
+2019-07-14 21:05:56,164	INFO -- Time for an update_step iteration! 2019-07-14 21:05:56.164619
+2019-07-14 21:05:56,696	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:05:56.165456, calculating best transition
+2019-07-14 21:05:57,160	INFO -- Execution was added to the knowledge base with load: 3072.0592592592593
+2019-07-14 21:05:57,459	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:05:57,796	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:05:57,797	INFO -- Update step finished: 2019-07-14 21:05:57.797724
+2019-07-14 21:05:57,798	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 2
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:05:57,798	INFO -- Going back to sleep
+2019-07-14 21:08:27,888	INFO -- Time for an update_step iteration! 2019-07-14 21:08:27.888519
+2019-07-14 21:08:28,452	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:08:27.888874, calculating best transition
+2019-07-14 21:08:29,058	INFO -- Execution was added to the knowledge base with load: 3134.5333333333333
+2019-07-14 21:08:29,674	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:08:30,094	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:08:30,095	INFO -- Update step finished: 2019-07-14 21:08:30.095217
+2019-07-14 21:08:30,095	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 3
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:08:30,096	INFO -- Going back to sleep
+2019-07-14 21:11:00,166	INFO -- Time for an update_step iteration! 2019-07-14 21:11:00.166743
+2019-07-14 21:11:00,561	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:11:00.167567, calculating best transition
+2019-07-14 21:11:01,081	INFO -- Execution was added to the knowledge base with load: 3136.1333333333337
+2019-07-14 21:11:01,358	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:11:01,828	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:11:01,829	INFO -- Update step finished: 2019-07-14 21:11:01.829444
+2019-07-14 21:11:01,830	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 4
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:11:01,830	INFO -- Going back to sleep
+2019-07-14 21:13:31,931	INFO -- Time for an update_step iteration! 2019-07-14 21:13:31.931378
+2019-07-14 21:13:32,578	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:13:31.932174, calculating best transition
+2019-07-14 21:13:33,020	INFO -- Execution was added to the knowledge base with load: 3104.6074074074077
+2019-07-14 21:13:33,370	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:13:34,182	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:13:34,183	INFO -- Update step finished: 2019-07-14 21:13:34.183293
+2019-07-14 21:13:34,183	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 5
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:13:34,184	INFO -- Going back to sleep
+2019-07-14 21:16:04,284	INFO -- Time for an update_step iteration! 2019-07-14 21:16:04.284492
+2019-07-14 21:16:04,805	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:16:04,805	INFO -- Update step finished: 2019-07-14 21:16:04.805705
+2019-07-14 21:16:04,805	INFO -- Current scores
+                 Not stable: 1
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 5
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:16:04,806	INFO -- Going back to sleep
+2019-07-14 21:18:34,904	INFO -- Time for an update_step iteration! 2019-07-14 21:18:34.904486
+2019-07-14 21:18:35,375	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:18:35,376	INFO -- Update step finished: 2019-07-14 21:18:35.376182
+2019-07-14 21:18:35,376	INFO -- Current scores
+                 Not stable: 2
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 5
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:18:35,376	INFO -- Going back to sleep
+2019-07-14 21:21:05,503	INFO -- Time for an update_step iteration! 2019-07-14 21:21:05.498682
+2019-07-14 21:21:05,967	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:21:05.506223, calculating best transition
+2019-07-14 21:21:06,571	INFO -- Execution was added to the knowledge base with load: 6928.466208286223
+2019-07-14 21:21:07,014	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 21:21:07,118	INFO -- Costs for all options: current= 0.41433443973388673, removal= inf, old_best= 0.41433443973388673
+2019-07-14 21:21:07,118	INFO -- Update step finished: 2019-07-14 21:21:07.118524
+2019-07-14 21:21:07,118	INFO -- Current scores
+                 Not stable: 2
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 6
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:21:07,119	INFO -- Going back to sleep
+2019-07-14 21:23:37,216	INFO -- Time for an update_step iteration! 2019-07-14 21:23:37.216553
+2019-07-14 21:23:37,675	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:23:37,675	INFO -- Update step finished: 2019-07-14 21:23:37.675838
+2019-07-14 21:23:37,675	INFO -- Current scores
+                 Not stable: 3
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 6
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:23:37,676	INFO -- Going back to sleep
+2019-07-14 21:26:07,772	INFO -- Time for an update_step iteration! 2019-07-14 21:26:07.772503
+2019-07-14 21:26:08,188	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:26:08,189	INFO -- Update step finished: 2019-07-14 21:26:08.189067
+2019-07-14 21:26:08,189	INFO -- Current scores
+                 Not stable: 4
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 6
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 0 wrong: 0
+2019-07-14 21:26:08,203	INFO -- Going back to sleep
+2019-07-14 21:28:38,300	INFO -- Time for an update_step iteration! 2019-07-14 21:28:38.300505
+2019-07-14 21:28:39,201	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:28:38.300840, calculating best transition
+2019-07-14 21:28:39,724	INFO -- Execution was added to the knowledge base with load: 3079.6951789629625
+2019-07-14 21:28:41,973	INFO -- Costs for all options: current= 0.41433443973388673, removal= 0.3107508120212555, old_best= 0.20716721986694336
+2019-07-14 21:28:41,973	INFO -- Changing to old_best_execution found in time: 2019-07-14 21:00:53.286000
+2019-07-14 21:28:42,952	INFO -- moving: php-apache-5f657688bc-jtggg to gke-demo-cluster-1-default-pool-6f471531-nfcf using deployment name: php-apache
+2019-07-14 21:28:46,272	INFO -- pod php-apache-5f657688bc-jtggg is deleted
+2019-07-14 21:28:46,501	INFO -- Movement succeeded
+2019-07-14 21:28:47,025	INFO -- moving: php-apache-5f657688bc-wdgqd to gke-demo-cluster-1-default-pool-6f471531-nfcf using deployment name: php-apache
+2019-07-14 21:28:49,734	INFO -- pod php-apache-5f657688bc-wdgqd is deleted
+2019-07-14 21:28:49,899	INFO -- Movement succeeded
+2019-07-14 21:28:50,667	INFO -- Creating pod: php-apache on gke-demo-cluster-1-default-pool-6f471531-nfcf
+2019-07-14 21:28:54,870	INFO -- Addition succeeded, pod name: php-apache-5f657688bc-p8src
+2019-07-14 21:28:55,282	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 21:28:56,152	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 21:28:56,153	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-vv91
+2019-07-14 21:28:57,465	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-vv91
+2019-07-14 21:28:57,467	INFO -- went correct
+2019-07-14 21:28:57,467	INFO -- Update step finished: 2019-07-14 21:28:57.467730
+2019-07-14 21:28:57,468	INFO -- Current scores
+                 Not stable: 4
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 6
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:28:57,468	INFO -- Going back to sleep
+2019-07-14 21:31:27,568	INFO -- Time for an update_step iteration! 2019-07-14 21:31:27.568631
+2019-07-14 21:31:27,781	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:31:27,781	INFO -- Update step finished: 2019-07-14 21:31:27.781937
+2019-07-14 21:31:27,782	INFO -- Current scores
+                 Not stable: 5
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 6
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:31:27,782	INFO -- Going back to sleep
+2019-07-14 21:33:57,880	INFO -- Time for an update_step iteration! 2019-07-14 21:33:57.880637
+2019-07-14 21:33:58,684	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:33:57.881251, calculating best transition
+2019-07-14 21:33:59,210	INFO -- Execution was added to the knowledge base with load: 3000.5658922108446
+2019-07-14 21:33:59,731	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:34:00,936	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:34:00,937	INFO -- Update step finished: 2019-07-14 21:34:00.937431
+2019-07-14 21:34:00,938	INFO -- Current scores
+                 Not stable: 5
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 7
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:34:00,938	INFO -- Going back to sleep
+2019-07-14 21:36:31,039	INFO -- Time for an update_step iteration! 2019-07-14 21:36:31.039069
+2019-07-14 21:36:31,477	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:36:31.040114, calculating best transition
+2019-07-14 21:36:32,550	INFO -- Execution was added to the knowledge base with load: 3101.051851851852
+2019-07-14 21:36:33,231	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:36:34,608	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:36:34,608	INFO -- Update step finished: 2019-07-14 21:36:34.608783
+2019-07-14 21:36:34,608	INFO -- Current scores
+                 Not stable: 5
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 8
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:36:34,608	INFO -- Going back to sleep
+2019-07-14 21:39:04,708	INFO -- Time for an update_step iteration! 2019-07-14 21:39:04.708494
+2019-07-14 21:39:05,170	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:39:04.708703, calculating best transition
+2019-07-14 21:39:06,361	INFO -- Execution was added to the knowledge base with load: 3085.140740740741
+2019-07-14 21:39:06,605	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 21:39:07,321	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 21:39:07,322	INFO -- Update step finished: 2019-07-14 21:39:07.322059
+2019-07-14 21:39:07,322	INFO -- Current scores
+                 Not stable: 5
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:39:07,323	INFO -- Going back to sleep
+2019-07-14 21:41:37,417	INFO -- Time for an update_step iteration! 2019-07-14 21:41:37.417830
+2019-07-14 21:41:37,630	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:41:37,631	INFO -- Update step finished: 2019-07-14 21:41:37.631273
+2019-07-14 21:41:37,631	INFO -- Current scores
+                 Not stable: 6
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:41:37,632	INFO -- Going back to sleep
+2019-07-14 21:44:07,718	INFO -- Time for an update_step iteration! 2019-07-14 21:44:07.718204
+2019-07-14 21:44:08,266	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:44:08,267	INFO -- Update step finished: 2019-07-14 21:44:08.267557
+2019-07-14 21:44:08,268	INFO -- Current scores
+                 Not stable: 7
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 1 wrong: 0
+2019-07-14 21:44:08,268	INFO -- Going back to sleep
+2019-07-14 21:46:38,281	INFO -- Time for an update_step iteration! 2019-07-14 21:46:38.281516
+2019-07-14 21:46:38,871	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:46:38.282374, calculating best transition
+2019-07-14 21:46:39,406	INFO -- Execution was added to the knowledge base with load: 3161.2530463188623
+2019-07-14 21:46:40,581	INFO -- Costs for all options: current= 0.41433447529220585, removal= 0.3107508475795746, old_best= 0.20716721986694336
+2019-07-14 21:46:40,581	INFO -- Changing to old_best_execution found in time: 2019-07-14 21:36:34.708000
+2019-07-14 21:46:41,355	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 21:46:42,859	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 21:46:42,860	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-vv91
+2019-07-14 21:46:43,660	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-vv91
+2019-07-14 21:46:43,662	INFO -- went correct
+2019-07-14 21:46:43,663	INFO -- Update step finished: 2019-07-14 21:46:43.663271
+2019-07-14 21:46:43,663	INFO -- Current scores
+                 Not stable: 7
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 21:46:43,664	INFO -- Going back to sleep
+2019-07-14 21:49:13,762	INFO -- Time for an update_step iteration! 2019-07-14 21:49:13.762176
+2019-07-14 21:49:13,978	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 21:49:13,979	INFO -- Update step finished: 2019-07-14 21:49:13.979374
+2019-07-14 21:49:13,979	INFO -- Current scores
+                 Not stable: 8
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 21:49:13,980	INFO -- Going back to sleep
+2019-07-14 21:51:44,077	INFO -- Time for an update_step iteration! 2019-07-14 21:51:44.077863
+2019-07-14 21:51:45,407	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:51:44.078708, calculating best transition
+2019-07-14 21:51:45,817	INFO -- Execution was added to the knowledge base with load: 3488.0444444444447
+2019-07-14 21:51:45,817	INFO -- went wrong: <class 'SmartKubernetesSchedular.time_window.PodHasScaledWhileAnalysingException'>
+2019-07-14 21:51:45,818	INFO -- Update step finished: 2019-07-14 21:51:45.818441
+2019-07-14 21:51:45,819	INFO -- Current scores
+                 Not stable: 8
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 21:51:45,819	INFO -- Going back to sleep
+2019-07-14 21:54:15,883	INFO -- Time for an update_step iteration! 2019-07-14 21:54:15.883423
+2019-07-14 21:54:17,755	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:54:15.884234, calculating best transition
+2019-07-14 21:54:18,400	INFO -- Execution was added to the knowledge base with load: 7691.531840674545
+2019-07-14 21:54:18,400	INFO -- went wrong: <class 'SmartKubernetesSchedular.time_window.PodHasScaledWhileAnalysingException'>
+2019-07-14 21:54:18,401	INFO -- Update step finished: 2019-07-14 21:54:18.401450
+2019-07-14 21:54:18,402	INFO -- Current scores
+                 Not stable: 8
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 21:54:18,402	INFO -- Going back to sleep
+2019-07-14 21:56:48,503	INFO -- Time for an update_step iteration! 2019-07-14 21:56:48.503419
+2019-07-14 21:56:51,384	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:56:48.504246, calculating best transition
+2019-07-14 21:56:51,923	INFO -- Execution was added to the knowledge base with load: 5116.116557726305
+2019-07-14 21:56:51,923	INFO -- went wrong: <class 'SmartKubernetesSchedular.time_window.PodHasScaledWhileAnalysingException'>
+2019-07-14 21:56:51,923	INFO -- Update step finished: 2019-07-14 21:56:51.923557
+2019-07-14 21:56:51,923	INFO -- Current scores
+                 Not stable: 8
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 9
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 21:56:51,923	INFO -- Going back to sleep
+2019-07-14 21:59:22,000	INFO -- Time for an update_step iteration! 2019-07-14 21:59:22.000639
+2019-07-14 21:59:23,193	INFO -- Cluster was stable for 150 seconds till 2019-07-14 21:59:22.001476, calculating best transition
+2019-07-14 21:59:23,681	INFO -- Execution was added to the knowledge base with load: 4192.117095428923
+2019-07-14 21:59:23,999	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 21:59:24,505	INFO -- Costs for all options: current= 0.3107508475795746, removal= inf, old_best= 0.3107508475795746
+2019-07-14 21:59:24,505	INFO -- Update step finished: 2019-07-14 21:59:24.505258
+2019-07-14 21:59:24,505	INFO -- Current scores
+                 Not stable: 8
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 10
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 21:59:24,505	INFO -- Going back to sleep
+2019-07-14 22:01:54,604	INFO -- Time for an update_step iteration! 2019-07-14 22:01:54.604593
+2019-07-14 22:01:54,794	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 22:01:54,794	INFO -- Update step finished: 2019-07-14 22:01:54.794498
+2019-07-14 22:01:54,794	INFO -- Current scores
+                 Not stable: 9
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 10
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 0
+2019-07-14 22:01:54,794	INFO -- Going back to sleep
+2019-07-14 22:04:24,892	INFO -- Time for an update_step iteration! 2019-07-14 22:04:24.892506
+2019-07-14 22:04:25,270	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:04:24.892840, calculating best transition
+2019-07-14 22:04:25,737	INFO -- Execution was added to the knowledge base with load: 3188.7625987920724
+2019-07-14 22:04:26,032	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-14 22:04:26,679	INFO -- Costs for all options: current= 0.3107508475795746, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:04:26,680	INFO -- Changing to old_best_execution found in time: 2019-07-14 21:08:30.167000
+2019-07-14 22:04:27,359	INFO -- Deleting pod: php-apache-5f657688bc-22vjb
+2019-07-14 22:04:45,599	INFO -- Deletion pod: php-apache-5f657688bc-22vjb successful
+2019-07-14 22:04:45,880	INFO -- Deleting pod: php-apache-5f657688bc-8bv7f
+2019-07-14 22:05:00,596	INFO -- Deletion pod: php-apache-5f657688bc-8bv7f successful
+2019-07-14 22:05:00,912	INFO -- Deleting pod: php-apache-5f657688bc-bn29l
+2019-07-14 22:05:02,764	INFO -- Deletion pod: php-apache-5f657688bc-bn29l successful
+2019-07-14 22:05:03,129	INFO -- Deleting pod: php-apache-5f657688bc-fs6kl
+2019-07-14 22:05:10,921	INFO -- Deletion pod: php-apache-5f657688bc-fs6kl successful
+2019-07-14 22:05:11,084	INFO -- went wrong: <class 'SmartKubernetesSchedular.enforcer.PodHasScaledWhileEnforcingException'>
+2019-07-14 22:05:11,085	INFO -- Update step finished: 2019-07-14 22:05:11.084968
+2019-07-14 22:05:11,085	INFO -- Current scores
+                 Not stable: 9
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 10
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:05:11,085	INFO -- Going back to sleep
+2019-07-14 22:07:41,184	INFO -- Time for an update_step iteration! 2019-07-14 22:07:41.184544
+2019-07-14 22:07:42,234	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 22:07:42,234	INFO -- Update step finished: 2019-07-14 22:07:42.234821
+2019-07-14 22:07:42,235	INFO -- Current scores
+                 Not stable: 10
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 10
+                 Node removal correct: 0 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:07:42,235	INFO -- Going back to sleep
+2019-07-14 22:10:12,325	INFO -- Time for an update_step iteration! 2019-07-14 22:10:12.325353
+2019-07-14 22:10:14,658	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:10:12.326133, calculating best transition
+2019-07-14 22:10:15,459	INFO -- Execution was added to the knowledge base with load: 3221.0098983866255
+2019-07-14 22:10:21,183	INFO -- Costs for all options: current= 0.3107508475795746, removal= 0.20716721986694336, old_best= 0.20716721986694336
+2019-07-14 22:10:21,183	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:10:24,753	INFO -- moving: php-apache-5f657688bc-crkgl to gke-demo-cluster-1-default-pool-6f471531-j7f1 using deployment name: php-apache
+2019-07-14 22:10:27,946	INFO -- pod php-apache-5f657688bc-crkgl is deleted
+2019-07-14 22:10:28,110	INFO -- Movement succeeded
+2019-07-14 22:10:29,001	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:10:30,138	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:10:30,139	INFO -- went correct
+2019-07-14 22:10:30,139	INFO -- Update step finished: 2019-07-14 22:10:30.139209
+2019-07-14 22:10:30,139	INFO -- Current scores
+                 Not stable: 10
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 10
+                 Node removal correct: 1 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:10:30,139	INFO -- Going back to sleep
+2019-07-14 22:13:00,237	INFO -- Time for an update_step iteration! 2019-07-14 22:13:00.237695
+2019-07-14 22:13:00,455	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 22:13:00,456	INFO -- Update step finished: 2019-07-14 22:13:00.456388
+2019-07-14 22:13:00,456	INFO -- Current scores
+                 Not stable: 11
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 10
+                 Node removal correct: 1 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:13:00,457	INFO -- Going back to sleep
+2019-07-14 22:15:30,556	INFO -- Time for an update_step iteration! 2019-07-14 22:15:30.556537
+2019-07-14 22:15:31,036	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:15:30.557279, calculating best transition
+2019-07-14 22:15:32,051	INFO -- Execution was added to the knowledge base with load: 3185.1452723718235
+2019-07-14 22:15:32,526	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 22:15:34,213	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:15:34,213	INFO -- Update step finished: 2019-07-14 22:15:34.213909
+2019-07-14 22:15:34,214	INFO -- Current scores
+                 Not stable: 11
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 11
+                 Node removal correct: 1 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:15:34,214	INFO -- Going back to sleep
+2019-07-14 22:18:04,312	INFO -- Time for an update_step iteration! 2019-07-14 22:18:04.312670
+2019-07-14 22:18:04,913	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:18:04.313556, calculating best transition
+2019-07-14 22:18:05,364	INFO -- Execution was added to the knowledge base with load: 3145.180439980281
+2019-07-14 22:18:05,747	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 22:18:07,398	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:18:07,399	INFO -- Update step finished: 2019-07-14 22:18:07.399325
+2019-07-14 22:18:07,399	INFO -- Current scores
+                 Not stable: 11
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 12
+                 Node removal correct: 1 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:18:07,400	INFO -- Going back to sleep
+2019-07-14 22:20:37,501	INFO -- Time for an update_step iteration! 2019-07-14 22:20:37.501017
+2019-07-14 22:20:38,482	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:20:37.501666, calculating best transition
+2019-07-14 22:20:39,242	INFO -- Execution was added to the knowledge base with load: 3184.7111111111117
+2019-07-14 22:20:39,696	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 22:20:40,578	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:20:40,578	INFO -- Update step finished: 2019-07-14 22:20:40.578905
+2019-07-14 22:20:40,579	INFO -- Current scores
+                 Not stable: 11
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 13
+                 Node removal correct: 1 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:20:40,579	INFO -- Going back to sleep
+2019-07-14 22:23:10,676	INFO -- Time for an update_step iteration! 2019-07-14 22:23:10.676541
+2019-07-14 22:23:11,029	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 22:23:11,029	INFO -- Update step finished: 2019-07-14 22:23:11.029578
+2019-07-14 22:23:11,029	INFO -- Current scores
+                 Not stable: 12
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 13
+                 Node removal correct: 1 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:23:11,029	INFO -- Going back to sleep
+2019-07-14 22:25:41,129	INFO -- Time for an update_step iteration! 2019-07-14 22:25:41.129137
+2019-07-14 22:25:41,494	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:25:41.129487, calculating best transition
+2019-07-14 22:25:42,391	INFO -- Execution was added to the knowledge base with load: 3087.066666666667
+2019-07-14 22:25:43,589	INFO -- Costs for all options: current= 0.3107508120212555, removal= 0.20716721986694336, old_best= 0.20716721986694336
+2019-07-14 22:25:43,590	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:25:44,159	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:25:45,383	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:25:45,383	INFO -- went correct
+2019-07-14 22:25:45,383	INFO -- Update step finished: 2019-07-14 22:25:45.383782
+2019-07-14 22:25:45,384	INFO -- Current scores
+                 Not stable: 12
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 13
+                 Node removal correct: 2 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:25:45,384	INFO -- Going back to sleep
+2019-07-14 22:28:15,480	INFO -- Time for an update_step iteration! 2019-07-14 22:28:15.480509
+2019-07-14 22:28:15,661	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 22:28:15,662	INFO -- Update step finished: 2019-07-14 22:28:15.662287
+2019-07-14 22:28:15,662	INFO -- Current scores
+                 Not stable: 13
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 13
+                 Node removal correct: 2 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:28:15,663	INFO -- Going back to sleep
+2019-07-14 22:30:45,763	INFO -- Time for an update_step iteration! 2019-07-14 22:30:45.763021
+2019-07-14 22:30:46,253	INFO -- Cluster was not stable, waiting for the next time_window to check stability
+2019-07-14 22:30:46,254	INFO -- Update step finished: 2019-07-14 22:30:46.254404
+2019-07-14 22:30:46,255	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 13
+                 Node removal correct: 2 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:30:46,255	INFO -- Going back to sleep
+2019-07-14 22:33:16,356	INFO -- Time for an update_step iteration! 2019-07-14 22:33:16.356054
+2019-07-14 22:33:17,054	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:33:16.356871, calculating best transition
+2019-07-14 22:33:18,658	INFO -- Execution was added to the knowledge base with load: 0.0
+2019-07-14 22:33:19,127	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 22:33:19,230	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:33:19,231	INFO -- Update step finished: 2019-07-14 22:33:19.231023
+2019-07-14 22:33:19,231	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 14
+                 Node removal correct: 2 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:33:19,231	INFO -- Going back to sleep
+2019-07-14 22:35:49,328	INFO -- Time for an update_step iteration! 2019-07-14 22:35:49.328606
+2019-07-14 22:35:50,504	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:35:49.328941, calculating best transition
+2019-07-14 22:35:51,368	INFO -- Execution was added to the knowledge base with load: 0.0
+2019-07-14 22:35:51,778	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 22:35:51,992	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:35:51,993	INFO -- Update step finished: 2019-07-14 22:35:51.993101
+2019-07-14 22:35:51,993	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 15
+                 Node removal correct: 2 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:35:51,993	INFO -- Going back to sleep
+2019-07-14 22:38:22,093	INFO -- Time for an update_step iteration! 2019-07-14 22:38:22.093640
+2019-07-14 22:38:26,496	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:38:22.094445, calculating best transition
+2019-07-14 22:38:26,995	INFO -- Execution was added to the knowledge base with load: 0.0
+2019-07-14 22:38:27,535	INFO -- Costs for all options: current= 0.3107508475795746, removal= 0.20716721986694336, old_best= 0.20716721986694336
+2019-07-14 22:38:27,536	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:38:28,093	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:38:29,317	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-2tnd
+2019-07-14 22:38:29,317	INFO -- went correct
+2019-07-14 22:38:29,318	INFO -- Update step finished: 2019-07-14 22:38:29.318126
+2019-07-14 22:38:29,318	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 15
+                 Node removal correct: 3 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:38:29,318	INFO -- Going back to sleep
+2019-07-14 22:41:12,776	INFO -- Time for an update_step iteration! 2019-07-14 22:41:12.776482
+2019-07-14 22:41:13,937	INFO -- Cluster was stable for 150 seconds till 2019-07-14 22:41:12.779808, calculating best transition
+2019-07-14 22:41:15,117	INFO -- Execution was added to the knowledge base with load: 0.0
+2019-07-14 22:41:15,342	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-14 22:41:15,668	INFO -- Costs for all options: current= 0.20716721986694336, removal= inf, old_best= 0.20716721986694336
+2019-07-14 22:41:15,668	INFO -- Update step finished: 2019-07-14 22:41:15.668960
+2019-07-14 22:41:15,669	INFO -- Current scores
+                 Not stable: 14
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 16
+                 Node removal correct: 3 wrong: 0
+                 Old state correct: 2 wrong: 1
+2019-07-14 22:41:15,669	INFO -- Going back to sleep

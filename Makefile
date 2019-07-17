@@ -1,8 +1,8 @@
 up-gitlab:
 	@gcloud config set project re-kube	
 	@gcloud container clusters get-credentials develop-cluster
-	@gcloud -q container clusters resize develop-cluster --size=3	
-	@gcloud container clusters update develop-cluster --enable-autoscaling --min-nodes 1 --max-nodes 8 --node-pool larger-pool	
+	@gcloud -q container clusters resize develop-cluster --size=5
+	@gcloud container clusters update develop-cluster --enable-autoscaling --min-nodes 1 --max-nodes 8 --node-pool small-pool	
 	#@gcloud -q container clusters resize test-cluster --size=6	
 	@docker-compose -f docker-compose.yml up -d
 	@gnome-terminal --tab -- kubectl proxy --port=8080
@@ -16,7 +16,7 @@ up-gitlab:
 down-gitlab:
 	@gcloud config set project re-kube	
 	@gcloud container clusters get-credentials develop-cluster
-	@gcloud container clusters update develop-cluster --no-enable-autoscaling --node-pool larger-pool
+	@gcloud container clusters update develop-cluster --no-enable-autoscaling --node-pool small-pool	
 	@gcloud -q container clusters resize develop-cluster --size=0
 	@docker stop $(shell docker ps -q)
 
