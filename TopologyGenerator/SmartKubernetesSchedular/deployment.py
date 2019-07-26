@@ -88,7 +88,6 @@ def find_suitable_migrations_sets(selected_add, destination_node, transitions):
 
 
 def recurse_find_all_migrations_sets(transitions):
-    iterator = iter(transitions.values())
     selected_add = None
     selected_node = None
     for node_name, content in transitions.items():
@@ -97,14 +96,14 @@ def recurse_find_all_migrations_sets(transitions):
             selected_node = node_name
             break
 
-    #Base case
+    # Base case
     if selected_add is None:
         return []
 
-    #migrate
+    # migrate
     migrations_sets = find_suitable_migrations_sets(selected_add, selected_node, transitions)
 
-    #don't migrate
+    # don't migrate
     migrations_sets += recurse_find_all_migrations_sets(copy.deepcopy(transitions))
     return migrations_sets
 
@@ -113,10 +112,9 @@ def find_all_migrations_sets(transitions):
     migrations_sets = recurse_find_all_migrations_sets(copy.deepcopy(transitions))
     migrations_sets.append([])
 
-    #Sort the result so that the longest migration is in frond, as we want to try this one the first
+    # Sort the result so that the longest migration is in frond, as we want to try this one the first
     migrations_sets.sort(key=len, reverse=True)
     return migrations_sets
-
 
 
 def construct_deployment_sequence(goal_deployment):

@@ -21,7 +21,7 @@ from kubernetes_tools import extract_pods, extract_nodes
 from kubernetes_tools.cluster_stability import cluster_stable
 from kubernetes_tools.extract_nodes import calc_cost, node_sum_requested
 from kubernetes_tools.migrate_pod import PodException
-from log import log, remove_file_handler
+from log import log
 
 action = "none"
 
@@ -110,9 +110,9 @@ def get_best_transitions(load, nodes, settings):
             return get_best_transitions(load, nodes, settings)
 
 
-def transition_state(transitions, pods, nodes):
+def transition_state(transitions, pods, nodes, remove_nodes):
     down, migrate, up, node_removals = state_transition_plan(transitions, pods, nodes)
-    enforcer.enforce(down, migrate, up, node_removals)
+    enforcer.enforce(down, migrate, up, node_removals, remove_nodes)
 
 
 def update_step(time_window, load_extractor, settings):
@@ -127,10 +127,9 @@ def update_step(time_window, load_extractor, settings):
         create_time_window(end_time, load, time_window, extract_pods.pods_dict_to_list(pods), nodes)
 
         transitions = get_best_transitions(load, nodes, settings)
-        transition_state(transitions, pods, nodes)
+        transition_state(transitions, pods, nodes, settings["remove_nodes"])
         return True
     else:
-        log.info("Cluster was not stable, waiting for the next time_window to check stability")
         global action
         action = "none"
         return False
@@ -146,22 +145,23 @@ def tuning_loop(time_window, load_extractor, settings):
     old_wrong = 0
 
     went_wrong_counter = 0
-    went_correct_counter = 0
     not_stable_counter = 0
     nodes_to_full_to_move = 0
     while True:
+        log.info("Going to sleep for {} seconds".format(time_window.seconds))
+        time.sleep(time_window.seconds)
         log.info("Time for an update_step iteration! {}".format(datetime.datetime.now()))
         try:
-            if update_step(time_window, load_extractor, settings):
-                log.info("went correct")
-                if action == "mig":
-                    mig_correct += 1
-                elif action == "rem":
-                    rem_correct += 1
-                elif action == "old":
-                    old_correct += 1
-            else:
-                not_stable_counter += 1
+            while not update_step(time_window, load_extractor, settings):
+                log.info("Cluster was not stable, waiting for retry window ({} seconds) to try again".format(settings["retry_window"]))
+                time.sleep(settings["retry_window"])
+            log.info("went correct")
+            if action == "mig":
+                mig_correct += 1
+            elif action == "rem":
+                rem_correct += 1
+            elif action == "old":
+                old_correct += 1
         except PodException as e:
             log.info("went wrong: {}".format(type(e)))
             if action == "mig":
@@ -183,21 +183,19 @@ def tuning_loop(time_window, load_extractor, settings):
                  Migration correct: {mig_correct} wrong: {mig_wrong} chance blocked: {mig_chance_blocked}\n\
                  Node removal correct: {rem_correct} wrong: {rem_wrong}\n\
                  Old state correct: {old_correct} wrong: {old_wrong}")
-        log.info("Going back to sleep")
-        time.sleep(time_window.seconds)
 
 
-def official_startup():
+
+def official_startup(warmup_seconds):
     neo4j_queries.emtpy_graph_database()
     log.info("Graphdatabase emptied")
-    warmup_seconds = 900
     log.info("Waiting for warmup to finish. {} seconds".format(warmup_seconds))
     time.sleep(warmup_seconds)
 
 
 def main():
-    #official_startup()
     settings = load_settings.load_settings(sys.argv[1])
+    official_startup(settings["warmup_time"])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()
     #try:

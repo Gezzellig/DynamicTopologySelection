@@ -1,0 +1,89 @@
+config:
+  target: 'http://35.234.80.55'
+  phases:
+    - duration: 1800
+      name: "Warm up the application"
+      arrivalRate: 4
+
+    - duration: 600
+      name: "Start pattern"
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+    - duration: 600
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+    - duration: 600
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+    - duration: 600
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+    - duration: 600
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+    - duration: 600
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+    - duration: 600
+      arrivalRate: 4
+    - duration: 300
+      arrivalRate: 4
+      rampTo: 20
+    - duration: 600
+      arrivalRate: 20
+    - duration: 300
+      arrivalRate: 20
+      rampTo: 4
+
+scenarios:
+  - flow:
+    - get:
+        url: "/"

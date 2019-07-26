@@ -1,4 +1,5 @@
 {
+  "warmup_time": 1800,
   "combination": "connected",
   "max_images_combined": 4,
   "prometheus_address": "localhost:9090",

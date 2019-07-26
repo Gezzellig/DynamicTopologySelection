@@ -9,5 +9,5 @@
   "price_per_gb": 0.0038,
   "load_delta": 0.10,
   "migration_chance": 0.5,
-  "remove_nodes": true
+  "remove_nodes": false
 }

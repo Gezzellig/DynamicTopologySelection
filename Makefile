@@ -50,6 +50,8 @@ rego:
 
 
 support-up:
+	@gcloud config set project quixotic-dynamo-243708
+	@gcloud container clusters get-credentials demo-cluster-1
 	@docker-compose -f docker-compose.yml up -d
 	@gnome-terminal --tab -- kubectl proxy --port=8080
 	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.198.110.237/

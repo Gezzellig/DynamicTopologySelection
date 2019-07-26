@@ -73,17 +73,18 @@ def enforce_upscaling(upscalers, initial_state):
 
 
 def verify_node_removal(node_name):
-    #TODO: check if this needs to be verified
     pass
 
 
-def enforce_node_removals(node_removals):
+def enforce_node_removals(node_removals, remove_nodes):
     for node_name in node_removals:
-        delete_node.delete_node(node_name)
-        verify_node_removal(node_name)
+        if remove_nodes:
+            delete_node.delete_node(node_name)
+            verify_node_removal(node_name)
+        log.info("NODE_REMOVAL={}".format(node_name))
 
 
-def enforce(downscalers, migrations, upscalers, node_removals):
+def enforce(downscalers, migrations, upscalers, node_removals, remove_nodes):
     try:
         cur_state = extract_pods.extract_all_pods()
         enforce_downscaling(downscalers, cur_state)
@@ -91,7 +92,7 @@ def enforce(downscalers, migrations, upscalers, node_removals):
         enforce_migrations(migrations, cur_state)
         cur_state = extract_pods.extract_all_pods()
         enforce_upscaling(upscalers, cur_state)
-        enforce_node_removals(node_removals)
+        enforce_node_removals(node_removals, remove_nodes)
     except KeyError as e:
         log.exception("KeyError found, probably because it deployment scaled during enforcing, check this in stacktrace")
         raise PodHasScaledWhileEnforcingException
