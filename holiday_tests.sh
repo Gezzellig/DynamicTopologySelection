@@ -1,6 +1,6 @@
-for run in run1 run2 run3 run4 run5
+for run in run1 #run2 run3 run4 run5
 do
-	for pattern in test_one test_two 
+	for pattern in long_equal #small_equal peaks
 	do
 		echo $pattern $run without
 		artillery run demo/artillery/new_patterns/$pattern.yml -o results2/$pattern/without_tuner/$run/artillery.out

@@ -1,9 +1,0 @@
-2019-07-26 12:08:46,791	INFO -- Settings: TopologyGenerator/settings-php_apache.json
-2019-07-26 12:08:46,880	INFO -- Graphdatabase emptied
-2019-07-26 12:08:46,880	INFO -- Waiting for warmup to finish. 1800 seconds
-2019-07-26 12:09:44,109	INFO -- Settings: TopologyGenerator/settings-php_apache.json
-2019-07-26 12:09:44,186	INFO -- Graphdatabase emptied
-2019-07-26 12:09:44,186	INFO -- Waiting for warmup to finish. 1800 seconds
-2019-07-26 12:10:20,493	INFO -- Settings: TopologyGenerator/settings-php_apache.json
-2019-07-26 12:10:20,568	INFO -- Graphdatabase emptied
-2019-07-26 12:10:20,568	INFO -- Waiting for warmup to finish. 1800 seconds
