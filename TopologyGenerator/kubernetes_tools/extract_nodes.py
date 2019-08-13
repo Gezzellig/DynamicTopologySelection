@@ -1,5 +1,6 @@
 import requests
 
+from kubernetes_requestor import kubernetes_request
 from kubernetes_tools import extract_pods
 
 times_nodes_extracted = 0
@@ -15,7 +16,7 @@ def extract_nodes_cpu(nodes_info):
 
 
 def extract_all_nodes_cpu():
-    nodes_info = requests.get("http://localhost:8080/api/v1/nodes").json()
+    nodes_info = kubernetes_request("http://localhost:8080/api/v1/nodes").json()
     #print("Extract nodes")
     return extract_nodes_cpu(nodes_info)
 

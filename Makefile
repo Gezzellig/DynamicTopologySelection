@@ -27,7 +27,6 @@ up-demo:
 	@gcloud container clusters update demo-cluster-1 --enable-autoscaling --min-nodes 1 --max-nodes 8 --node-pool default-pool 	
 	@docker-compose -f docker-compose.yml up -d
 	@gnome-terminal --tab -- kubectl proxy --port=8080
-	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.234.80.55/
 	@sleep 5
 	@firefox https://console.cloud.google.com/kubernetes/list?project=quixotic-dynamo-243708
 	@gnome-terminal --tab -- kubectl port-forward -n monitoring prometheus-1-prometheus-0 9090
@@ -46,7 +45,7 @@ rego:
 	@gcloud config set project quixotic-dynamo-243708
 	@gcloud container clusters get-credentials demo-cluster-1
 	@gcloud -q container clusters resize demo-cluster-1 --size=0
-	@gcloud -q container clusters resize demo-cluster-1 --size=3
+	@gcloud -q container clusters resize demo-cluster-1 --size=2
 
 
 support-up:
@@ -54,7 +53,6 @@ support-up:
 	@gcloud container clusters get-credentials demo-cluster-1
 	@docker-compose -f docker-compose.yml up -d
 	@gnome-terminal --tab -- kubectl proxy --port=8080
-	@gnome-terminal --tab -- locust -f demo/loadGenerator/load.py --host=http://35.198.110.237/
 	@sleep 5
 	@firefox https://console.cloud.google.com/home/dashboard?project=re-kube
 	@gnome-terminal --tab -- kubectl port-forward -n monitoring prometheus-1-prometheus-0 9090

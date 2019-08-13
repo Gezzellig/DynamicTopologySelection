@@ -2,10 +2,12 @@ import subprocess
 
 import requests
 
+from kubernetes_requestor import kubernetes_request
+
 
 def get_deployment_scale(deployment_name, namespace):
     url = "http://localhost:8080/apis/extensions/v1beta1/namespaces/{}/deployments/{}/scale".format(namespace, deployment_name)
-    result = requests.get(url).json()
+    result = kubernetes_request(url).json()
     return result["spec"]["replicas"]
 
 

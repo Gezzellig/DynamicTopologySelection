@@ -19,6 +19,7 @@ from initializer import neo4j_queries
 from initializer.neo4j_queries import execute_query_function
 from kubernetes_tools import extract_pods, extract_nodes
 from kubernetes_tools.cluster_stability import cluster_stable
+from kubernetes_tools.delete_node import NodeException
 from kubernetes_tools.extract_nodes import calc_cost, node_sum_requested
 from kubernetes_tools.migrate_pod import PodException
 from log import log
@@ -81,11 +82,11 @@ def get_best_transitions(load, nodes, settings):
 
     log.info("Costs for all options: current= {}, removal= {}, old_best= {}".format(cur_cost, removal_resulting_cost, old_best_execution_cost))
     global action
-    if removal_resulting_cost <= old_best_execution_cost:
+    if removal_resulting_cost <= old_best_execution_cost + 0.0001:
         log.info("Removing node: {}".format(node_removed))
         action = "rem"
         return removal_transitions
-    elif cur_cost <= old_best_execution_cost:
+    elif cur_cost <= old_best_execution_cost + 0.0001:
         migration_chance = settings["migration_chance"]
         if random.random() <= migration_chance:
             log.info("Staying with current execution, but randomly changing one random pod")
@@ -171,6 +172,15 @@ def tuning_loop(time_window, load_extractor, settings):
             elif action == "old":
                 old_wrong += 1
             went_wrong_counter += 1
+        except NodeException as e:
+            log.info("went wrong: {}".format(type(e)))
+            if action == "mig":
+                mig_wrong += 1
+            elif action == "rem":
+                rem_wrong += 1
+            elif action == "old":
+                old_wrong += 1
+            went_wrong_counter += 1
         except MigrationChanceNotMet:
             mig_chance_blocked += 1
         except AllNodesToFullToMove:
@@ -198,10 +208,10 @@ def main():
     official_startup(settings["warmup_time"])
     time_window = datetime.timedelta(seconds=settings["measure_window"])
     load_extractor = LoadExtractorBytesIn()
-    #try:
-    tuning_loop(time_window, load_extractor, settings)
-    #except Exception as e:
-    #    log.exception(e)
+    try:
+        tuning_loop(time_window, load_extractor, settings)
+    except Exception as e:
+        log.exception(e)
     #remove_file_handler()
     #disconnect_neo4j()
 

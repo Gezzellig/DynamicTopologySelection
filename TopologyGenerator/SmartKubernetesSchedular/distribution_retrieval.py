@@ -3,6 +3,7 @@ import datetime
 import requests
 
 from initializer.neo4j_queries import execute_query_function
+from prometheus_requestor import prometheus_request
 
 
 def retreive_executions_on_load_command(tx, load, load_delta):
@@ -23,7 +24,7 @@ def retrieve_executions_on_load(load, settings):
 
 def retrieve_price(end_time, settings):
     request_url = "http://{prometheus}/api/v1/query?query=sum(machine_cpu_cores)*{price_cpu}%2B(sum(machine_memory_bytes)/2^30)*{price_mem}&time={time}".format(prometheus=settings["prometheus_address"], price_cpu=settings["price_per_core"], price_mem=settings["price_per_gb"], time=end_time.timestamp())
-    result = requests.get(request_url).json()
+    result = prometheus_request(request_url).json()
     return result["data"]["result"][0]["value"][1]
 
 

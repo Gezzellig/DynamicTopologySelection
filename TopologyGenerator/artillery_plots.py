@@ -211,7 +211,7 @@ def calc_cost(pattern_length, cost_list):
 
 def do_everything(with_artillery_files, without_artillery_files, folder):
     plot_load_pattern(folder, with_artillery_files[0])
-    pattern_length, av_with = average_artillery_files(folder, with_artillery_files)
+    """pattern_length, av_with = average_artillery_files(folder, with_artillery_files)
     pattern_length, av_without = average_artillery_files(folder, without_artillery_files)
     plot_with_without(pattern_length, av_with, av_without)
 
@@ -228,7 +228,7 @@ def do_everything(with_artillery_files, without_artillery_files, folder):
     print("with: {}".format(with_cost))
     print("without: {}".format(without_cost))
     print("saved: {}".format(saved))
-    print("percentage saved: {}".format(percentage_saved))
+    print("percentage saved: {}".format(percentage_saved))"""
 
 
 def main():
@@ -251,8 +251,11 @@ def main():
     valley_with_node_scaling_disabled_artillery_file_names = ["valley_with_node_deletion_off_1"]
 
 
+    folder = "/media/thijs/SSD2/University/2018-2019/Thesis/DynamicTopologySelection/results2/long_equal/"
 
-    do_everything(valley_with_artillery_file_names, valley_without_artillery_file_names, folder)
+    with_it = ["with_tuner/run2/artillery.out"]
+
+    do_everything(with_it, None, folder)
 
 
 

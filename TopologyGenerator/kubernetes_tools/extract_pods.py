@@ -1,6 +1,7 @@
 import requests
 
 from initializer.neo4j_queries import execute_query_function
+from kubernetes_requestor import kubernetes_request
 
 times_pods_extracted = 0
 
@@ -93,7 +94,7 @@ def extract_pods(pods_info):
 
 
 def extract_pods_namespace(name_space):
-    pods_info = requests.get("http://localhost:8080/api/v1/namespaces/{}/pods".format(name_space)).json()
+    pods_info = kubernetes_request("http://localhost:8080/api/v1/namespaces/{}/pods".format(name_space)).json()
     print("Extract pods namespace")
     global times_pods_extracted
     times_pods_extracted += 1
@@ -111,7 +112,7 @@ def extract_pods_deployment(deployment):
 
 
 def extract_all_pods():
-    pods_info = requests.get("http://localhost:8080/api/v1/pods").json()
+    pods_info = kubernetes_request("http://localhost:8080/api/v1/pods").json()
     #print("Extract all pods")
     global times_pods_extracted
     times_pods_extracted += 1

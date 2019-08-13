@@ -5,6 +5,7 @@ import sys
 import requests
 
 from SmartKubernetesSchedular.load_extractors.AbstractLoadExtractor import AbstractLoadExtractor
+from prometheus_requestor import prometheus_request
 
 
 class LoadExtractorBytesIn(AbstractLoadExtractor):
@@ -12,7 +13,7 @@ class LoadExtractorBytesIn(AbstractLoadExtractor):
         #pod_name = "php-apache-.*" #CLOUD
         pod_name = settings["load_pod_name"]
         request = 'http://{prom_address}/api/v1/query?query=sum(rate(container_network_receive_bytes_total{{interface="eth0",pod_name=~"{pod_name}"}}[{window}s]))&time={start_time}'.format(prom_address=settings["prometheus_address"], pod_name=pod_name, start_time=(end_time-window).timestamp(), window=window.seconds)
-        result = requests.get(request).json()
+        result = prometheus_request(request).json()
         try:
             return float(result["data"]["result"][0]["value"][1])
         except IndexError:
