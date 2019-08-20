@@ -61,6 +61,9 @@ def node_request_fits(node_cpu_pods):
 
 
 def calc_cost(nodes, settings):
+    """
+    Calculates the operational cost of running the given nodes using the prices provided in the settings.
+    """
     cost = 0.0
     for node_info in nodes.values():
         cost += node_info["cpu"] * settings["price_per_core"]

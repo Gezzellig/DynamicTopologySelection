@@ -134,8 +134,14 @@ def connect_pods_to_containers(settings):
 
 
 def movable(pod_info):
+    """
+    Returns if the given pod can be moved.
+    """
     return pod_info["deployment_name"] is not None
 
 
 def removable(pod_info):
+    """
+    Returns if the given pod can be removed.
+    """
     return movable(pod_info) or pod_info["kind"] == "DaemonSet"

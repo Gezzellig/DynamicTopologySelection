@@ -92,17 +92,34 @@ def plot_cost(pattern_length, with_cost, without_cost, with_no_node_removal_cost
     timestep = pattern_length.seconds / float(len(with_cost))
     time_axis = [x*timestep/time_scale for x in range(0, len(with_cost))]
 
-    plt.figure(figsize=(plot_width, plot_height))
+    fig, ax = plt.subplots(1, 1, figsize=(plot_width, plot_height))
     plt.title("Cost Tuner vs Normal")
     plt.ylabel("Cost (Euro)")
     plt.xlabel("Time (minutes)")
     plt.plot(time_axis, without_cost, color="red", label="Normal")
-    plt.plot(time_axis, with_cost, color="blue", label="Tuner")
+    plt.plot(time_axis, with_cost, color="blue", label="Tuner with node removal")
     plt.plot(time_axis, with_no_node_removal_cost, color="green", label="Tuner without node removal")
-    plt.plot(time_axis, av_with_node_removal_simulated, color="black", label="Tuner node removal simulated")
-    plt.legend()
-    plt.savefig(output_file_name, bbox_inches='tight')
+    plt.plot(time_axis, av_with_node_removal_simulated, color="black", label="Tuner simulated node removal")
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.20), ncol=2)
+    #plt.subplots_adjust(bottom=0.20)
+    fig.savefig(output_file_name, bbox_inches='tight')
+    plt.close()
 
+
+def plot_cost_per_type(title, pattern_length, with_cost, color, without_cost, output_file_name):
+    timestep = pattern_length.seconds / float(len(with_cost))
+    time_axis = [x*timestep/time_scale for x in range(0, len(with_cost))]
+
+    fig, ax = plt.subplots(1, 1, figsize=(plot_width, plot_height))
+    plt.title(title)
+    plt.ylabel("Cost (Euro)")
+    plt.xlabel("Time (minutes)")
+    plt.plot(time_axis, without_cost, color="red", label="Normal")
+    plt.plot(time_axis, with_cost, color=color, label="Tuner")
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.20), ncol=2)
+    #plt.subplots_adjust(bottom=0.20)
+    fig.savefig(output_file_name, bbox_inches='tight')
+    plt.close()
 
 
 def plot_latency(pattern_length, with_median, with_p95, without_median, without_p95, with_no_node_median, with_no_node_p95, output_folder):
@@ -119,8 +136,9 @@ def plot_latency(pattern_length, with_median, with_p95, without_median, without_
     plt.plot(time_axis, with_p95, color="red", linestyle='dotted', label="Tuner, 95th percentile")
     plt.plot(time_axis, with_no_node_median, color="green", label="Tuner without node removal, median")
     plt.plot(time_axis, with_no_node_p95, color="green", linestyle='dotted', label="Tuner without node removal, 95th percentile")
-    plt.legend()
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.20), ncol=2)
     plt.savefig(output_folder+'latency.png', bbox_inches='tight')
+    plt.close()
 
     plt.figure(figsize=(plot_width, plot_height))
     plt.title("Latency Tuner vs Normal")
@@ -136,14 +154,57 @@ def plot_latency(pattern_length, with_median, with_p95, without_median, without_
     plt.plot(time_axis, with_p95, color="red", linestyle='dotted', label="Tuner, 95th percentile")
     plt.plot(time_axis, with_no_node_median, color="green", label="Tuner without node removal, median")
     plt.plot(time_axis, with_no_node_p95, color="green", linestyle='dotted', label="Tuner without node removal, 95th percentile")
-    plt.legend()
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.20), ncol=2)
     plt.savefig(output_folder+"log_latency.png", bbox_inches='tight')
+    plt.close()
+
+
+def plot_latency_per_type(title, pattern_length, with_median, with_p95, color, without_median, without_p95, output_file_name):
+    timestep = pattern_length.seconds / float(len(with_median))
+    time_axis = [x*timestep/time_scale for x in range(0, len(with_median))]
+
+    plt.figure(figsize=(plot_width, plot_height))
+    plt.title(title)
+    plt.ylabel("Latency (milliseconds)")
+    plt.xlabel("Time (minutes)")
+    plt.plot(time_axis, without_median, color="blue", label="Normal, median")
+    plt.plot(time_axis, without_p95, color="blue", linestyle='dotted', label="Normal, 95th percentile")
+    plt.plot(time_axis, with_median, color=color, label="Tuner, median")
+    plt.plot(time_axis, with_p95, color=color, linestyle='dotted', label="Tuner, 95th percentile")
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.20), ncol=2)
+    plt.savefig(output_file_name+".png", bbox_inches='tight')
+    plt.close()
+
+    plt.figure(figsize=(plot_width, plot_height))
+    plt.title(title)
+    plt.ylabel("Latency (milliseconds)")
+    plt.xlabel("Time (minutes)")
+
+    plt.yscale("log")
+    #plt.ylim(0, 3000)
+
+    plt.plot(time_axis, without_median, color="blue", label="Normal, median")
+    plt.plot(time_axis, without_p95, color="blue", linestyle='dotted', label="Normal, 95th percentile")
+    plt.plot(time_axis, with_median, color=color, label="Tuner, median")
+    plt.plot(time_axis, with_p95, color=color, linestyle='dotted', label="Tuner, 95th percentile")
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.20), ncol=2)
+    plt.savefig(output_file_name+"_log.png", bbox_inches='tight')
+    plt.close()
 
 
 def plot_with_without(pattern_length, av_with, av_without, av_with_no_node_removal, av_with_node_removal_simulated, output_folder):
     plot_cost(pattern_length, av_with["cost"], av_without["cost"], av_with_no_node_removal["cost"], av_with_node_removal_simulated, output_folder+"cost.png")
-    plot_latency(pattern_length, av_with["latency_median"], av_with["latency_p95"], av_without["latency_median"], av_without["latency_p95"], av_with_no_node_removal["latency_median"], av_with_no_node_removal["latency_p95"], output_folder)
+    plot_cost_per_type("Cost with node removal", pattern_length, av_with["cost"], "blue", av_without["cost"], output_folder+"cost_normal.png")
+    plot_cost_per_type("Cost without node removal", pattern_length, av_with_no_node_removal["cost"], "green", av_without["cost"], output_folder+"cost_no_node_removal.png")
+    plot_cost_per_type("Cost simulated node removal", pattern_length, av_with_node_removal_simulated, "black", av_without["cost"], output_folder+"cost_simulated_node_removal.png")
 
+
+
+
+    plot_latency(pattern_length, av_with["latency_median"], av_with["latency_p95"], av_without["latency_median"], av_without["latency_p95"], av_with_no_node_removal["latency_median"], av_with_no_node_removal["latency_p95"], output_folder)
+    plot_latency_per_type("Latency with node removal", pattern_length, av_with["latency_median"], av_with["latency_p95"], "red", av_without["latency_median"], av_without["latency_p95"], output_folder+"latency_with")
+    plot_latency_per_type("Latency without node removal", pattern_length, av_with_no_node_removal["latency_median"], av_with_no_node_removal["latency_p95"], "green", av_without["latency_median"], av_without["latency_p95"], output_folder+"latency_without")
+    #
 
 def plot_load_pattern(folder, artillery_file_name, output_file_name):
     time = 0
@@ -175,6 +236,7 @@ def plot_load_pattern(folder, artillery_file_name, output_file_name):
     plt.gca().set_ylim(bottom=0)
     plt.legend()
     plt.savefig(output_file_name, bbox_inches='tight')
+    plt.close()
 
 
 
@@ -267,4 +329,3 @@ artillery_time_correction = datetime.timedelta(hours=2)
 
 if __name__ == '__main__':
     main()
-    plt.show()

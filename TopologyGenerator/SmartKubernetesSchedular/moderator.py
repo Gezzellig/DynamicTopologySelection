@@ -70,7 +70,7 @@ def select_random_deployment_pod_to_transition(nodes):
 
 
 def get_best_transitions(load, nodes, settings):
-    removal_possible, node_removed, removal_transitions = empty_node_transitions(settings)
+    removal_possible, node_removed, removal_transitions = empty_node_transitions()
     removal_resulting_cost = math.inf
     cur_cost = calc_cost(nodes, settings)
     if removal_possible:
@@ -100,7 +100,6 @@ def get_best_transitions(load, nodes, settings):
         current_state = extract_nodes.extract_all_nodes_cpu_pods_dict()
 
         # Remove executions to ensure that it doesn't get stuck on one lucky run.
-        # TODO: add this line again!!!!!!
         execute_query_function(delete_execution, old_best_execution["execution_id"])
         success, transitions = find_transitions_execution_change(current_state, old_best_execution["nodes"])
         if success:

@@ -6,69 +6,10 @@ from SmartKubernetesSchedular import enforcer
 from kubernetes_tools import extract_nodes, extract_pods
 
 
-def verify_deployment(deployment, pods, nodes):
-    for node_name, pod_names in deployment.items():
-        cpu_available = nodes[node_name]["cpu"]
-        cpu_needed = 0.0
-        for pod_name in pod_names:
-            cpu_needed += pods[pod_name]["total_requested"]
-        if cpu_needed > cpu_available:
-            return False
-    return True
-
-
-def find_migrations(init_deployment, goal_deployment):
-    migrations = []
-    for node, pod_names in goal_deployment.items():
-        for pod_name in pod_names:
-            if pod_name not in init_deployment[node]:
-                for source_node, pods in init_deployment.items():
-                    if pod_name in pods:
-                        migrations.append({"pod_name": pod_name, "source": source_node, "destination": node})
-                        break
-    return migrations
-
-
-def extract_deployment(pods, nodes):
-    deployment = {}
-    for node_name in nodes:
-        deployment[node_name] = []
-    for pod_name, info in pods.items():
-        node = info["node_name"]
-        deployment[node].append(pod_name)
-    return deployment
-
-
-def simulate_migration(cur_deployment, migration):
-    pod_name = migration["pod_name"]
-    source = migration["source"]
-    destination = migration["destination"]
-    cur_deployment[source].remove(pod_name)
-    cur_deployment[destination].append(pod_name)
-    return cur_deployment
-
-
-def helper_recursive_construction_migration_order(migration, migrations, cur_deployment, pods, nodes):
-    migrations.remove(migration)
-    cur_deployment = simulate_migration(cur_deployment, migration)
-    if not verify_deployment(cur_deployment, pods, nodes):
-        return False, []
-    return recursive_construction_migration_order(migrations, cur_deployment, pods, nodes)
-
-
-def recursive_construction_migration_order(migrations, cur_deployment, pods, nodes):
-    # Base case no more migrations to schedule
-    if not migrations:
-        return True, []
-
-    for migration in migrations:
-        success, result = helper_recursive_construction_migration_order(migration, list(migrations), copy.deepcopy(cur_deployment), pods, nodes)
-        if success:
-            return True, [migration] + result
-    return False, []
-
-
 def merge_found_migrations_sets(migration, migrations_sets):
+    """"
+    Adds the given migration to all elements present in migration_sets.
+    """
     for other in migrations_sets:
         other.append(migration)
     migrations_sets.append([migration])
@@ -76,6 +17,9 @@ def merge_found_migrations_sets(migration, migrations_sets):
 
 
 def find_suitable_migrations_sets(selected_add, destination_node, transitions):
+    """
+    For one add action finds all possible suitable remove actions to and lists them in the migration sets.
+    """
     migrations_sets = []
     for source_node, content in transitions.items():
         for pod_remove in content["remove"]:
@@ -88,6 +32,9 @@ def find_suitable_migrations_sets(selected_add, destination_node, transitions):
 
 
 def recurse_find_all_migrations_sets(transitions):
+    """
+    Recursively generates all possible migration sets that can be retrieved from the transitions.
+    """
     selected_add = None
     selected_node = None
     for node_name, content in transitions.items():
@@ -109,23 +56,15 @@ def recurse_find_all_migrations_sets(transitions):
 
 
 def find_all_migrations_sets(transitions):
+    """
+    Starts the recursive function to retrieve all migration sets, and then orders them decreaslingy on length.
+    """
     migrations_sets = recurse_find_all_migrations_sets(copy.deepcopy(transitions))
     migrations_sets.append([])
 
-    # Sort the result so that the longest migration is in frond, as we want to try this one the first
+    # Sort the result so that the longest migration is in front, as we want to try this one the first
     migrations_sets.sort(key=len, reverse=True)
     return migrations_sets
-
-
-def construct_deployment_sequence(goal_deployment):
-    nodes = extract_nodes.extract_all_nodes_cpu()
-    pods = extract_pods.extract_all_pods()
-    init_deployment = extract_deployment(pods, nodes)
-
-    migrations = find_migrations(init_deployment, goal_deployment)
-    # Shuffle them to reduce the change of changing a lot on one node at a time
-    random.shuffle(migrations)
-    return recursive_construction_migration_order(migrations, init_deployment, pods, nodes)
 
 
 def remove_non_migrated_remove_pods(transitions, migration_set, pods):
@@ -139,7 +78,76 @@ def remove_non_migrated_remove_pods(transitions, migration_set, pods):
     return local_pods
 
 
+def extract_deployment(pods, nodes):
+    """
+    Transforms the given pods and nodes into a dictionary where the pods running on a node are added in a list under the node names key.
+    """
+    deployment = {}
+    for node_name in nodes:
+        deployment[node_name] = []
+    for pod_name, info in pods.items():
+        node = info["node_name"]
+        deployment[node].append(pod_name)
+    return deployment
+
+
+def simulate_migration(cur_deployment, migration):
+    """
+    Generates the resulting deployment after the given migration would be performed
+    """
+    pod_name = migration["pod_name"]
+    source = migration["source"]
+    destination = migration["destination"]
+    cur_deployment[source].remove(pod_name)
+    cur_deployment[destination].append(pod_name)
+    return cur_deployment
+
+
+def verify_deployment(deployment, pods, nodes):
+    """
+    Checks for every node if the amount of requested cpu does not excel the available cpu.
+    """
+    for node_name, pod_names in deployment.items():
+        cpu_available = nodes[node_name]["cpu"]
+        cpu_needed = 0.0
+        for pod_name in pod_names:
+            cpu_needed += pods[pod_name]["total_requested"]
+        if cpu_needed > cpu_available:
+            return False
+    return True
+
+
+def helper_recursive_construction_migration_order(migration, migrations, cur_deployment, pods, nodes):
+    """
+    Helps with finding of the given set of migrations can be performed and return its found order
+    """
+    migrations.remove(migration)
+    cur_deployment = simulate_migration(cur_deployment, migration)
+    if not verify_deployment(cur_deployment, pods, nodes):
+        return False, []
+    return recursive_construction_migration_order(migrations, cur_deployment, pods, nodes)
+
+
+def recursive_construction_migration_order(migrations, cur_deployment, pods, nodes):
+    """
+    Recursively searches for a possible order of migrations to perform the provided migrations.
+    When this is found it is returned.
+    """
+    # Base case no more migrations to schedule
+    if not migrations:
+        return True, []
+
+    for migration in migrations:
+        success, result = helper_recursive_construction_migration_order(migration, list(migrations), copy.deepcopy(cur_deployment), pods, nodes)
+        if success:
+            return True, [migration] + result
+    return False, []
+
+
 def find_suitable_migrations(transitions, migrations_sets, pods, nodes):
+    """
+    Finds the first and therefore largest migrations set that can be executed and returns its order.
+    """
     for migrations_set in migrations_sets:
         local_pods_removed = remove_non_migrated_remove_pods(transitions, migrations_set, pods)
         cur_deployment = extract_deployment(local_pods_removed, nodes)

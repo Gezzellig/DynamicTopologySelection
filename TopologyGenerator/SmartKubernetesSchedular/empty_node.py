@@ -10,8 +10,10 @@ from kubernetes_tools.extract_nodes import node_request_fits, node_sum_requested
 from log import log
 
 
-
 def node_removable(pods_info):
+    """
+    Checks if the given pods are removable.
+    """
     for pod_info in pods_info:
         if not extract_pods.removable(pod_info):
             return False
@@ -19,6 +21,9 @@ def node_removable(pods_info):
 
 
 def select_removable_nodes(nodes):
+    """
+    Filters the nodes that can't be removed from the provided nodes.
+    """
     removable_nodes = []
     for name, node_info in nodes.items():
         if node_removable(node_info["pods"]):
@@ -27,14 +32,20 @@ def select_removable_nodes(nodes):
 
 
 def find_pods_to_be_rescheduled(pods):
+    """
+    Returns all pods that have to be rescheduled on a node.
+    """
     reschedule = []
     for pod in pods:
         if extract_pods.movable(pod):
             reschedule.append(pod)
     return reschedule
 
-# Todo change to least amount of cpu usage
+
 def least_transitions_removable(removable_nodes, nodes):
+    """
+    Selects the node that can be removed with the least amount of changes.
+    """
     least_transitions = math.inf
     least_transitions_node = None
     for node_name in removable_nodes:
@@ -46,6 +57,9 @@ def least_transitions_removable(removable_nodes, nodes):
 
 
 def recursive_find_new_distributions(reschedule_pods, new_nodes):
+    """
+    Recursive function that tries all possible migrations and returns possible distributions.
+    """
     #Base case no pods have to be rescheduled anymore
     if not reschedule_pods:
         return [new_nodes]
@@ -62,10 +76,16 @@ def recursive_find_new_distributions(reschedule_pods, new_nodes):
 
 
 def find_new_distributions(reschedule_pods, new_nodes):
+    """
+    Helper function to start the recursive search for possible new distributions.
+    """
     return recursive_find_new_distributions(copy.deepcopy(reschedule_pods), copy.deepcopy(new_nodes))
 
 
 def get_max_requested(distribution):
+    """
+    Return the requested value of the node the has the largest requested value of the given distribution
+    """
     max_requested = 0.0
     for node_info in distribution.values():
         requested = node_sum_requested(node_info)
@@ -75,6 +95,9 @@ def get_max_requested(distribution):
 
 
 def select_lowest_max_requested(distributions):
+    """
+    Return the distribution that has the lowest maximum requested value over all nodes from the given distributions.
+    """
     lowest_max_requested = math.inf
     lowest_max_requested_distribution = None
     for distribution in distributions:
@@ -86,6 +109,9 @@ def select_lowest_max_requested(distributions):
 
 
 def change_selected_distribution_into_transitions(candidate_node_name, selected_distribution, original_distribution):
+    """
+    Translate the node removal into a standardised format that the planner understands.
+    """
     transitions = {
         candidate_node_name: {
             "delete": True,
@@ -111,7 +137,10 @@ def calc_removal_resulting_cost(nodes, node_removed, settings):
     return calc_cost(copy_nodes, settings)
 
 
-def empty_node_transitions(settings):
+def empty_node_transitions():
+    """
+    Find if any node can be emptied and removed
+    """
     nodes = extract_nodes.extract_all_nodes_cpu_pods()
     removable_nodes = select_removable_nodes(nodes)
     candidate_node_name = least_transitions_removable(removable_nodes, nodes)
