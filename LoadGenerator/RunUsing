@@ -1,1 +1,0 @@
-locust -f UserBehaviour.py --host=http://localhost

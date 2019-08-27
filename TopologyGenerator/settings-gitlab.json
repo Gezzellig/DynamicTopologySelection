@@ -1,9 +1,0 @@
-{
-  "load_pod_name": "gitlab-unicorn-.*",
-  "prometheus_address": "localhost:9090",
-  "kubernetes_api": "localhost:8080",
-  "measure_window": 150,
-  "price_per_core": 0.0347721,
-  "price_per_gb": 0.0046607,
-  "load_delta": 0.10
-}
