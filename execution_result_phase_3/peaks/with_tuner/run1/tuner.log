@@ -1,0 +1,734 @@
+2019-07-29 12:07:11,568	INFO -- Settings: TopologyGenerator/settings-php_apache.json
+2019-07-29 12:07:11,657	INFO -- Graphdatabase emptied
+2019-07-29 12:07:11,657	INFO -- Waiting for warmup to finish. 1800 seconds
+2019-07-29 12:37:11,757	INFO -- Going to sleep for 240 seconds
+2019-07-29 12:41:11,858	INFO -- Time for an update_step iteration! 2019-07-29 12:41:11.857964
+2019-07-29 12:41:12,280	INFO -- Cluster was stable for 240 seconds till 2019-07-29 12:41:11.858300, calculating best transition
+2019-07-29 12:41:13,130	INFO -- Execution was added to the knowledge base with load: 4605.549386557871
+2019-07-29 12:41:13,573	INFO -- Costs for all options: current= 0.2512599128723145, removal= 0.16750660858154298, old_best= 0.2512599128723145
+2019-07-29 12:41:13,573	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pk3f
+2019-07-29 12:41:13,806	INFO -- moving: php-apache-5f657688bc-cbf6m to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 12:41:24,452	INFO -- pod php-apache-5f657688bc-cbf6m is deleted
+2019-07-29 12:41:24,530	INFO -- Movement failed
+2019-07-29 12:41:24,742	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 12:41:24,742	INFO -- Update step finished: 2019-07-29 12:41:24.742471
+2019-07-29 12:41:24,742	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 0 wrong: 1
+                 Old state correct: 0 wrong: 0
+2019-07-29 12:41:24,742	INFO -- Going to sleep for 240 seconds
+2019-07-29 12:45:24,842	INFO -- Time for an update_step iteration! 2019-07-29 12:45:24.841957
+2019-07-29 12:45:25,262	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 12:45:49,995	INFO -- Cluster was stable for 240 seconds till 2019-07-29 12:45:49.285992, calculating best transition
+2019-07-29 12:45:50,308	INFO -- Execution was added to the knowledge base with load: 4434.3635484395345
+2019-07-29 12:45:50,757	INFO -- Costs for all options: current= 0.2512599128723145, removal= 0.16750660858154298, old_best= 0.2512599128723145
+2019-07-29 12:45:50,757	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pk3f
+2019-07-29 12:45:51,010	INFO -- moving: php-apache-5f657688bc-9r4t4 to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 12:46:04,438	INFO -- pod php-apache-5f657688bc-9r4t4 is deleted
+2019-07-29 12:46:04,562	INFO -- Movement failed
+2019-07-29 12:46:04,756	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 12:46:04,757	INFO -- Update step finished: 2019-07-29 12:46:04.757594
+2019-07-29 12:46:04,757	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 0 wrong: 2
+                 Old state correct: 0 wrong: 0
+2019-07-29 12:46:04,757	INFO -- Going to sleep for 240 seconds
+2019-07-29 12:50:04,857	INFO -- Time for an update_step iteration! 2019-07-29 12:50:04.857960
+2019-07-29 12:50:05,042	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 12:50:29,584	INFO -- Cluster was stable for 240 seconds till 2019-07-29 12:50:29.065954, calculating best transition
+2019-07-29 12:50:29,989	INFO -- Execution was added to the knowledge base with load: 4510.011982022989
+2019-07-29 12:50:30,499	INFO -- Costs for all options: current= 0.2512599128723145, removal= 0.16750660858154298, old_best= 0.2512599128723145
+2019-07-29 12:50:30,500	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pk3f
+2019-07-29 12:50:30,811	INFO -- moving: php-apache-5f657688bc-dtc8s to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 12:50:33,027	INFO -- pod php-apache-5f657688bc-dtc8s is deleted
+2019-07-29 12:50:33,170	INFO -- Movement failed
+2019-07-29 12:50:33,379	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 12:50:33,380	INFO -- Update step finished: 2019-07-29 12:50:33.380128
+2019-07-29 12:50:33,380	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 0 wrong: 3
+                 Old state correct: 0 wrong: 0
+2019-07-29 12:50:33,380	INFO -- Going to sleep for 240 seconds
+2019-07-29 12:54:33,417	INFO -- Time for an update_step iteration! 2019-07-29 12:54:33.417402
+2019-07-29 12:54:33,973	INFO -- Cluster was stable for 240 seconds till 2019-07-29 12:54:33.417619, calculating best transition
+2019-07-29 12:54:34,349	INFO -- Execution was added to the knowledge base with load: 4693.519097485492
+2019-07-29 12:54:34,962	INFO -- Costs for all options: current= 0.2512599128723145, removal= 0.16750660858154298, old_best= 0.2512599128723145
+2019-07-29 12:54:34,963	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pk3f
+2019-07-29 12:54:35,345	INFO -- moving: php-apache-5f657688bc-9qmtj to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 12:54:44,441	INFO -- pod php-apache-5f657688bc-9qmtj is deleted
+2019-07-29 12:54:44,618	INFO -- Movement failed
+2019-07-29 12:54:44,820	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 12:54:44,821	INFO -- Update step finished: 2019-07-29 12:54:44.821136
+2019-07-29 12:54:44,821	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 0 wrong: 4
+                 Old state correct: 0 wrong: 0
+2019-07-29 12:54:44,821	INFO -- Going to sleep for 240 seconds
+2019-07-29 12:58:44,902	INFO -- Time for an update_step iteration! 2019-07-29 12:58:44.902199
+2019-07-29 12:58:45,071	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 12:59:09,601	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 12:59:34,150	INFO -- Cluster was stable for 240 seconds till 2019-07-29 12:59:33.621957, calculating best transition
+2019-07-29 12:59:34,612	INFO -- Execution was added to the knowledge base with load: 4628.543038821729
+2019-07-29 12:59:35,420	INFO -- Costs for all options: current= 0.2512599128723145, removal= 0.16750660858154298, old_best= 0.2512599128723145
+2019-07-29 12:59:35,420	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pk3f
+2019-07-29 12:59:35,817	INFO -- moving: php-apache-5f657688bc-29w44 to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 12:59:44,436	INFO -- pod php-apache-5f657688bc-29w44 is deleted
+2019-07-29 12:59:44,564	INFO -- Movement failed
+2019-07-29 12:59:44,946	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 12:59:44,947	INFO -- Update step finished: 2019-07-29 12:59:44.947344
+2019-07-29 12:59:44,947	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 0 wrong: 5
+                 Old state correct: 0 wrong: 0
+2019-07-29 12:59:44,947	INFO -- Going to sleep for 240 seconds
+2019-07-29 13:03:44,957	INFO -- Time for an update_step iteration! 2019-07-29 13:03:44.957961
+2019-07-29 13:03:45,332	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:04:09,709	INFO -- Cluster was stable for 240 seconds till 2019-07-29 13:04:09.353950, calculating best transition
+2019-07-29 13:04:10,083	INFO -- Execution was added to the knowledge base with load: 4626.00283795923
+2019-07-29 13:04:10,781	INFO -- Costs for all options: current= 0.2512599128723145, removal= 0.16750660858154298, old_best= 0.2512599128723145
+2019-07-29 13:04:10,781	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-pk3f
+2019-07-29 13:04:11,149	INFO -- moving: php-apache-5f657688bc-m7vp2 to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 13:04:24,441	INFO -- pod php-apache-5f657688bc-m7vp2 is deleted
+2019-07-29 13:04:24,593	INFO -- Movement failed
+2019-07-29 13:04:24,849	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 13:04:24,850	INFO -- Update step finished: 2019-07-29 13:04:24.850478
+2019-07-29 13:04:24,850	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 0 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 13:04:24,850	INFO -- Going to sleep for 240 seconds
+2019-07-29 13:08:24,928	INFO -- Time for an update_step iteration! 2019-07-29 13:08:24.928813
+2019-07-29 13:08:25,156	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:08:49,852	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:09:14,541	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:09:38,782	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:10:03,049	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:10:27,872	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:10:52,535	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:11:17,190	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:11:41,843	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:12:06,408	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:12:31,681	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:12:57,053	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:13:24,963	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:13:50,369	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:14:15,375	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:14:40,086	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:15:04,392	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:15:28,729	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:15:53,298	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:16:18,418	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:16:42,625	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:17:06,816	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:17:31,022	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:17:55,276	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:18:19,638	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:18:43,838	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:19:08,030	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:19:32,205	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:19:56,382	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:20:20,596	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:20:44,799	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:21:08,989	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:21:33,346	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:21:57,740	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:22:22,117	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:22:46,517	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:23:10,907	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:23:35,366	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:23:59,734	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:24:24,117	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:24:48,522	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:25:12,917	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:25:37,336	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:26:01,727	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:26:26,128	INFO -- Cluster was stable for 240 seconds till 2019-07-29 13:26:25.751966, calculating best transition
+2019-07-29 13:26:26,550	INFO -- Execution was added to the knowledge base with load: 4371.910470282309
+2019-07-29 13:26:27,339	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.2512599128723145
+2019-07-29 13:26:27,339	INFO -- Changing to old_best_execution found in time: 2019-07-29 13:00:09.353000
+2019-07-29 13:26:27,580	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 13:26:28,195	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.2512599128723145
+2019-07-29 13:26:28,196	INFO -- Changing to old_best_execution found in time: 2019-07-29 12:41:49.285000
+2019-07-29 13:26:28,408	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 13:26:28,927	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.2512599128723145
+2019-07-29 13:26:28,927	INFO -- Changing to old_best_execution found in time: 2019-07-29 12:37:11.858000
+2019-07-29 13:26:29,122	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 13:26:29,584	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.2512599128723145
+2019-07-29 13:26:29,584	INFO -- Changing to old_best_execution found in time: 2019-07-29 12:46:29.065000
+2019-07-29 13:26:29,792	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 13:26:30,163	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.2512599128723145
+2019-07-29 13:26:30,163	INFO -- Changing to old_best_execution found in time: 2019-07-29 12:55:33.621000
+2019-07-29 13:26:30,342	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 13:26:30,596	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.2512599128723145
+2019-07-29 13:26:30,597	INFO -- Changing to old_best_execution found in time: 2019-07-29 12:50:33.417000
+2019-07-29 13:26:30,754	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 13:26:30,962	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.5862731010437012
+2019-07-29 13:26:30,963	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:26:31,254	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:26:32,209	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:26:32,209	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:26:32,209	INFO -- went correct
+2019-07-29 13:26:32,209	INFO -- Update step finished: 2019-07-29 13:26:32.209895
+2019-07-29 13:26:32,210	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 1 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 13:26:32,210	INFO -- Going to sleep for 240 seconds
+2019-07-29 13:30:32,310	INFO -- Time for an update_step iteration! 2019-07-29 13:30:32.309995
+2019-07-29 13:30:32,526	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:30:57,058	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:31:21,459	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:31:45,843	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:32:10,026	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:32:34,223	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:32:58,389	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:33:22,588	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:33:46,790	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:34:11,039	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:34:35,234	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:34:59,412	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:35:23,591	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:35:47,783	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:36:12,117	INFO -- Cluster was stable for 240 seconds till 2019-07-29 13:36:11.805984, calculating best transition
+2019-07-29 13:36:12,430	INFO -- Execution was added to the knowledge base with load: 4505.226591672541
+2019-07-29 13:36:12,684	INFO -- Costs for all options: current= 0.41876652145385745, removal= 0.33501321716308596, old_best= 0.41876652145385745
+2019-07-29 13:36:12,684	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:36:12,955	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:36:13,618	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:36:13,618	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:36:13,619	INFO -- went correct
+2019-07-29 13:36:13,619	INFO -- Update step finished: 2019-07-29 13:36:13.619661
+2019-07-29 13:36:13,619	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 2 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 13:36:13,619	INFO -- Going to sleep for 240 seconds
+2019-07-29 13:40:13,717	INFO -- Time for an update_step iteration! 2019-07-29 13:40:13.717957
+2019-07-29 13:40:14,053	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:40:38,210	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:41:02,408	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:41:26,597	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:41:50,788	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:42:15,002	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:42:39,320	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:43:03,504	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:43:27,671	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:43:52,020	INFO -- Cluster was stable for 240 seconds till 2019-07-29 13:43:51.695582, calculating best transition
+2019-07-29 13:43:52,701	INFO -- Execution was added to the knowledge base with load: 4545.289843362267
+2019-07-29 13:43:53,063	INFO -- Costs for all options: current= 0.41876652145385745, removal= 0.33501321716308596, old_best= 0.41876652145385745
+2019-07-29 13:43:53,064	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:43:53,400	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:43:54,342	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:43:54,342	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-tdlf
+2019-07-29 13:43:54,342	INFO -- went correct
+2019-07-29 13:43:54,343	INFO -- Update step finished: 2019-07-29 13:43:54.343183
+2019-07-29 13:43:54,343	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 3 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 13:43:54,343	INFO -- Going to sleep for 240 seconds
+2019-07-29 13:47:54,410	INFO -- Time for an update_step iteration! 2019-07-29 13:47:54.409983
+2019-07-29 13:47:54,747	INFO -- Cluster was stable for 240 seconds till 2019-07-29 13:47:54.410307, calculating best transition
+2019-07-29 13:47:55,130	INFO -- Execution was added to the knowledge base with load: 4620.900050417628
+2019-07-29 13:47:55,754	INFO -- Costs for all options: current= 0.41876652145385745, removal= 0.33501321716308596, old_best= 0.41876652145385745
+2019-07-29 13:47:55,754	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:47:56,107	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:47:56,796	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:47:56,796	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 13:47:56,797	INFO -- went correct
+2019-07-29 13:47:56,797	INFO -- Update step finished: 2019-07-29 13:47:56.797581
+2019-07-29 13:47:56,797	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 0 wrong: 0 chance blocked: 0
+                 Node removal correct: 4 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 13:47:56,797	INFO -- Going to sleep for 240 seconds
+2019-07-29 13:51:56,897	INFO -- Time for an update_step iteration! 2019-07-29 13:51:56.897843
+2019-07-29 13:51:57,155	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:52:21,563	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:52:45,957	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:53:10,385	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:53:34,773	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:53:59,170	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:54:23,536	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:54:47,962	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:55:12,444	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:55:36,877	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:56:01,104	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:56:25,540	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:56:50,076	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 13:57:14,531	INFO -- Cluster was stable for 240 seconds till 2019-07-29 13:57:14.100418, calculating best transition
+2019-07-29 13:57:14,848	INFO -- Execution was added to the knowledge base with load: 4539.102211684723
+2019-07-29 13:57:15,019	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 13:57:15,121	INFO -- Costs for all options: current= 0.33501321716308596, removal= inf, old_best= 0.33501321716308596
+2019-07-29 13:57:15,121	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-29 13:57:15,533	INFO -- moving: php-apache-5f657688bc-vtsdz to gke-demo-cluster-1-default-pool-6f471531-pk3f using deployment name: php-apache
+2019-07-29 13:57:18,101	INFO -- pod php-apache-5f657688bc-vtsdz is deleted
+2019-07-29 13:57:18,205	INFO -- Movement succeeded
+2019-07-29 13:57:18,588	INFO -- went correct
+2019-07-29 13:57:18,589	INFO -- Update step finished: 2019-07-29 13:57:18.589188
+2019-07-29 13:57:18,589	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 0 chance blocked: 0
+                 Node removal correct: 4 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 13:57:18,589	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:01:18,605	INFO -- Time for an update_step iteration! 2019-07-29 14:01:18.605848
+2019-07-29 14:01:19,267	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:01:43,451	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:02:07,673	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:02:31,885	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:02:56,487	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:03:20,768	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:03:45,029	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:04:09,351	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:04:33,601	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:04:58,009	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:05:22,198	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:05:46,401	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:06:10,824	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:06:35,017	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:06:59,451	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:06:59.037966, calculating best transition
+2019-07-29 14:06:59,856	INFO -- Execution was added to the knowledge base with load: 4581.722651888754
+2019-07-29 14:07:00,162	INFO -- Costs for all options: current= 0.502519825744629, removal= 0.41876652145385745, old_best= 0.33501321716308596
+2019-07-29 14:07:00,162	INFO -- Changing to old_best_execution found in time: 2019-07-29 13:53:14.100000
+2019-07-29 14:07:00,375	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 14:07:00,854	INFO -- Costs for all options: current= 0.502519825744629, removal= 0.41876652145385745, old_best= 0.41876652145385745
+2019-07-29 14:07:00,855	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 14:07:01,210	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 14:07:01,890	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 14:07:01,890	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-lgxs
+2019-07-29 14:07:01,891	INFO -- went correct
+2019-07-29 14:07:01,891	INFO -- Update step finished: 2019-07-29 14:07:01.891560
+2019-07-29 14:07:01,891	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 0 chance blocked: 0
+                 Node removal correct: 5 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:07:01,891	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:11:01,989	INFO -- Time for an update_step iteration! 2019-07-29 14:11:01.989950
+2019-07-29 14:11:02,355	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:11:27,906	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:11:52,149	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:12:16,905	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:12:42,792	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:13:08,995	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:13:33,498	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:13:58,769	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:14:26,072	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:14:52,059	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:15:16,745	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:15:41,619	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:16:06,087	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:16:30,302	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:16:54,571	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:17:18,787	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:17:43,113	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:18:07,531	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:18:07.133977, calculating best transition
+2019-07-29 14:18:08,025	INFO -- Execution was added to the knowledge base with load: 17390.896310628603
+2019-07-29 14:18:08,025	INFO -- went wrong: <class 'SmartKubernetesSchedular.time_window.PodHasScaledWhileAnalysingException'>
+2019-07-29 14:18:08,026	INFO -- Update step finished: 2019-07-29 14:18:08.026262
+2019-07-29 14:18:08,026	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 0 chance blocked: 0
+                 Node removal correct: 5 wrong: 6
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:18:08,026	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:22:08,125	INFO -- Time for an update_step iteration! 2019-07-29 14:22:08.125955
+2019-07-29 14:22:08,338	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:22:32,587	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:22:56,812	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:23:21,366	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:23:45,866	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:24:10,288	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:24:34,767	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:24:59,268	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:25:23,658	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:25:48,050	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:26:12,435	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:26:36,826	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:27:01,450	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:27:25,811	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:27:50,152	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:28:14,528	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:28:38,921	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:29:03,287	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:29:27,711	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:29:27.309953, calculating best transition
+2019-07-29 14:29:28,124	INFO -- Execution was added to the knowledge base with load: 4364.4316609006155
+2019-07-29 14:29:28,766	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.41876652145385745
+2019-07-29 14:29:28,766	INFO -- Changing to old_best_execution found in time: 2019-07-29 13:39:51.695000
+2019-07-29 14:29:28,991	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 14:29:29,362	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.41876652145385745
+2019-07-29 14:29:29,362	INFO -- Changing to old_best_execution found in time: 2019-07-29 13:43:54.410000
+2019-07-29 14:29:29,580	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 14:29:29,853	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.41876652145385745
+2019-07-29 14:29:29,853	INFO -- Changing to old_best_execution found in time: 2019-07-29 13:32:11.805000
+2019-07-29 14:29:30,066	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 14:29:30,318	INFO -- Costs for all options: current= 0.5862731010437012, removal= 0.5025197967529297, old_best= 0.502519825744629
+2019-07-29 14:29:30,318	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-8mzg
+2019-07-29 14:29:30,652	INFO -- moving: php-apache-5f657688bc-mf5kp to gke-demo-cluster-1-default-pool-6f471531-1rz4 using deployment name: php-apache
+2019-07-29 14:29:31,366	INFO -- pod php-apache-5f657688bc-mf5kp is deleted
+2019-07-29 14:29:46,968	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.VerificationTookTooLongException'>
+2019-07-29 14:29:46,968	INFO -- Update step finished: 2019-07-29 14:29:46.968789
+2019-07-29 14:29:46,969	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 0 chance blocked: 0
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:29:46,969	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:33:47,065	INFO -- Time for an update_step iteration! 2019-07-29 14:33:47.065951
+2019-07-29 14:33:47,301	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:34:11,478	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:34:35,698	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:34:59,893	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:35:24,150	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:35:48,414	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:36:12,604	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:36:36,788	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:37:00,988	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:37:25,173	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:37:49,398	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:38:13,716	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:38:37,899	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:39:02,087	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:39:26,307	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:39:50,545	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:40:14,743	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:40:39,165	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:40:38.768947, calculating best transition
+2019-07-29 14:40:39,618	INFO -- Execution was added to the knowledge base with load: 4461.9288186961785
+2019-07-29 14:40:39,853	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 14:40:39,941	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.25125988388061526
+2019-07-29 14:40:39,941	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-29 14:40:40,539	INFO -- moving: php-apache-5f657688bc-rxzcn to gke-demo-cluster-1-default-pool-6f471531-2pbr using deployment name: php-apache
+2019-07-29 14:40:43,002	INFO -- pod php-apache-5f657688bc-rxzcn is deleted
+2019-07-29 14:40:43,145	INFO -- Movement failed
+2019-07-29 14:40:43,335	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.PodScheduledOnWrongNodeException'>
+2019-07-29 14:40:43,335	INFO -- Update step finished: 2019-07-29 14:40:43.335717
+2019-07-29 14:40:43,335	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 1 chance blocked: 0
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:40:43,336	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:44:43,434	INFO -- Time for an update_step iteration! 2019-07-29 14:44:43.433983
+2019-07-29 14:44:43,755	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:44:43.434392, calculating best transition
+2019-07-29 14:44:44,494	INFO -- Execution was added to the knowledge base with load: 4665.618062068049
+2019-07-29 14:44:44,721	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 14:44:44,893	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.25125988388061526
+2019-07-29 14:44:44,893	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-29 14:44:45,447	INFO -- moving: php-apache-5f657688bc-5nx27 to gke-demo-cluster-1-default-pool-6f471531-lg9s using deployment name: php-apache
+2019-07-29 14:44:46,010	INFO -- pod php-apache-5f657688bc-5nx27 is deleted
+2019-07-29 14:45:01,487	INFO -- went wrong: <class 'kubernetes_tools.migrate_pod.VerificationTookTooLongException'>
+2019-07-29 14:45:01,488	INFO -- Update step finished: 2019-07-29 14:45:01.488231
+2019-07-29 14:45:01,488	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 2 chance blocked: 0
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:45:01,488	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:49:01,585	INFO -- Time for an update_step iteration! 2019-07-29 14:49:01.585958
+2019-07-29 14:49:01,974	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:49:26,318	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:49:25.999440, calculating best transition
+2019-07-29 14:49:26,715	INFO -- Execution was added to the knowledge base with load: 4573.1261970058795
+2019-07-29 14:49:26,937	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 14:49:27,187	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.25125988388061526
+2019-07-29 14:49:27,187	INFO -- Update step finished: 2019-07-29 14:49:27.187331
+2019-07-29 14:49:27,187	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 1 wrong: 2 chance blocked: 1
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:49:27,187	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:53:27,287	INFO -- Time for an update_step iteration! 2019-07-29 14:53:27.287914
+2019-07-29 14:53:27,644	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:53:27.288242, calculating best transition
+2019-07-29 14:53:28,099	INFO -- Execution was added to the knowledge base with load: 4614.373333333334
+2019-07-29 14:53:28,411	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 14:53:28,768	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.25125988388061526
+2019-07-29 14:53:28,768	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-29 14:53:29,320	INFO -- moving: php-apache-5f657688bc-lqfmc to gke-demo-cluster-1-default-pool-6f471531-1rz4 using deployment name: php-apache
+2019-07-29 14:53:31,753	INFO -- pod php-apache-5f657688bc-lqfmc is deleted
+2019-07-29 14:53:31,877	INFO -- Movement succeeded
+2019-07-29 14:53:32,321	INFO -- went correct
+2019-07-29 14:53:32,321	INFO -- Update step finished: 2019-07-29 14:53:32.321884
+2019-07-29 14:53:32,322	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 2 chance blocked: 1
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:53:32,322	INFO -- Going to sleep for 240 seconds
+2019-07-29 14:57:32,394	INFO -- Time for an update_step iteration! 2019-07-29 14:57:32.394005
+2019-07-29 14:57:32,788	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 14:57:57,266	INFO -- Cluster was stable for 240 seconds till 2019-07-29 14:57:56.809987, calculating best transition
+2019-07-29 14:57:57,597	INFO -- Execution was added to the knowledge base with load: 4616.31398600766
+2019-07-29 14:57:57,764	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 14:57:58,223	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.25125988388061526
+2019-07-29 14:57:58,223	INFO -- Update step finished: 2019-07-29 14:57:58.223860
+2019-07-29 14:57:58,224	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 2 chance blocked: 2
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 14:57:58,224	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:01:58,267	INFO -- Time for an update_step iteration! 2019-07-29 15:01:58.267770
+2019-07-29 15:01:58,615	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:01:58.268107, calculating best transition
+2019-07-29 15:01:58,994	INFO -- Execution was added to the knowledge base with load: 4556.57272418224
+2019-07-29 15:01:59,214	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 15:01:59,769	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.2512598838806152
+2019-07-29 15:01:59,769	INFO -- Update step finished: 2019-07-29 15:01:59.769917
+2019-07-29 15:01:59,770	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 2 chance blocked: 3
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:01:59,770	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:05:59,870	INFO -- Time for an update_step iteration! 2019-07-29 15:05:59.870573
+2019-07-29 15:06:00,195	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:06:24,554	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:06:48,946	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:06:48.578895, calculating best transition
+2019-07-29 15:06:49,276	INFO -- Execution was added to the knowledge base with load: 4568.67808193408
+2019-07-29 15:06:49,446	INFO -- No node could be shutdown for improvement, because all nodes have a statefull set
+2019-07-29 15:06:50,077	INFO -- Costs for all options: current= 0.25125988388061526, removal= inf, old_best= 0.2512598838806152
+2019-07-29 15:06:50,077	INFO -- Update step finished: 2019-07-29 15:06:50.077832
+2019-07-29 15:06:50,077	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 0
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:06:50,078	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:10:50,178	INFO -- Time for an update_step iteration! 2019-07-29 15:10:50.177960
+2019-07-29 15:10:50,396	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:11:14,619	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:11:38,911	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:12:03,511	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:12:28,062	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:12:52,559	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:13:17,235	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:13:41,655	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:14:06,045	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:14:30,444	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:14:54,727	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:15:19,099	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:15:43,454	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:16:07,701	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:16:31,907	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:16:56,101	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:17:20,270	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:17:44,436	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:18:08,616	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:18:32,795	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:18:57,448	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:18:56.819920, calculating best transition
+2019-07-29 15:18:57,929	INFO -- Execution was added to the knowledge base with load: 18516.81944459988
+2019-07-29 15:18:58,243	INFO -- No node could be shutdown for improvement, because all the resources are needed
+2019-07-29 15:18:58,331	INFO -- Costs for all options: current= 0.5862730720520021, removal= inf, old_best= 0.586273072052002
+2019-07-29 15:18:58,331	INFO -- Staying with current execution, but randomly changing one random pod
+2019-07-29 15:18:58,602	INFO -- All nodes to full to do random move
+2019-07-29 15:18:58,603	INFO -- Update step finished: 2019-07-29 15:18:58.603188
+2019-07-29 15:18:58,603	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 1
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 5 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:18:58,603	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:22:58,616	INFO -- Time for an update_step iteration! 2019-07-29 15:22:58.616779
+2019-07-29 15:22:58,959	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:23:23,345	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:23:47,703	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:24:12,069	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:24:36,263	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:25:00,669	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:25:25,044	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:25:49,478	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:26:13,829	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:26:38,259	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:27:02,634	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:27:26,986	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:27:26.657981, calculating best transition
+2019-07-29 15:27:27,439	INFO -- Execution was added to the knowledge base with load: 4269.81231508134
+2019-07-29 15:27:28,220	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.2512598838806152
+2019-07-29 15:27:28,220	INFO -- Changing to old_best_execution found in time: 2019-07-29 15:02:48.578000
+2019-07-29 15:27:28,428	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:29,131	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.2512598838806152
+2019-07-29 15:27:29,131	INFO -- Changing to old_best_execution found in time: 2019-07-29 14:57:58.268000
+2019-07-29 15:27:29,319	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:29,879	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.25125988388061526
+2019-07-29 15:27:29,880	INFO -- Changing to old_best_execution found in time: 2019-07-29 14:45:25.999000
+2019-07-29 15:27:30,056	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:30,545	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.25125988388061526
+2019-07-29 15:27:30,545	INFO -- Changing to old_best_execution found in time: 2019-07-29 14:49:27.288000
+2019-07-29 15:27:30,692	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:31,054	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.25125988388061526
+2019-07-29 15:27:31,055	INFO -- Changing to old_best_execution found in time: 2019-07-29 14:40:43.434000
+2019-07-29 15:27:31,198	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:31,516	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.25125988388061526
+2019-07-29 15:27:31,516	INFO -- Changing to old_best_execution found in time: 2019-07-29 14:53:56.809000
+2019-07-29 15:27:31,669	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:31,881	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.25125988388061526
+2019-07-29 15:27:31,881	INFO -- Changing to old_best_execution found in time: 2019-07-29 14:36:38.768000
+2019-07-29 15:27:32,064	INFO -- The old_best required stateful sets to be moved, so therefore was blocked
+2019-07-29 15:27:32,287	INFO -- Costs for all options: current= 0.5862730720520021, removal= 0.5025197677612305, old_best= 0.502519825744629
+2019-07-29 15:27:32,287	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:27:32,570	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:27:33,521	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:27:33,522	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:27:33,522	INFO -- went correct
+2019-07-29 15:27:33,522	INFO -- Update step finished: 2019-07-29 15:27:33.522767
+2019-07-29 15:27:33,522	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 1
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 6 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:27:33,523	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:31:33,621	INFO -- Time for an update_step iteration! 2019-07-29 15:31:33.621957
+2019-07-29 15:31:33,797	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:31:57,999	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:32:22,186	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:32:46,391	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:33:10,576	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:33:34,757	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:33:58,948	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:34:23,152	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:34:47,336	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:35:11,520	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:35:35,895	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:35:35.541966, calculating best transition
+2019-07-29 15:35:36,183	INFO -- Execution was added to the knowledge base with load: 4603.177406563704
+2019-07-29 15:35:36,430	INFO -- Costs for all options: current= 0.33501318817138676, removal= 0.2512599128723145, old_best= 0.33501318817138676
+2019-07-29 15:35:36,431	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:35:36,683	INFO -- moving: php-apache-5f657688bc-9qbsd to gke-demo-cluster-1-default-pool-6f471531-4cvg using deployment name: php-apache
+2019-07-29 15:35:50,363	INFO -- pod php-apache-5f657688bc-9qbsd is deleted
+2019-07-29 15:35:50,475	INFO -- Movement succeeded
+2019-07-29 15:35:50,891	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:35:51,620	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:35:51,620	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:35:51,621	INFO -- went correct
+2019-07-29 15:35:51,621	INFO -- Update step finished: 2019-07-29 15:35:51.621571
+2019-07-29 15:35:51,621	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 1
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 7 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:35:51,621	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:39:51,717	INFO -- Time for an update_step iteration! 2019-07-29 15:39:51.717953
+2019-07-29 15:39:51,886	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:40:16,239	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:40:40,607	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:41:04,792	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:41:28,986	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:41:53,206	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:42:17,413	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:42:41,600	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:43:06,005	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:43:30,239	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:43:54,441	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:44:18,619	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:44:42,797	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:45:07,266	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:45:06.817977, calculating best transition
+2019-07-29 15:45:08,123	INFO -- Execution was added to the knowledge base with load: 4613.7141621890805
+2019-07-29 15:45:08,400	INFO -- Costs for all options: current= 0.33501321716308596, removal= 0.2512599128723145, old_best= 0.33501318817138676
+2019-07-29 15:45:08,400	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:45:08,731	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:45:09,736	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:45:09,737	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-p5p3
+2019-07-29 15:45:09,737	INFO -- went correct
+2019-07-29 15:45:09,737	INFO -- Update step finished: 2019-07-29 15:45:09.737684
+2019-07-29 15:45:09,737	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 1
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 8 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:45:09,737	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:49:09,834	INFO -- Time for an update_step iteration! 2019-07-29 15:49:09.834377
+2019-07-29 15:49:10,197	INFO -- Cluster was stable for 240 seconds till 2019-07-29 15:49:09.834700, calculating best transition
+2019-07-29 15:49:10,517	INFO -- Execution was added to the knowledge base with load: 4577.424366765371
+2019-07-29 15:49:10,856	INFO -- Costs for all options: current= 0.33501318817138676, removal= 0.2512599128723145, old_best= 0.3350131881713867
+2019-07-29 15:49:10,857	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:49:11,143	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:49:12,006	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:49:12,006	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 15:49:12,007	INFO -- went correct
+2019-07-29 15:49:12,007	INFO -- Update step finished: 2019-07-29 15:49:12.007203
+2019-07-29 15:49:12,007	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 1
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 9 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 15:49:12,007	INFO -- Going to sleep for 240 seconds
+2019-07-29 15:53:12,105	INFO -- Time for an update_step iteration! 2019-07-29 15:53:12.105957
+2019-07-29 15:53:12,277	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:53:36,665	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:54:01,041	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:54:25,435	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:54:49,836	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:55:14,243	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:55:38,599	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:56:03,015	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:56:27,429	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:56:51,631	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:57:15,881	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:57:40,061	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:58:04,247	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:58:28,434	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:58:52,606	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:59:16,807	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 15:59:41,072	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:00:05,314	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:00:29,508	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:00:53,705	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:01:17,891	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:01:42,079	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:02:06,280	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:02:30,484	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:02:54,700	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:03:18,883	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:03:43,154	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:04:07,447	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:04:31,625	INFO -- Cluster was not stable, waiting for retry window (24 seconds) to try again
+2019-07-29 16:04:55,994	INFO -- Cluster was stable for 240 seconds till 2019-07-29 16:04:55.645981, calculating best transition
+2019-07-29 16:04:56,370	INFO -- Execution was added to the knowledge base with load: 4585.466666666667
+2019-07-29 16:04:56,785	INFO -- Costs for all options: current= 0.41876649246215825, removal= 0.33501321716308596, old_best= 0.3350131881713867
+2019-07-29 16:04:56,785	INFO -- Removing node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 16:04:57,128	INFO -- Deleting node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 16:04:58,016	INFO -- Deletion successful, node: gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 16:04:58,016	INFO -- NODE_REMOVAL=gke-demo-cluster-1-default-pool-6f471531-1rz4
+2019-07-29 16:04:58,016	INFO -- went correct
+2019-07-29 16:04:58,016	INFO -- Update step finished: 2019-07-29 16:04:58.016962
+2019-07-29 16:04:58,017	INFO -- Current scores
+                 Not stable: 0
+                 All nodes full: 1
+                 Migration correct: 2 wrong: 2 chance blocked: 4
+                 Node removal correct: 10 wrong: 7
+                 Old state correct: 0 wrong: 0
+2019-07-29 16:04:58,017	INFO -- Going to sleep for 240 seconds
